@@ -1,0 +1,62 @@
+@model List<books.Models.ViewModels.IndexVM>
+
+<article>
+    <header class="mb-4">
+        <h1 class="fw-bolder mb-1">@ViewBag.aktifYazar.yazarAdi</h1>
+    </header>
+    <div class="row">
+        <section class="mb-5 col-md-12">
+            <div class="row my-4">
+                <div class="col-md-3">
+                    <span class="fw-bold ">Doğum Tarihi</span>
+                </div>
+                <div class="col-md-8">
+                    @ViewBag.aktifYazar.dogumTarihi
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-md-3">
+                    <span class="fw-bold">Doğum Yeri</span>
+                </div>
+                <div class="col-md-8">
+                    @ViewBag.aktifYazar.dogumYeri
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-md-3">
+                    <span class="fw-bold">Cinsiyet</span>
+                </div>
+                <div class="col-md-8">
+                    @if (ViewBag.aktifYazar.cinsiyeti)
+                    {
+                        <p>Erkek</p>
+                    }
+                    @if (!ViewBag.aktifYazar.cinsiyeti)
+                    {
+                        <p>Kadın</p>
+                    }
+                </div>
+            </div>
+    <div class="h3 mb-4">Kitaplar</div>
+<div class="row">
+            @foreach (var kitap in Model)
+            {
+                    <div class="col-lg-3">
+                        <div class="card mb-4">
+                            <a href="/Kitap/@kitap.Id"><img class="card-img-top" src="~/images/book/@kitap.Resim"
+                                alt="@kitap.KitapAdi" /></a>
+                            <div class="card-body">
+                                <div class="small text-muted">@kitap.YayinTarihi</div>
+                                <a class="text-decoration-none" href="/Kitap/@kitap.Id">@kitap.KitapAdi</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+            }
+                </div>
+            <p class="mb-4"></p>
+        </section>
+    </div>
+</article>
+

@@ -1,0 +1,27 @@
+@model List<books.Models.ViewModels.IndexVM>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@* <h1>@ViewBag.TurId</h1>
+    <h1>@ViewBag.YazarId</h1> *@
+
+<div class="row">
+    <h3 class="my-4">@ViewBag.PageTitle</h3>
+    @foreach (var kitap in Model)
+    {
+        <div class="col-lg-4">
+            <!-- Blog post-->
+        <div class="card mb-4">
+                <a href="/Kitap/@(kitap.Id)"><img class="card-img-top" src="~/images/book/@(kitap.Resim)"
+                    alt="@kitap.KitapAdi" /></a>
+                <div class="card-body">
+                    <div class="small text-muted">@kitap.YayinTarihi</div>
+                    <a class="text-decoration-none" href="/Kitap/@(kitap.Id)">@kitap.KitapAdi</a>
+
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

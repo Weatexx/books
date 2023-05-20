@@ -1,0 +1,500 @@
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\appsettings.Development.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\appsettings.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\books.staticwebassets.runtime.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\books.exe
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\books.deps.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\books.runtimeconfig.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\books.pdb
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.csproj.AssemblyReference.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.GeneratedMSBuildEditorConfig.editorconfig
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.AssemblyInfoInputs.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.AssemblyInfo.cs
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.csproj.CoreCompileInputs.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.MvcApplicationPartsAssemblyInfo.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cs
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\staticwebassets.build.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\staticwebassets.development.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\scopedcss\bundle\books.styles.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\scopedcss\projectbundle\books.bundle.scp.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\refint\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.pdb
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.genruntimeconfig.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\ref\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Humanizer.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Mono.TextTemplating.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\MySqlConnector.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\System.CodeDom.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\System.Text.Json.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\6-book\books\obj\Debug\net6.0\books.csproj.CopyComplete
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\appsettings.Development.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\appsettings.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\books.staticwebassets.runtime.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\books.exe
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\books.deps.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\books.runtimeconfig.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\books.pdb
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Humanizer.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Mono.TextTemplating.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\MySqlConnector.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\System.CodeDom.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\System.Text.Json.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.csproj.AssemblyReference.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.GeneratedMSBuildEditorConfig.editorconfig
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.AssemblyInfoInputs.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.AssemblyInfo.cs
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.csproj.CoreCompileInputs.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.MvcApplicationPartsAssemblyInfo.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cs
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\staticwebassets.build.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\staticwebassets.development.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\scopedcss\bundle\books.styles.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\scopedcss\projectbundle\books.bundle.scp.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.csproj.CopyComplete
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\refint\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.pdb
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\books.genruntimeconfig.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\7-books_2\books\obj\Debug\net6.0\ref\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\appsettings.Development.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\appsettings.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\books.staticwebassets.runtime.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\books.exe
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\books.deps.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\books.runtimeconfig.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\books.pdb
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Humanizer.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Mono.TextTemplating.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\MySqlConnector.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\System.CodeDom.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\System.Text.Json.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.csproj.AssemblyReference.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.GeneratedMSBuildEditorConfig.editorconfig
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.AssemblyInfoInputs.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.AssemblyInfo.cs
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.csproj.CoreCompileInputs.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.MvcApplicationPartsAssemblyInfo.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cs
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\staticwebassets.build.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\staticwebassets.development.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\scopedcss\bundle\books.styles.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\scopedcss\projectbundle\books.bundle.scp.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.csproj.CopyComplete
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\refint\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.pdb
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\books.genruntimeconfig.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\8-books_3\books\obj\Debug\net6.0\ref\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\appsettings.Development.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\appsettings.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\books.staticwebassets.runtime.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\books.exe
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\books.deps.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\books.runtimeconfig.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\books.pdb
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Humanizer.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Mono.TextTemplating.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\MySqlConnector.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\System.CodeDom.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\System.Text.Json.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.csproj.AssemblyReference.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.GeneratedMSBuildEditorConfig.editorconfig
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.AssemblyInfoInputs.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.AssemblyInfo.cs
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.csproj.CoreCompileInputs.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.MvcApplicationPartsAssemblyInfo.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cs
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\staticwebassets.build.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\staticwebassets.development.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\scopedcss\bundle\books.styles.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\scopedcss\projectbundle\books.bundle.scp.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.csproj.CopyComplete
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\refint\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.pdb
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\books.genruntimeconfig.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\9-books_4\books\obj\Debug\net6.0\ref\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\appsettings.Development.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\appsettings.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\books.staticwebassets.runtime.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\books.exe
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\books.deps.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\books.runtimeconfig.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\books.pdb
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Humanizer.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Mono.TextTemplating.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\MySqlConnector.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\System.CodeDom.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\System.Text.Json.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.csproj.AssemblyReference.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.GeneratedMSBuildEditorConfig.editorconfig
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.AssemblyInfoInputs.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.AssemblyInfo.cs
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.csproj.CoreCompileInputs.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.MvcApplicationPartsAssemblyInfo.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cs
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\staticwebassets.build.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\staticwebassets.development.json
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\scopedcss\bundle\books.styles.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\scopedcss\projectbundle\books.bundle.scp.css
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.csproj.CopyComplete
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\refint\books.dll
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.pdb
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\books.genruntimeconfig.cache
+I:\MEHMET\2022 - 2023\ATP11A\WEB\10-books_5\books\obj\Debug\net6.0\ref\books.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.csproj.AssemblyReference.cache
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.AssemblyInfoInputs.cache
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.AssemblyInfo.cs
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.csproj.CoreCompileInputs.cache
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cache
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cs
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\refint\books.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.pdb
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\appsettings.json
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\books.staticwebassets.runtime.json
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\books.exe
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\books.deps.json
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\books.runtimeconfig.json
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\books.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\books.pdb
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Humanizer.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\scopedcss\bundle\books.styles.css
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\scopedcss\projectbundle\books.bundle.scp.css
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.csproj.CopyComplete
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\books.genruntimeconfig.cache
+C:\Users\WT-OGRENCI-01\Desktop\books\obj\Debug\net6.0\ref\books.dll
+D:\books\bin\Debug\net6.0\appsettings.Development.json
+D:\books\bin\Debug\net6.0\appsettings.json
+D:\books\bin\Debug\net6.0\books.staticwebassets.runtime.json
+D:\books\bin\Debug\net6.0\books.exe
+D:\books\bin\Debug\net6.0\books.deps.json
+D:\books\bin\Debug\net6.0\books.runtimeconfig.json
+D:\books\bin\Debug\net6.0\books.dll
+D:\books\bin\Debug\net6.0\books.pdb
+D:\books\bin\Debug\net6.0\Humanizer.dll
+D:\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\books\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+D:\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+D:\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\books\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+D:\books\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\books\bin\Debug\net6.0\Mono.TextTemplating.dll
+D:\books\bin\Debug\net6.0\MySqlConnector.dll
+D:\books\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+D:\books\bin\Debug\net6.0\System.CodeDom.dll
+D:\books\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\books\bin\Debug\net6.0\System.Text.Json.dll
+D:\books\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\books\obj\Debug\net6.0\books.csproj.AssemblyReference.cache
+D:\books\obj\Debug\net6.0\books.GeneratedMSBuildEditorConfig.editorconfig
+D:\books\obj\Debug\net6.0\books.AssemblyInfoInputs.cache
+D:\books\obj\Debug\net6.0\books.AssemblyInfo.cs
+D:\books\obj\Debug\net6.0\books.csproj.CoreCompileInputs.cache
+D:\books\obj\Debug\net6.0\books.MvcApplicationPartsAssemblyInfo.cache
+D:\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cache
+D:\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cs
+D:\books\obj\Debug\net6.0\staticwebassets.build.json
+D:\books\obj\Debug\net6.0\staticwebassets.development.json
+D:\books\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\books\obj\Debug\net6.0\scopedcss\bundle\books.styles.css
+D:\books\obj\Debug\net6.0\scopedcss\projectbundle\books.bundle.scp.css
+D:\books\obj\Debug\net6.0\books.csproj.CopyComplete
+D:\books\obj\Debug\net6.0\books.dll
+D:\books\obj\Debug\net6.0\refint\books.dll
+D:\books\obj\Debug\net6.0\books.pdb
+D:\books\obj\Debug\net6.0\books.genruntimeconfig.cache
+D:\books\obj\Debug\net6.0\ref\books.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\appsettings.json
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\books.staticwebassets.runtime.json
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\books.exe
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\books.deps.json
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\books.runtimeconfig.json
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\books.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\books.pdb
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Humanizer.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.csproj.AssemblyReference.cache
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.AssemblyInfoInputs.cache
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.AssemblyInfo.cs
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.csproj.CoreCompileInputs.cache
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.RazorAssemblyInfo.cache
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.RazorAssemblyInfo.cs
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\scopedcss\bundle\books.styles.css
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\scopedcss\projectbundle\books.bundle.scp.css
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.csproj.CopyComplete
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\refint\books.dll
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.pdb
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\books.genruntimeconfig.cache
+C:\Users\WT-OGRENCI-01\Desktop\books_base\obj\Debug\net6.0\ref\books.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\appsettings.json
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\books.staticwebassets.runtime.json
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\books.exe
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\books.deps.json
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\books.runtimeconfig.json
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\books.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\books.pdb
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Humanizer.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\User\Desktop\books_base\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.AssemblyInfo.cs
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.RazorAssemblyInfo.cache
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.RazorAssemblyInfo.cs
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\staticwebassets\msbuild.books.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\staticwebassets\msbuild.build.books.props
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.books.props
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.books.props
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\scopedcss\bundle\books.styles.css
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\scopedcss\projectbundle\books.bundle.scp.css
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.csproj.CopyComplete
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.dll
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\refint\books.dll
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.pdb
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\books.genruntimeconfig.cache
+C:\Users\User\Desktop\books_base\obj\Debug\net6.0\ref\books.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\User\Desktop\books\bin\Debug\net6.0\appsettings.json
+C:\Users\User\Desktop\books\bin\Debug\net6.0\books.staticwebassets.runtime.json
+C:\Users\User\Desktop\books\bin\Debug\net6.0\books.exe
+C:\Users\User\Desktop\books\bin\Debug\net6.0\books.deps.json
+C:\Users\User\Desktop\books\bin\Debug\net6.0\books.runtimeconfig.json
+C:\Users\User\Desktop\books\bin\Debug\net6.0\books.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\books.pdb
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Humanizer.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\User\Desktop\books\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.AssemblyInfo.cs
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cache
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.RazorAssemblyInfo.cs
+C:\Users\User\Desktop\books\obj\Debug\net6.0\staticwebassets\msbuild.books.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\User\Desktop\books\obj\Debug\net6.0\staticwebassets\msbuild.build.books.props
+C:\Users\User\Desktop\books\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.books.props
+C:\Users\User\Desktop\books\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.books.props
+C:\Users\User\Desktop\books\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\User\Desktop\books\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\User\Desktop\books\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\User\Desktop\books\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\User\Desktop\books\obj\Debug\net6.0\scopedcss\bundle\books.styles.css
+C:\Users\User\Desktop\books\obj\Debug\net6.0\scopedcss\projectbundle\books.bundle.scp.css
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.csproj.CopyComplete
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.dll
+C:\Users\User\Desktop\books\obj\Debug\net6.0\refint\books.dll
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.pdb
+C:\Users\User\Desktop\books\obj\Debug\net6.0\books.genruntimeconfig.cache
+C:\Users\User\Desktop\books\obj\Debug\net6.0\ref\books.dll
