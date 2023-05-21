@@ -1,0 +1,73 @@
+@model books.Models.AdminViewModels.UsersVM
+
+@{
+  Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Kullanıcı Sil</h1>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+          <li class="breadcrumb-item"><a href="/Admin/Users">Kullanıcılar</a></li>
+          <li class="breadcrumb-item active">Kullanıcı Sil</li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- /.col-md-6 -->
+      <div class="col-lg-6">
+        <div class="card card-info">
+          <!-- /.card-header -->
+          <div class="alert alert-warning fw-bolder text-center" role="warning">Bu Kullanıcı silinsin mi?</div>
+          <!-- form start -->
+          @Html.AntiForgeryToken()
+          <form class="form-horizontal" method="post" asp-controller="Admin" asp-action="UserSilOnay"
+            asp-route-id="@ViewBag.UserInfo.id">
+            <input asp-for="id" type="hidden" value="@ViewBag.UserInfo.id" disabled />
+            <div class="card-body">
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Kullanıcı Adı</label>
+                <div class="col-sm-10">
+                  <input type="text" asp-for="username" class="form-control" style="cursor: not-allowed"
+                    placeholder="Kullanıcı Adı" disabled value="@ViewBag.UserInfo.username" />
+                </div>
+                <span asp-validation-for="username" class="text-danger ml-2 mt-2"></span>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Şifre</label>
+                <div class="col-sm-10">
+                  <input type="text" asp-for="password" class="form-control" style="cursor: not-allowed"
+                    placeholder="Şifre" disabled value="@ViewBag.UserInfo.password" />
+                </div>
+                <span asp-validation-for="password" class="text-danger ml-2 mt-2"></span>
+              </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <a href="/Admin/Users" class="btn btn-default">Vazgeç</a>
+              <button type="submit" class="btn btn-danger float-right">
+                Sil
+              </button>
+            </div>
+            <!-- /.card-footer -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

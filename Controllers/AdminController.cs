@@ -152,6 +152,40 @@ public class AdminController : Controller
     }
 
 
+[HttpGet]
+    public IActionResult TurSil(int? id)
+    {
+        ViewBag.TurInfo = (from x in db.Turlers
+                           where x.Id == id
+                           select new TurlerVM
+                           {
+                               Id = x.Id,
+                               TurAdi = x.TurAdi,
+                               Sira = x.Sira
+                           }).FirstOrDefault();
+
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> TurSilmeOnay(int id)
+    {
+        var tur = await db.Turlers.FindAsync(id);
+
+        db.Turlers.Remove(tur);
+        await db.SaveChangesAsync();
+
+        return RedirectToAction("Turler");
+    }
+
+
+
 //user kısmı
 
     [Route("/Admin/Users")]
@@ -229,5 +263,37 @@ public class AdminController : Controller
         await db.SaveChangesAsync();
 
         return Redirect("/Admin/Users");
+    }
+
+    [HttpGet]
+    public IActionResult UserSil(int? id)
+    {
+        ViewBag.UserInfo = (from x in db.Users
+                            where x.Id == id
+                            select new UsersVM
+                            {
+                                id = x.Id,
+                                username = x.Username,
+                                password = x.Password
+                            }).FirstOrDefault();
+
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UserSilOnay(int id)
+    {
+        var user = await db.Users.FindAsync(id);
+
+        db.Users.Remove(user);
+        await db.SaveChangesAsync();
+
+        return RedirectToAction("Users");
     }
 }

@@ -1,0 +1,71 @@
+@model books.Models.AdminViewModels.TurlerVM
+
+@{
+  Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Tür Sil</h1>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+          <li class="breadcrumb-item"><a href="/Admin/Turler">Türler</a></li>
+          <li class="breadcrumb-item active">Tür Sil</li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- /.col-md-6 -->
+      <div class="col-lg-6">
+        <div class="card card-info">
+          <!-- /.card-header -->
+          <div class="alert alert-warning fw-bolder text-center" role="warning">Bu tür silinsin mi?</div>
+          <!-- form start -->
+          @Html.AntiForgeryToken()
+          <form class="form-horizontal" method="post" asp-controller="Admin" asp-action="TurSilmeOnay"
+            asp-route-id="@ViewBag.TurInfo.Id">
+            <input asp-for="Id" type="hidden" value="@ViewBag.TurInfo.Id" disabled />
+            <div class="card-body">
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Tür Adı</label>
+                <div class="col-sm-10">
+                  <input type="text" asp-for="TurAdi" class="form-control" style="cursor: not-allowed"
+                    placeholder="Tür Adı" disabled value="@ViewBag.TurInfo.TurAdi" />
+                </div>
+                <span asp-validation-for="TurAdi" class="text-danger ml-2 mt-2"></span>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Sıra</label>
+                <div class="col-sm-10">
+                  <input type="text" asp-for="Sira" class="form-control" style="cursor: not-allowed" placeholder="Sıra"
+                    disabled value="@ViewBag.TurInfo.Sira" />
+                </div>
+                <span asp-validation-for="Sira" class="text-danger ml-2 mt-2"></span>
+              </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <a href="/Admin/Turler" class="btn btn-default">Vazgeç</a>
+              <button type="submit" class="btn btn-danger float-right">Sil</button>
+            </div>
+            <!-- /.card-footer -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
