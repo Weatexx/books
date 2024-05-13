@@ -6,7 +6,7 @@ Site tamamiyle birebir yazılmış, kopyalama aracı ve benzeri araçlar kullan�
 AdminPanel, Kayıt ve Kullanıcı ekleme özellikleri vardır. 
 Üzerinde yapılan değişikliklerin sorumluluğu kullanıcıların kendisine aittir.
 
-(TR)
+(ENG)
 Book Sales Website with Frontend, Backend and Database. 
 The site was written completely verbatim, no copying tools or similar tools were used.
 It has AdminPanel, Registration and User adding features.
