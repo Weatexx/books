@@ -184,7 +184,7 @@ public class AdminController : Controller
         return RedirectToAction("Turler");
     }
 
-
+//*****************************************
 
 //user kısmı
 
@@ -295,5 +295,27 @@ public class AdminController : Controller
         await db.SaveChangesAsync();
 
         return RedirectToAction("Users");
+    }
+
+    //Kitaplar Kısmı---------------------
+    //user kısmı
+
+    [Route("/Admin/Kitaplar")]
+    public IActionResult Kitaplar()
+    {
+        List<KitaplarVM> KitaplarListesi = (from x in db.Kitaplars
+                                     select new KitaplarVM
+                                     {
+                                         id = x.Id,
+                                         adi = x.Adi,
+                                         yazarID = x.YazarId,
+                                         dilID = x.DilId,
+                                         sayfaSayisi = x.SayfaSayisi,
+                                         yayineviID = x.YayineviId,
+                                         ozet = x.Ozet,
+                                         yayinTarihi = x.YayinTarihi,
+                                     }).ToList();
+
+        return View(KitaplarListesi);
     }
 }

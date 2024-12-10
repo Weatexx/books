@@ -1,0 +1,85 @@
+@model List<books.Models.AdminViewModels.KitaplarVM>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Yazarlar</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Yazarlar</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- /.col-md-6 -->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="/Admin/YazarEkle" class="btn btn-primary"><i class="fa fa-user-plus mr-2"></i>Ekle</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Yazar Adı</th>
+                                    <th>Yazar ID</th>
+                                    <th>Dil ID</th>
+                                    <th>Sayfa Sayısı</th>
+                                    <th>Yayınevi ID</th>
+                                    <th>Özet ID</th>
+                                    <th>Yayın Tarihi</th>
+                                    @*<th>İşlem</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var kitaplar in Model)
+                                {
+                                    <tr>
+                                        <td>@kitaplar.id</td>
+                                        <td>@kitaplar.adi</td>
+                                        <td> @kitaplar.yazarID</td>
+                                        <td>@kitaplar.dilID</td>
+                                        <td>@kitaplar.sayfaSayisi</td>
+                                        <td> @kitaplar.yayineviID</td>
+                                        <td> @kitaplar.ozet</td>
+                                        <td> @kitaplar.yayinTarihi</td>
+                                           
+                                        
+
+                                        @*<td>
+                                            <a href="/Admin/UserDuzenle/@users.id" class="btn btn-xs btn-primary"> <i class="far fa-edit"></i></a>
+
+                                             <a href="/Admin/UserSil/@users.id" class="btn btn-xs btn-danger" style="width: 2rem"><i class="fa fa-trash"></i></a>
+                                        </td>*@
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
