@@ -1,0 +1,117 @@
+@model books.Models.AdminViewModels.KitaplarVM
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Kitap Düzenle</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/Kitaplar">Kitaplar</a></li>
+                    <li class="breadcrumb-item active">Kitap Düzenle</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- /.col-md-6 -->
+            <div class="col-lg-6">
+
+                <div class="card card-info">
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" method="post" action="/Admin/KitapDuzenle/@ViewBag.UserInfo.id">
+                        <input asp-for="id" type="hidden" value="@ViewBag.UserInfo.id" />
+                        @Html.AntiForgeryToken()
+                        <div class="card-body">
+                            
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Kitap Adı</label>
+                                <div class="col-sm-10">
+                                    <input type="text" asp-for="adi" class="form-control"
+                                        placeholder="Kitap Adı" value="@ViewBag.UserInfo.adi">
+                                </div>
+                                <span asp-validation-for="adi" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Yazar Id</label>
+                                <div class="col-sm-10">
+                                    <input type="number" asp-for="yazarID" class="form-control" placeholder="Yazar Id"
+                                        value="@ViewBag.UserInfo.yazarID">
+                                </div>
+                                <span asp-validation-for="yazarID" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">dil Id</label>
+                                <div class="col-sm-10">
+                                    <input type="number" asp-for="dilID" class="form-control"
+                                        placeholder="Dil Id" value="@ViewBag.UserInfo.dilID">
+                                </div>
+                                <span asp-validation-for="dilID" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Sayfa Sayısı</label>
+                                <div class="col-sm-10">
+                                    <input type="number" asp-for="sayfaSayisi" class="form-control" placeholder="Sayfa Sayısı"
+                                        value="@ViewBag.UserInfo.sayfaSayisi">
+                                </div>
+                                <span asp-validation-for="sayfaSayisi" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Yayınevi Id</label>
+                                <div class="col-sm-10">
+                                    <input type="number" asp-for="yayineviID" class="form-control" placeholder="Yayınevi Id"
+                                        value="@ViewBag.UserInfo.yayineviID">
+                                </div>
+                                <span asp-validation-for="yayineviID" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Özet</label>
+                                <div class="col-sm-10">
+                                    <input type="text" asp-for="ozet" class="form-control" placeholder="Özet"
+                                        value="@ViewBag.UserInfo.ozet">
+                                </div>
+                                <span asp-validation-for="ozet" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Yayın Tarihi</label>
+                                <div class="col-sm-10">
+                                    <input type="date" asp-for="yayinTarihi" class="form-control" 
+                                        value="@ViewBag.UserInfo.yayinTarihi.ToString("yyyy-MM-dd")"/>
+                                </div>
+                                <span asp-validation-for="yayinTarihi" class="text-danger"></span>
+                            </div>
+                            
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <a href="/Admin/Users" type="submit" class="btn btn-default">Vazgeç</a>
+                            <button type="submit" class="btn btn-primary float-right">Kaydet</button>
+                        </div>
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

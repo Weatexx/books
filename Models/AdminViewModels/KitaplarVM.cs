@@ -19,4 +19,6 @@ public class KitaplarVM
     public string ozet { get; set; }
     [Required]
     public DateOnly yayinTarihi { get; set; }
+    [Required]
+    public string? resim { get; set; }
 }
