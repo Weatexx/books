@@ -1,0 +1,46 @@
+@model books.Models.AdminViewModels.DillerVM
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Dil Ekle</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/Diller">Diller</a></li>
+                    <li class="breadcrumb-item active">Dil Ekle</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card card-primary">
+                    <form class="form-horizontal" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Dil Adı</label>
+                                <input type="text" asp-for="Adi" class="form-control" placeholder="Dil Adı">
+                                <span asp-validation-for="Adi" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/Admin/Diller" class="btn btn-default">Vazgeç</a>
+                            <button type="submit" class="btn btn-primary float-right">Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

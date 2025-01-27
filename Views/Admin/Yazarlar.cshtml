@@ -1,0 +1,66 @@
+@model List<books.Models.AdminViewModels.YazarlarVM>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Yazarlar</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Yazarlar</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="/Admin/YazarEkle" class="btn btn-primary">Yeni Yazar Ekle</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Ad</th>
+                                    <th>Soyad</th>
+                                    <th>Doğum Tarihi</th>
+                                    <th>Doğum Yeri</th>
+                                    <th>Cinsiyet</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var yazar in Model)
+                                {
+                                    <tr>
+                                        <td>@yazar.Id</td>
+                                        <td>@yazar.Adi</td>
+                                        <td>@yazar.Soyadi</td>
+                                        <td>@yazar.DogumTarihi.ToShortDateString()</td>
+                                        <td>@yazar.DogumYeri</td>
+                                        <td>@(yazar.Cinsiyeti ? "Erkek" : "Kadın")</td>
+                                        <td>
+                                            <a href="/Admin/YazarDuzenle/@yazar.Id" class="btn btn-warning btn-sm">Düzenle</a>
+                                            <a href="/Admin/YazarSil/@yazar.Id" class="btn btn-danger btn-sm">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

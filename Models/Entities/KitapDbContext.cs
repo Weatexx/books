@@ -45,11 +45,10 @@ public partial class KitapDbContext : DbContext
 
             entity.ToTable("diller");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.DilAdi)
                 .HasMaxLength(50)
-                .IsFixedLength()
-                .HasColumnName("dilAdi");
+                .HasColumnName("adi");
         });
 
         modelBuilder.Entity<Iletisim>(entity =>
@@ -175,21 +174,18 @@ public partial class KitapDbContext : DbContext
 
             entity.ToTable("yayinevleri");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.Adres)
-                .HasMaxLength(150)
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.yayineviAdi)
+                .HasMaxLength(100)
+                .HasColumnName("adi");
+            entity.Property(e => e.adres)
+                .HasMaxLength(250)
                 .HasColumnName("adres");
-            entity.Property(e => e.Sira)
-                .HasDefaultValueSql("'1'")
+            entity.Property(e => e.tel)
+                .HasMaxLength(20)
+                .HasColumnName("telefon");
+            entity.Property(e => e.sira)
                 .HasColumnName("sira");
-            entity.Property(e => e.Tel)
-                .HasMaxLength(13)
-                .IsFixedLength()
-                .HasColumnName("tel");
-            entity.Property(e => e.YayineviAdi)
-                .HasMaxLength(200)
-                .IsFixedLength()
-                .HasColumnName("yayineviAdi");
         });
 
         modelBuilder.Entity<Yazarlar>(entity =>

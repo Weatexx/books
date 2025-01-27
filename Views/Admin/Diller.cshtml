@@ -1,0 +1,58 @@
+@model List<books.Models.AdminViewModels.DillerVM>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Diller</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Diller</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="/Admin/DilEkle" class="btn btn-primary">Yeni Dil Ekle</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Dil Adı</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var dil in Model)
+                                {
+                                    <tr>
+                                        <td>@dil.Id</td>
+                                        <td>@dil.Adi</td>
+                                        <td>
+                                            <a href="/Admin/DilDuzenle/@dil.Id" class="btn btn-warning btn-sm">Düzenle</a>
+                                            <a href="/Admin/DilSil/@dil.Id" class="btn btn-danger btn-sm">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

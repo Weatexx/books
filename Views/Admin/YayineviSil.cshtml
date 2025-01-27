@@ -1,0 +1,53 @@
+@model books.Models.AdminViewModels.YayinevleriVM
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Yayınevi Sil</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/Yayinevleri">Yayınevleri</a></li>
+                    <li class="breadcrumb-item active">Yayınevi Sil</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card card-danger">
+                    <div class="alert alert-warning fw-bolder text-center" role="alert">
+                        Bu yayınevini silmek istediğinize emin misiniz?
+                    </div>
+                    <form class="form-horizontal" method="post" asp-controller="Admin" asp-action="YayineviSilmeOnay" asp-route-id="@ViewBag.YayineviInfo.Id">
+                        <input type="hidden" asp-for="ID" value="@ViewBag.YayineviInfo.ID" />
+                        @Html.AntiForgeryToken()
+                        <div class="card-body">                           
+                            <div class="form-group">
+                                <label>Yayınevi Adı</label>
+                                <input type="text" class="form-control" disabled value="@ViewBag.YayineviInfo.Adi">
+                            </div>
+                            <div class="form-group">
+                                <label>Telefon</label>
+                                <input type="text" class="form-control" disabled value="@ViewBag.YayineviInfo.Telefon">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/Admin/Yayinevleri" class="btn btn-default">Vazgeç</a>
+                            <button type="submit" class="btn btn-danger float-right">Sil</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

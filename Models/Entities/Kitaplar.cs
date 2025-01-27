@@ -19,7 +19,7 @@ public partial class Kitaplar
 
     public string Ozet { get; set; } = null!;
 
-    public DateOnly YayinTarihi { get; set; }
+    public DateTime YayinTarihi { get; set; }
 
     public string? Resim { get; set; }
 }

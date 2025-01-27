@@ -1,20 +1,13 @@
 @model List<books.Models.ViewModels.TurListVM>
 
-<div class="card mb-4">
-    <div class="card-header">Türler</div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-12">
-                <ul class="list-unstyled mb-0">
-                    @foreach (var tur in Model)
-                    {
-                        <a href="/Kitaplar/Tur/@tur.id" class="btn btn-primary my-2">
-                            @tur.tur
-                            <span class="badge bg-light text-dark ms-2">@tur.kitapSayisi</span>
-                        </a>
-                    }
-                </ul>
-            </div>
-        </div>
-    </div>
+<div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Türler
+    </a>
+    <ul class="dropdown-menu">
+        @foreach (var tur in Model)
+        {
+            <li><a class="dropdown-item" href="/Kitaplar/Tur/@tur.Id">@tur.TurAdi</a></li>
+        }
+    </ul>
 </div>

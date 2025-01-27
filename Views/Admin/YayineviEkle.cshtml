@@ -1,0 +1,58 @@
+@model books.Models.AdminViewModels.YayinevleriVM
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Yayınevi Ekle</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/Yayinevleri">Yayınevleri</a></li>
+                    <li class="breadcrumb-item active">Yayınevi Ekle</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card card-primary">
+                    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Yayınevi Adı</label>
+                                <input type="text" asp-for="yayineviAdi" class="form-control" placeholder="Yayınevi Adı">
+                                <span asp-validation-for="yayineviAdi" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Adres</label>
+                                <textarea asp-for="adres" class="form-control" rows="3" placeholder="Adres"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefon</label>
+                                <input type="text" asp-for="tel" class="form-control" placeholder="Telefon">
+                            </div>
+                            <div class="form-group">
+                                <label>Sıra</label>
+                                <input type="number" asp-for="sira" class="form-control" placeholder="Sıra">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/Admin/Yayinevleri" class="btn btn-default">Vazgeç</a>
+                            <button type="submit" class="btn btn-primary float-right">Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

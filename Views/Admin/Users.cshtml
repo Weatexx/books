@@ -1,4 +1,4 @@
-@model List<books.Models.AdminViewModels.UsersVM>
+@model List<books.Models.AdminViewModels.UserVM>
 
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -30,36 +30,29 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/Admin/UserEkle" class="btn btn-primary"><i class="fa fa-user-plus mr-2"></i>Ekle</a>
+                        <a href="/Admin/UserEkle" class="btn btn-primary">Yeni Kullanıcı Ekle</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th style="width: 10px">#</th>
+                                    <th>ID</th>
                                     <th>Kullanıcı Adı</th>
-                                    <th>Şifre</th>
-                                    <th>İşlem</th>
+                                    <th>İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var users in Model)
+                                @foreach (var user in Model)
                                 {
                                     <tr>
-                                        <td>@users.id</td>
-                                        <td>@users.username</td>
+                                        <td>@user.id</td>
+                                        <td>@user.username</td>
                                         <td>
-                                            @users.password
-                                        </td>
-                                        <td>
-                                            <a href="/Admin/UserDuzenle/@users.id" class="btn btn-xs btn-primary"> <i class="far fa-edit"></i></a>
-
-                                             <a href="/Admin/UserSil/@users.id" class="btn btn-xs btn-danger" style="width: 2rem"><i class="fa fa-trash"></i></a>
+                                            <a href="/Admin/UserDuzenle/@user.id" class="btn btn-warning btn-sm">Düzenle</a>
+                                            <a href="/Admin/UserSil/@user.id" class="btn btn-danger btn-sm">Sil</a>
                                         </td>
                                     </tr>
                                 }
-
-
                             </tbody>
                         </table>
                     </div>

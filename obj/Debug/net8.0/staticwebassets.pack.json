@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\books.bundle.scp.css",
-      "PackagePath": "staticwebassets\\books.bundle.scp.css"
+      "PackagePath": "staticwebassets\\books.k4hkx5anro.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\admin\\build\\config\\.eslintrc.json",
@@ -9613,10 +9613,6 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\book\\1.jpg",
-      "PackagePath": "staticwebassets\\images\\book\\1.jpg"
-    },
-    {
       "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\book\\2.jpg",
       "PackagePath": "staticwebassets\\images\\book\\2.jpg"
     },
@@ -9879,6 +9875,10 @@
     {
       "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.books.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.books.Microsoft.AspNetCore.StaticWebAssets.props",

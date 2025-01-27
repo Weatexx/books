@@ -1,20 +1,17 @@
-@model List<books.Models.ViewModels.YazarListVM>
+@model List<books.Models.AdminViewModels.YazarlarVM>
 
-<div class="card mb-4">
-    <div class="card-header">Yazarlar</div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Yazarlar</h3>
+    </div>
     <div class="card-body">
-        <div class="row">
-            <div class="col-sm-12">
-                <ul class="list-unstyled mb-0">
-                    @foreach (var yazar in Model)
-                    {
-                        <a href="/Yazar/@yazar.id" class="btn btn-primary my-2">
-                            @yazar.yazarAdi
-                            <span class="badge bg-light text-dark ms-2">@yazar.kitapSayisi</span>
-                        </a>
-                    }
-                </ul>
-            </div>
+        <div class="list-group">
+            @foreach (var yazar in Model)
+            {
+                <a href="/Yazar/@yazar.Id" class="list-group-item list-group-item-action">
+                    @yazar.Adi @yazar.Soyadi
+                </a>
+            }
         </div>
     </div>
 </div>

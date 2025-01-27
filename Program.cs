@@ -1,18 +1,22 @@
 using Microsoft.EntityFrameworkCore;
-using books.Models.Entities;
+using books.Models;  // KitapDbContext için
 using Microsoft.AspNetCore.Authentication.Cookies; // Auth için eklendi
+
+#nullable disable  // Null referans uyarılarını kapat
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var connetionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<KitapDbContext>(options => options.UseMySql(connetionString, ServerVersion.AutoDetect(connetionString)));
+builder.Services.AddDbContext<KitapDbContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    new MySqlServerVersion(new Version(8, 0, 21))));
 
 // Auth için eklendi
 builder.Services.AddSession();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option => option.LoginPath = "/Admin/Login");
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option => option.LoginPath = "/Admin/Login");
 //
 
 var app = builder.Build();

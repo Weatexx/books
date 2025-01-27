@@ -22,10 +22,12 @@
                     <span class="fw-bold">Tür :</span>
                 </div>
                 <div class="col-md-8">
-                    @foreach (var tur in Model.KitapTurleri)
-                    {
-                        <a class="btn btn-primary btn-sm mr-2">@tur.TurAdi</a>
-                    }
+                    <div class="turler">
+                        @foreach (var tur in Model.KitapTurleri)
+                        {
+                            <a href="/Kitaplar/Tur/@tur.Id" class="btn btn-sm btn-outline-secondary">@tur.TurAdi</a>
+                        }
+                    </div>
                 </div>
             </div>
 
@@ -36,12 +38,18 @@
                 <div class="col-md-8">
                     @Model.SayfaSayisi
                 </div>
+            </div>
+
             <div class="row my-4">
                 <div class="col-md-4">
                     <span class="fw-bold">Yazar :</span>
                 </div>
                 <div class="col-md-8">
-                    @Model.Yazar
+                    <h2>@Model.KitapAdi</h2>
+                    <p>
+                        <strong>Yazar:</strong> 
+                        <a href="/Yazar/@Model.Yazar.id">@Model.Yazar.adi @Model.Yazar.soyadi</a>
+                    </p>
                 </div>
             </div>
 
