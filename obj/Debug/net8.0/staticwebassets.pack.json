@@ -9613,6 +9613,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\book\\1.jpg",
+      "PackagePath": "staticwebassets\\images\\book\\1.jpg"
+    },
+    {
       "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\book\\2.jpg",
       "PackagePath": "staticwebassets\\images\\book\\2.jpg"
     },
