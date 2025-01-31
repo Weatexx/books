@@ -25,25 +25,28 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="card card-primary">
-                    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <div class="card-header">
+                        <h3 class="card-title">Yayınevi Bilgileri</h3>
+                    </div>
+                    <form method="post">
                         @Html.AntiForgeryToken()
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Yayınevi Adı</label>
-                                <input type="text" asp-for="yayineviAdi" class="form-control" placeholder="Yayınevi Adı">
-                                <span asp-validation-for="yayineviAdi" class="text-danger"></span>
+                                <input type="text" class="form-control" asp-for="YayineviAdi" required maxlength="200">
+                                <span asp-validation-for="YayineviAdi" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label>Adres</label>
-                                <textarea asp-for="adres" class="form-control" rows="3" placeholder="Adres"></textarea>
+                                <input type="text" class="form-control" asp-for="Adres" maxlength="150">
                             </div>
                             <div class="form-group">
                                 <label>Telefon</label>
-                                <input type="text" asp-for="tel" class="form-control" placeholder="Telefon">
+                                <input type="tel" class="form-control" asp-for="Tel" maxlength="13">
                             </div>
                             <div class="form-group">
                                 <label>Sıra</label>
-                                <input type="number" asp-for="sira" class="form-control" placeholder="Sıra">
+                                <input type="number" class="form-control" asp-for="Sira" required>
                             </div>
                         </div>
                         <div class="card-footer">

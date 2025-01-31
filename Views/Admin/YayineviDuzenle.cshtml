@@ -25,27 +25,31 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="card card-warning">
-                    <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                        <input type="hidden" asp-for="ID" value="@ViewBag.YayineviInfo.Id" />
+                    <div class="card-header">
+                        <h3 class="card-title">Yayınevi Bilgileri</h3>
+                    </div>
+                    <form method="post">
                         @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Yayınevi Adı</label>
-                                <input type="text" asp-for="yayineviAdi" class="form-control" value="@ViewBag.YayineviInfo.Adi">
-                                <span asp-validation-for="yayineviAdi" class="text-danger"></span>
+                                <input type="text" class="form-control" asp-for="YayineviAdi" required maxlength="200">
+                                <span asp-validation-for="YayineviAdi" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label>Adres</label>
-                                <textarea asp-for="adres" class="form-control" rows="3">@ViewBag.YayineviInfo.Adres</textarea>
+                                <input type="text" class="form-control" asp-for="Adres" maxlength="150">
                             </div>
                             <div class="form-group">
                                 <label>Telefon</label>
-                                <input type="text" asp-for="tel" class="form-control" value="@ViewBag.YayineviInfo.Telefon">
+                                <input type="tel" class="form-control" asp-for="Tel" maxlength="13">
                             </div>
                             <div class="form-group">
                                 <label>Sıra</label>
-                                <input type="number" asp-for="sira" class="form-control" value="@ViewBag.YayineviInfo.Sira">
+                                <input type="number" class="form-control" asp-for="Sira" required>
                             </div>
+                        </div>
                         <div class="card-footer">
                             <a href="/Admin/Yayinevleri" class="btn btn-default">Vazgeç</a>
                             <button type="submit" class="btn btn-warning float-right">Güncelle</button>

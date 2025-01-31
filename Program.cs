@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using books.Models;  // KitapDbContext için
 using Microsoft.AspNetCore.Authentication.Cookies; // Auth için eklendi
 
 #nullable disable  // Null referans uyarılarını kapat
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

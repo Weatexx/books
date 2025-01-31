@@ -4,15 +4,15 @@ namespace books.Models.AdminViewModels;
 
 public class YayinevleriVM
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     [Required(ErrorMessage = "Yayınevi adı zorunludur")]
-    public string yayineviAdi { get; set; } = "";
+    public string YayineviAdi { get; set; } = "";
 
-    public string adres { get; set; } = "";
+    public string Adres { get; set; } = "";
 
-    public string tel { get; set; } = "";
+    public string Tel { get; set; } = "";
 
-    public int sira { get; set; }
+    public int Sira { get; set; }
 
 } 

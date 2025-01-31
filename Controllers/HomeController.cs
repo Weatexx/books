@@ -27,22 +27,18 @@ public class HomeController : Controller
                                       YayinTarihi = x.YayinTarihi.ToShortDateString()
                                   }).Take(9).ToList();
 
-        return View(kitaplar); // çektiğimiz verileri view'e gönderiyoruz
+        return View(kitaplar);
     }
 
     [Route("/Kitaplar")]
     //[Route("/Kitaplar/Yazar/{yazarId?}")]
     [Route("/Kitaplar/Tur/{turId?}")]
-    public IActionResult Kitaplar(int? yazarId, int? turId)
+    public IActionResult Kitaplar(int? turId)
     {
-        List<IndexVM> kitaplar = new List<IndexVM>();
+        List<IndexVM> kitaplar;
 
-        ViewBag.YazarId = "Gelen Yazar Id: " + yazarId;
-        ViewBag.TurId = "Gelen Tür Id: " + turId;
-
-        if (yazarId == null && turId == null)
+        if (turId == null)
         {
-            //Tüm kitapları getir
             kitaplar = (from x in db.Kitaplars
                         orderby x.YayinTarihi descending
                         select new IndexVM
@@ -52,60 +48,23 @@ public class HomeController : Controller
                             Resim = x.Resim,
                             YayinTarihi = x.YayinTarihi.ToShortDateString()
                         }).ToList();
-            //ViewBag.PageTitle = "Tüm Kitaplar (" + kitaplar.Count() + ")";
-            ViewBag.PageTitle = String.Format("Tüm Kitaplar ({0})", kitaplar.Count());
         }
-
-        if (yazarId != null)
+        else
         {
-            //Yalnızca yazarId'si eşleşen kitapları getir
             kitaplar = (from x in db.Kitaplars
-                        where x.YazarId == yazarId
+                        join t in db.Turlertokitaplars on x.Id equals t.KitapId
+                        where t.TurId == turId
                         orderby x.YayinTarihi descending
                         select new IndexVM
                         {
-
                             Id = x.Id,
                             KitapAdi = x.Adi,
                             Resim = x.Resim,
                             YayinTarihi = x.YayinTarihi.ToShortDateString()
                         }).ToList();
-            var yazar = db.Yazarlars.Find(yazarId);
-            string yazarAdi = yazar.Adi + " " + yazar.Soyadi;
-            var yazarDogumTarihi = yazar.DogumTarihi;
-            var yazarDogumYeri = yazar.DogumYeri;
-            var yazarCinsiyet = yazar.Cinsiyeti;
-            ViewBag.PageBookCount = kitaplar.Count().ToString();
-            ViewBag.yazarAdi = yazarAdi;
-            ViewBag.yazarDogumTarihi = yazarDogumTarihi;
-            ViewBag.yazarDogumYeri = yazarDogumYeri;
-            ViewBag.yazarDogumYeri = yazarDogumYeri;
-            ViewBag.yazarCinsiyet = yazarCinsiyet;
-
-            ViewBag.PageTitle = String.Format("{0} yazarına ait kitaplar ({1})", yazarAdi, kitaplar.Count());
-
         }
 
-        if (turId != null)
-        {
-            kitaplar = (from x in db.Turlertokitaplars
-                        join k in db.Kitaplars on x.KitapId equals k.Id
-                        where x.TurId == turId
-                        select new IndexVM
-                        {
-
-                            Id = k.Id,
-                            KitapAdi = k.Adi,
-                            Resim = k.Resim,
-                            YayinTarihi = k.YayinTarihi.ToShortDateString()
-                        }).ToList();
-
-            var tur = db.Turlers.Find(turId);
-            string turAdi = tur.TurAdi;
-            ViewBag.PageTitle = String.Format("{0} türüne ait kitaplar ({1})", turAdi, kitaplar.Count());
-        }
-
-        return View(kitaplar); // çektiğimiz verileri view'e gönderiyoruz
+        return View(kitaplar);
     }
 
     [Route("/Kitap/{id}")]
@@ -174,7 +133,49 @@ public class HomeController : Controller
             return RedirectToAction("Index");
         }
 
+        // Yazarın kitaplarını getir
+        ViewBag.YazarinKitaplari = (from x in db.Kitaplars
+                                   where x.YazarId == id
+                                   select new IndexVM
+                                   {
+                                       Id = x.Id,
+                                       KitapAdi = x.Adi,
+                                       Resim = x.Resim,
+                                       YayinTarihi = x.YayinTarihi.ToShortDateString()
+                                   }).ToList();
+
         return View(yazar);
+    }
+
+    [HttpGet]
+    public IActionResult Iletisim()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Iletisim(IletisimVM model)
+    {
+        if (ModelState.IsValid)
+        {
+            var yeniMesaj = new Iletisim
+            {
+                Eposta = model.Eposta,
+                Konu = model.Konu,
+                Mesaj = model.Mesaj,
+                TarihSaat = DateTime.Now,
+                Ip = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "0.0.0.0",
+                Goruldu = false
+            };
+
+            db.Iletisims.Add(yeniMesaj);
+            db.SaveChanges();
+
+            TempData["Mesaj"] = "Mesajınız başarıyla gönderildi.";
+            return RedirectToAction("Iletisim");
+        }
+
+        return View(model);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

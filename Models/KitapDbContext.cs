@@ -18,6 +18,8 @@ public class KitapDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Yayinevleri> Yayinevleris { get; set; }
     public DbSet<Turlertokitaplar> Turlertokitaplars { get; set; }
+    public DbSet<Kullanicilar> Kullanicilars { get; set; }
+    public DbSet<Iletisim> Iletisims { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -82,6 +84,31 @@ public class KitapDbContext : DbContext
         {
             entity.ToTable("Turlertokitaplar");
             entity.HasKey(e => e.Id);
+        });
+
+        modelBuilder.Entity<Kullanicilar>(entity =>
+        {
+            entity.HasKey(e => e.id);
+            entity.ToTable("kullanicilar");
+            entity.Property(e => e.usernames).HasMaxLength(50).IsRequired();
+            entity.Property(e => e.passwords).HasMaxLength(50).IsRequired();
+            entity.Property(e => e.isim).HasMaxLength(50).HasDefaultValue("");
+            entity.Property(e => e.soyisim).HasMaxLength(50).HasDefaultValue("");
+            entity.Property(e => e.telno).HasDefaultValue(0);
+            entity.Property(e => e.resim).HasMaxLength(50).HasDefaultValue("default.jpg");
+        });
+
+        modelBuilder.Entity<Iletisim>(entity =>
+        {
+            entity.ToTable("iletisim");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Eposta).HasColumnName("eposta").HasMaxLength(100);
+            entity.Property(e => e.Konu).HasColumnName("konu").HasMaxLength(150);
+            entity.Property(e => e.Mesaj).HasColumnName("mesaj").HasMaxLength(600);
+            entity.Property(e => e.TarihSaat).HasColumnName("tarihSaat");
+            entity.Property(e => e.Ip).HasColumnName("ip").HasColumnType("char(50)");
+            entity.Property(e => e.Goruldu).HasColumnName("goruldu").HasColumnType("tinyint(1)");
         });
     }
 } 

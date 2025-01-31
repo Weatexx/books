@@ -1,0 +1,48 @@
+@model books.Models.AdminViewModels.YoneticiVM
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Yönetici Sil</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/Yoneticiler">Yöneticiler</a></li>
+                    <li class="breadcrumb-item active">Yönetici Sil</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">Yönetici Silme Onayı</h3>
+                    </div>
+                    <form method="post" action="/Admin/YoneticiSilOnay/@Model.Id">
+                        @Html.AntiForgeryToken()
+                        <div class="card-body">
+                            <div class="alert alert-warning">
+                                <h5><i class="icon fas fa-exclamation-triangle"></i> Uyarı!</h5>
+                                <strong>@Model.KullaniciAdi</strong> kullanıcı adlı yöneticiyi silmek istediğinize emin misiniz?
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/Admin/Yoneticiler" class="btn btn-default">Vazgeç</a>
+                            <button type="submit" class="btn btn-danger float-right">Sil</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

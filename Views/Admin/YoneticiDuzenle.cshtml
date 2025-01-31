@@ -1,0 +1,57 @@
+@model books.Models.AdminViewModels.YoneticiVM
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Yönetici Düzenle</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/Yoneticiler">Yöneticiler</a></li>
+                    <li class="breadcrumb-item active">Yönetici Düzenle</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Yönetici Bilgileri</h3>
+                    </div>
+                    <form method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+                        <div class="card-body">
+                            @if (ViewBag.Error != null)
+                            {
+                                <div class="alert alert-danger">@ViewBag.Error</div>
+                            }
+                            <div class="form-group">
+                                <label>Kullanıcı Adı</label>
+                                <input type="text" class="form-control" asp-for="KullaniciAdi" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Yeni Şifre</label>
+                                <input type="password" class="form-control" asp-for="Sifre" placeholder="Değiştirmek istemiyorsanız boş bırakın">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/Admin/Yoneticiler" class="btn btn-default">Vazgeç</a>
+                            <button type="submit" class="btn btn-warning float-right">Güncelle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

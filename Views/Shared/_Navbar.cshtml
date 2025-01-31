@@ -13,6 +13,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/Kitaplar">Kitaplar</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/Iletisim">İletişim</a>
+                </li>
             </ul>
             <div class="d-flex align-items-center">
                 <button class="theme-toggle me-3" onclick="toggleTheme()">
@@ -20,8 +23,21 @@
                 </button>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="/Account/Profile" class="btn btn-outline-primary me-2">Profilim</a>
-                    <a href="/Account/Logout" class="btn btn-outline-danger">Çıkış Yap</a>
+                    var user = Context.RequestServices.GetService<books.Models.KitapDbContext>()
+                        .Kullanicilars.FirstOrDefault(x => x.usernames == User.Identity.Name);
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                            <img src="~/images/users/@(user?.resim ?? "default.jpg")" class="rounded-circle me-2" 
+                                 style="width: 32px; height: 32px; object-fit: cover;" 
+                                 alt="Profil">
+                            <span>@user?.isim @user?.soyisim</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/Account/Profil">Profilim</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/Account/Logout">Çıkış Yap</a>
+                        </div>
+                    </div>
                 }
                 else
                 {

@@ -25,20 +25,32 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="card card-danger">
-                    <div class="alert alert-warning fw-bolder text-center" role="alert">
-                        Bu yayınevini silmek istediğinize emin misiniz?
+                    <div class="card-header">
+                        <h3 class="card-title">Yayınevi Silme Onayı</h3>
                     </div>
-                    <form class="form-horizontal" method="post" asp-controller="Admin" asp-action="YayineviSilmeOnay" asp-route-id="@ViewBag.YayineviInfo.Id">
-                        <input type="hidden" asp-for="ID" value="@ViewBag.YayineviInfo.ID" />
+                    <form method="post" action="/Admin/YayineviSilOnay/@Model.Id">
                         @Html.AntiForgeryToken()
-                        <div class="card-body">                           
-                            <div class="form-group">
-                                <label>Yayınevi Adı</label>
-                                <input type="text" class="form-control" disabled value="@ViewBag.YayineviInfo.Adi">
+                        <div class="card-body">
+                            <div class="alert alert-warning">
+                                <h5><i class="icon fas fa-exclamation-triangle"></i> Uyarı!</h5>
+                                <strong>@Model.YayineviAdi</strong> isimli yayınevini silmek istediğinize emin misiniz?
+                                Bu işlem geri alınamaz ve yayınevine bağlı tüm kitaplar etkilenecektir.
                             </div>
-                            <div class="form-group">
-                                <label>Telefon</label>
-                                <input type="text" class="form-control" disabled value="@ViewBag.YayineviInfo.Telefon">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 150px">Yayınevi Adı</th>
+                                        <td>@Model.YayineviAdi</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Adres</th>
+                                        <td>@Model.Adres</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Telefon</th>
+                                        <td>@Model.Tel</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                         <div class="card-footer">

@@ -170,6 +170,8 @@
         });
         observer.observe(document.documentElement, { attributes: true });
     </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

@@ -1,0 +1,89 @@
+@model Kullanicilar
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Kullanıcı Düzenle</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/Kullanicilar">Kullanıcılar</a></li>
+                    <li class="breadcrumb-item active">Kullanıcı Düzenle</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Kullanıcı Bilgileri</h3>
+                    </div>
+                    <form method="post">
+                        <input type="hidden" asp-for="id" />
+                        <input type="hidden" asp-for="resim" />
+                        <div class="card-body">
+                            @if (ViewBag.Error != null)
+                            {
+                                <div class="alert alert-danger">@ViewBag.Error</div>
+                            }
+                            <div class="row">
+                                <div class="col-md-2 text-center mb-3">
+                                    <img src="~/images/users/@Model.resim" class="img-circle elevation-2" 
+                                         alt="Profil" style="width: 100px; height: 100px; object-fit: cover;">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kullanıcı Adı</label>
+                                                <input type="text" asp-for="usernames" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Şifre</label>
+                                                <input type="password" asp-for="passwords" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>İsim</label>
+                                                <input type="text" asp-for="isim" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Soyisim</label>
+                                                <input type="text" asp-for="soyisim" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Telefon</label>
+                                                <input type="number" asp-for="telno" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/Admin/Kullanicilar" class="btn btn-default">İptal</a>
+                            <button type="submit" class="btn btn-warning float-right">Güncelle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 

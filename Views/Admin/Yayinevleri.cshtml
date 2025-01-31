@@ -19,23 +19,28 @@
     </div>
 </div>
 
-<div class="content">
+<section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/Admin/YayineviEkle" class="btn btn-primary">Yeni Yayınevi Ekle</a>
+                        <h3 class="card-title">Yayınevi Listesi</h3>
+                        <div class="card-tools">
+                            <a href="/Admin/YayineviEkle" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i> Yeni Yayınevi Ekle
+                            </a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Logo</th>
                                     <th>Yayınevi Adı</th>
+                                    <th>Adres</th>
                                     <th>Telefon</th>
-                                    <th>Website</th>
+                                    <th>Sıra</th>
                                     <th>İşlemler</th>
                                 </tr>
                             </thead>
@@ -43,12 +48,18 @@
                                 @foreach (var yayinevi in Model)
                                 {
                                     <tr>
-                                        <td>@yayinevi.ID</td>                                       
-                                        <td>@yayinevi.yayineviAdi</td>
-                                        <td>@yayinevi.tel</td>
+                                        <td>@yayinevi.Id</td>
+                                        <td>@yayinevi.YayineviAdi</td>
+                                        <td>@yayinevi.Adres</td>
+                                        <td>@yayinevi.Tel</td>
+                                        <td>@yayinevi.Sira</td>
                                         <td>
-                                            <a href="/Admin/YayineviDuzenle/@yayinevi.ID" class="btn btn-warning btn-sm">Düzenle</a>
-                                            <a href="/Admin/YayineviSil/@yayinevi.ID" class="btn btn-danger btn-sm">Sil</a>
+                                            <a href="/Admin/YayineviDuzenle/@yayinevi.Id" class="btn btn-warning btn-sm">
+                                                <i class="fas fa-edit"></i> Düzenle
+                                            </a>
+                                            <a href="/Admin/YayineviSil/@yayinevi.Id" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i> Sil
+                                            </a>
                                         </td>
                                     </tr>
                                 }
@@ -59,4 +70,4 @@
             </div>
         </div>
     </div>
-</div> 
+</section> 

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using IletisimVM = books.Models.ViewModels.IletisimVM;
 
 namespace books.Controllers.Admin
 {
@@ -23,18 +24,28 @@ namespace books.Controllers.Admin
 
         public IActionResult Index()
         {
+            ViewBag.KitapSayisi = db.Kitaplars.Count();
+            ViewBag.YazarSayisi = db.Yazarlars.Count();
+            ViewBag.YayineviSayisi = db.Yayinevleris.Count();
+            ViewBag.TurSayisi = db.Turlers.Count();
+            ViewBag.DilSayisi = db.Dillers.Count();
+            ViewBag.UserSayisi = db.Users.Count();
+            ViewBag.KullaniciSayisi = db.Kullanicilars.Count();
+
+            ViewBag.Kullanicilar = db.Kullanicilars.OrderBy(x => x.id).ToList();
+
             return View();
         }
 
         [AllowAnonymous]
-        public IActionResult Login()
+        public IActionResult Giris()
         {
             return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login(UserVM postedData)
+        public async Task<IActionResult> Giris(UserVM postedData)
         {
             if (!ModelState.IsValid)
             {
@@ -188,117 +199,107 @@ namespace books.Controllers.Admin
 
         // User methods start here:
 
-        [Route("/Admin/Users")]
-        public IActionResult Users()
+        [Route("/Admin/Yoneticiler")]
+        public IActionResult Yoneticiler()
         {
-            var users = (from x in db.Users
-                         select new UserVM
-                         {
-                             id = x.Id,
-                             username = x.Username,
-                             password = x.Password
-                         }).ToList();
-
-            return View(users);
+            ViewBag.Title = "Yöneticiler";
+            var yoneticiler = (from x in db.Users
+                              select new YoneticiVM
+                              {
+                                  Id = x.Id,
+                                  KullaniciAdi = x.Username
+                              }).ToList();
+            return View(yoneticiler);
         }
 
-        //user ekle
-        [HttpGet]
-        public IActionResult UserEkle()
+        public IActionResult YoneticiEkle()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UserEkle(UsersVM gelenData)
+        public IActionResult YoneticiEkle(YoneticiVM model)
         {
-            if (!ModelState.IsValid)
+            if (db.Users.Any(x => x.Username == model.KullaniciAdi))
             {
-                return View(gelenData);
+                ViewBag.Error = "Bu kullanıcı adı zaten kullanılıyor!";
+                return View(model);
             }
-            User yeniUser = new User
+
+            var yeniYonetici = new User
             {
-                Username = gelenData.username,
-                Password = gelenData.password,
+                Username = model.KullaniciAdi,
+                Password = model.Sifre
             };
 
-            await db.AddAsync(yeniUser);
-            await db.SaveChangesAsync();
+            db.Users.Add(yeniYonetici);
+            db.SaveChanges();
 
-            return Redirect("/Admin/Users");
-        }
-
-        //user Düzenle
-        [HttpGet]
-        public IActionResult userDuzenle(int id)
-        {
-            ViewBag.UserInfo = (from x in db.Users
-                                where x.Id == id
-                                select new UsersVM
-                                {
-                                    id = x.Id,
-                                    username = x.Username,
-                                    password = x.Password
-                                }).FirstOrDefault();
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> userDuzenle(UsersVM gelendata)
-        {
-            var user = await db.Users.FirstOrDefaultAsync(x => x.Id == gelendata.id);
-
-            if (!ModelState.IsValid)
-            {
-                return View(gelendata);
-            }
-
-            if (user != null)
-            {
-                user.Id = gelendata.id;
-                user.Username = gelendata.username;
-                user.Password = gelendata.password;
-            }
-
-            db.Users.Update(user);
-            await db.SaveChangesAsync();
-
-            return Redirect("/Admin/Users");
+            return RedirectToAction("Yoneticiler");
         }
 
         [HttpGet]
-        public IActionResult UserSil(int? id)
+        public IActionResult YoneticiDuzenle(int id)
         {
-            ViewBag.UserInfo = (from x in db.Users
-                                where x.Id == id
-                                select new UsersVM
-                                {
-                                    id = x.Id,
-                                    username = x.Username,
-                                    password = x.Password
-                                }).FirstOrDefault();
+            var yonetici = db.Users.Find(id);
+            if (yonetici == null)
+                return RedirectToAction("Yoneticiler");
 
-            if (id == null)
+            var model = new YoneticiVM
             {
-                return NotFound();
-            }
-
-            return View();
+                Id = yonetici.Id,
+                KullaniciAdi = yonetici.Username
+            };
+            return View(model);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UserSilOnay(int id)
+        public IActionResult YoneticiDuzenle(YoneticiVM model)
         {
-            var user = await db.Users.FindAsync(id);
-
-            if (user != null)
+            if (db.Users.Any(x => x.Username == model.KullaniciAdi && x.Id != model.Id))
             {
-                db.Users.Remove(user);
+                ViewBag.Error = "Bu kullanıcı adı zaten kullanılıyor!";
+                return View(model);
             }
-            await db.SaveChangesAsync();
 
-            return RedirectToAction("Users");
+            var yonetici = db.Users.Find(model.Id);
+            if (yonetici != null)
+            {
+                yonetici.Username = model.KullaniciAdi;
+                if (!string.IsNullOrEmpty(model.Sifre))
+                    yonetici.Password = model.Sifre;
+
+                db.Users.Update(yonetici);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Yoneticiler");
+        }
+
+        [HttpGet]
+        public IActionResult YoneticiSil(int id)
+        {
+            var yonetici = db.Users.Find(id);
+            if (yonetici == null)
+                return RedirectToAction("Yoneticiler");
+
+            var model = new YoneticiVM
+            {
+                Id = yonetici.Id,
+                KullaniciAdi = yonetici.Username
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult YoneticiSilOnay(int id)
+        {
+            var yonetici = db.Users.Find(id);
+            if (yonetici != null)
+            {
+                db.Users.Remove(yonetici);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Yoneticiler");
         }
 
         // Kitap methods start here:
@@ -405,7 +406,7 @@ namespace books.Controllers.Admin
 
             // Yazarlar listesini çekelim
             ViewBag.Yazarlar = (from y in db.Yazarlars
-                                select new YazarlarVM
+                                select new books.Models.AdminViewModels.YazarlarVM
                                 {
                                     Id = y.Id,
                                     Adi = y.Adi ?? "",
@@ -427,11 +428,11 @@ namespace books.Controllers.Admin
             ViewBag.Yayinevleri = (from y in db.Yayinevleris
                                    select new YayinevleriVM
                                    {
-                                       ID = y.Id,
-                                       yayineviAdi = y.yayineviAdi ?? "",
-                                       adres = y.adres ?? "",
-                                       tel = y.tel ?? "",
-                                       sira = y.sira
+                                       Id = y.Id,
+                                       YayineviAdi = y.yayineviAdi ?? "",
+                                       Adres = y.adres ?? "",
+                                       Tel = y.tel ?? "",
+                                       Sira = y.sira
                                    }).ToList();
 
             ViewBag.Turler = db.Turlers.ToList();
@@ -494,48 +495,17 @@ namespace books.Controllers.Admin
                 }
             }
 
-            ViewBag.Yazarlar = db.Yazarlars.ToList();
-            ViewBag.Diller = db.Dillers.ToList();
-            ViewBag.Yayinevleri = db.Yayinevleris.ToList();
-            ViewBag.Turler = db.Turlers.ToList();
-            return View(model);
-        }
-
-        [HttpGet]
-        public IActionResult KitapSil(int id)
-        {
-            var kitap = db.Kitaplars.Find(id);
-            if (kitap == null)
-            {
-                return RedirectToAction("Kitaplar");
-            }
-
-            var model = new KitaplarVM
-            {
-                Id = kitap.Id,
-                Adi = kitap.Adi ?? "",
-                YazarId = kitap.YazarId,
-                DilId = kitap.DilId,
-                YayineviId = kitap.YayineviId,
-                YayinTarihi = kitap.YayinTarihi,
-                SayfaSayisi = kitap.SayfaSayisi,
-                Ozet = kitap.Ozet ?? "",
-                Resim = kitap.Resim ?? "default.jpg"
-            };
-
-            // Yazarlar listesini çekelim
-            ViewBag.Yazarlar = (from y in db.Yazarlars
-                                select new YazarlarVM
+            ViewBag.Yazarlar = (from x in db.Yazarlars
+                                select new books.Models.AdminViewModels.YazarlarVM
                                 {
-                                    Id = y.Id,
-                                    Adi = y.Adi ?? "",
-                                    Soyadi = y.Soyadi ?? "",
-                                    DogumTarihi = y.DogumTarihi,
-                                    DogumYeri = y.DogumYeri ?? "",
-                                    Cinsiyeti = y.Cinsiyeti
+                                    Id = x.Id,
+                                    Adi = x.Adi ?? "",
+                                    Soyadi = x.Soyadi ?? "",
+                                    DogumTarihi = x.DogumTarihi,
+                                    DogumYeri = x.DogumYeri ?? "",
+                                    Cinsiyeti = x.Cinsiyeti
                                 }).ToList();
 
-            // Diller listesini çekelim
             ViewBag.Diller = (from d in db.Dillers
                               select new DillerVM
                               {
@@ -543,18 +513,48 @@ namespace books.Controllers.Admin
                                   Adi = d.DilAdi ?? ""
                               }).ToList();
 
-            // Yayınevleri listesini çekelim
             ViewBag.Yayinevleri = (from y in db.Yayinevleris
                                    select new YayinevleriVM
                                    {
-                                       ID = y.Id,
-                                       yayineviAdi = y.yayineviAdi ?? "",
-                                       adres = y.adres ?? "",
-                                       tel = y.tel ?? "",
-                                       sira = y.sira
+                                       Id = y.Id,
+                                       YayineviAdi = y.yayineviAdi ?? "",
+                                       Adres = y.adres ?? "",
+                                       Tel = y.tel ?? "",
+                                       Sira = y.sira
                                    }).ToList();
 
+            ViewBag.Turler = db.Turlers.ToList();
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult KitapSil(int id)
+        {
+            var kitap = (from k in db.Kitaplars
+                         join y in db.Yazarlars on k.YazarId equals y.Id
+                         join yy in db.Yayinevleris on k.YayineviId equals yy.Id
+                         join d in db.Dillers on k.DilId equals d.Id
+                         where k.Id == id
+                         select new KitaplarVM
+                         {
+                             Id = k.Id,
+                             Adi = k.Adi ?? "",
+                             YazarId = k.YazarId,
+                             YazarAdi = y.Adi ?? "",
+                             YazarSoyadi = y.Soyadi ?? "",
+                             YayineviId = k.YayineviId,
+                             YayineviAdi = yy.yayineviAdi ?? "",
+                             DilId = k.DilId,
+                             DilAdi = d.DilAdi ?? "",
+                             SayfaSayisi = k.SayfaSayisi,
+                             Resim = k.Resim,
+                             Sira = k.Sira
+                         }).FirstOrDefault();
+
+            if (kitap == null)
+                return RedirectToAction("Kitaplar");
+
+            return View(kitap);
         }
 
         [HttpPost]
@@ -583,7 +583,7 @@ namespace books.Controllers.Admin
         public IActionResult Yazarlar()
         {
             var yazarlar = (from x in db.Yazarlars
-                           select new YazarlarVM
+                           select new books.Models.AdminViewModels.YazarlarVM
                            {
                                Id = x.Id,
                                Adi = x.Adi ?? string.Empty,
@@ -632,7 +632,7 @@ namespace books.Controllers.Admin
                 return RedirectToAction("Yazarlar");
             }
 
-            var model = new YazarlarVM
+            var model = new books.Models.AdminViewModels.YazarlarVM
             {
                 Id = yazar.Id,
                 Adi = yazar.Adi ?? "",
@@ -675,7 +675,7 @@ namespace books.Controllers.Admin
                 return RedirectToAction("Yazarlar");
             }
 
-            var model = new YazarlarVM
+            var model = new books.Models.AdminViewModels.YazarlarVM
             {
                 Id = yazar!.Id,
                 Adi = yazar.Adi ?? "",
@@ -798,13 +798,12 @@ namespace books.Controllers.Admin
             var yayinevleri = (from x in db.Yayinevleris
                                select new YayinevleriVM
                                {
-                                   ID = x.Id,
-                                   yayineviAdi = x.yayineviAdi ?? string.Empty,
-                                   adres = x.adres ?? string.Empty,
-                                   tel = x.tel ?? string.Empty,
-                                   sira = x.sira
-                               }).ToList();
-
+                                   Id = x.Id,
+                                   YayineviAdi = x.yayineviAdi.Trim(),
+                                   Adres = x.adres,
+                                   Tel = x.tel.Trim(),
+                                   Sira = x.sira
+                               }).OrderBy(x => x.Sira).ToList();
             return View(yayinevleri);
         }
 
@@ -821,10 +820,10 @@ namespace books.Controllers.Admin
             {
                 var yeniYayinevi = new Yayinevleri
                 {
-                    yayineviAdi = model.yayineviAdi,
-                    adres = model.adres,
-                    tel = model.tel,
-                    sira = model.sira
+                    yayineviAdi = model.YayineviAdi,
+                    adres = model.Adres,
+                    tel = model.Tel,
+                    sira = model.Sira
                 };
 
                 db.Yayinevleris.Add(yeniYayinevi);
@@ -839,12 +838,17 @@ namespace books.Controllers.Admin
         {
             var yayinevi = db.Yayinevleris.Find(id);
             if (yayinevi == null)
-            {
                 return RedirectToAction("Yayinevleri");
-            }
 
-            ViewBag.YayineviInfo = yayinevi;
-            return View();
+            var model = new YayinevleriVM
+            {
+                Id = yayinevi.Id,
+                YayineviAdi = yayinevi.yayineviAdi.Trim(),
+                Adres = yayinevi.adres,
+                Tel = yayinevi.tel.Trim(),
+                Sira = yayinevi.sira
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -852,13 +856,13 @@ namespace books.Controllers.Admin
         {
             if (ModelState.IsValid)
             {
-                var yayinevi = await db.Yayinevleris.FindAsync(model.ID);
+                var yayinevi = await db.Yayinevleris.FindAsync(model.Id);
                 if (yayinevi != null)
                 {
-                    yayinevi.yayineviAdi = model.yayineviAdi;
-                    yayinevi.adres = model.adres;
-                    yayinevi.tel = model.tel;
-                    yayinevi.sira = model.sira;
+                    yayinevi.yayineviAdi = model.YayineviAdi;
+                    yayinevi.adres = model.Adres;
+                    yayinevi.tel = model.Tel;
+                    yayinevi.sira = model.Sira;
 
                     await db.SaveChangesAsync();
                     return RedirectToAction("Yayinevleri");
@@ -872,16 +876,21 @@ namespace books.Controllers.Admin
         {
             var yayinevi = db.Yayinevleris.Find(id);
             if (yayinevi == null)
-            {
                 return RedirectToAction("Yayinevleri");
-            }
 
-            ViewBag.YayineviInfo = yayinevi;
-            return View();
+            var model = new YayinevleriVM
+            {
+                Id = yayinevi.Id,
+                YayineviAdi = yayinevi.yayineviAdi.Trim(),
+                Adres = yayinevi.adres,
+                Tel = yayinevi.tel.Trim(),
+                Sira = yayinevi.sira
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> YayineviSilmeOnay(int id)
+        public async Task<IActionResult> YayineviSilOnay(int id)
         {
             var yayinevi = await db.Yayinevleris.FindAsync(id);
             if (yayinevi != null)
@@ -890,6 +899,53 @@ namespace books.Controllers.Admin
                 await db.SaveChangesAsync();
             }
             return RedirectToAction("Yayinevleri");
+        }
+
+        [Route("/Admin/Kullanicilar")]
+        public IActionResult Kullanicilar()
+        {
+            var kullanicilar = (from x in db.Kullanicilars
+                                select new KullanicilarVM
+                                {
+                                    Id = x.id,
+                                    KullaniciAdi = x.usernames,
+                                    Isim = x.isim,
+                                    Soyisim = x.soyisim,
+                                    TelNo = x.telno,
+                                    Resim = x.resim ?? "default.jpg"
+                                }).ToList();
+            return View(kullanicilar);
+        }
+
+        [Route("/Admin/Mesajlar")]
+        public IActionResult Mesajlar()
+        {
+            var mesajlar = (from x in db.Iletisims
+                            orderby x.TarihSaat descending
+                            select new IletisimVM
+                            {
+                                Id = x.Id,
+                                Eposta = x.Eposta,
+                                Konu = x.Konu,
+                                Mesaj = x.Mesaj,
+                                TarihSaat = x.TarihSaat,
+                                Ip = x.Ip,
+                                Goruldu = x.Goruldu
+                            }).ToList();
+
+            return View(mesajlar);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MesajOkundu(int id)
+        {
+            var mesaj = await db.Iletisims.FindAsync(id);
+            if (mesaj != null)
+            {
+                mesaj.Goruldu = true;
+                await db.SaveChangesAsync();
+            }
+            return RedirectToAction("Mesajlar");
         }
     }
 }

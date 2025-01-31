@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 namespace books.Models.Entities;
 
-public partial class Iletisim
+public class Iletisim
 {
     public int Id { get; set; }
 
-    public string Eposta { get; set; } = null!;
+    public string Eposta { get; set; } = "";
 
-    public string Konu { get; set; } = null!;
+    public string Konu { get; set; } = "";
 
-    public string Mesaj { get; set; } = null!;
+    public string Mesaj { get; set; } = "";
 
     public DateTime TarihSaat { get; set; }
 
-    public string Ip { get; set; } = null!;
+    public string Ip { get; set; } = "";
 
     public bool Goruldu { get; set; }
 }

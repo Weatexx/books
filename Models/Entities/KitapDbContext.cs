@@ -41,174 +41,81 @@ public partial class KitapDbContext : DbContext
 
         modelBuilder.Entity<Diller>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("diller");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.DilAdi)
-                .HasMaxLength(50)
-                .HasColumnName("adi");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.DilAdi).HasColumnName("dilAdi").HasColumnType("char(50)");
         });
 
         modelBuilder.Entity<Iletisim>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
+            entity.HasKey(e => e.Id);
             entity.ToTable("iletisim");
-
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Eposta)
-                .HasMaxLength(100)
-                .HasColumnName("eposta");
-            entity.Property(e => e.Goruldu).HasColumnName("goruldu");
-            entity.Property(e => e.Ip)
-                .HasMaxLength(50)
-                .IsFixedLength()
-                .HasColumnName("ip");
-            entity.Property(e => e.Konu)
-                .HasMaxLength(150)
-                .HasColumnName("konu");
-            entity.Property(e => e.Mesaj)
-                .HasMaxLength(600)
-                .HasColumnName("mesaj");
-            entity.Property(e => e.TarihSaat)
-                .HasColumnType("datetime")
-                .HasColumnName("tarihSaat");
+            entity.Property(e => e.Eposta).HasColumnName("eposta").HasMaxLength(100);
+            entity.Property(e => e.Konu).HasColumnName("konu").HasMaxLength(150);
+            entity.Property(e => e.Mesaj).HasColumnName("mesaj").HasMaxLength(600);
+            entity.Property(e => e.TarihSaat).HasColumnName("tarihSaat");
+            entity.Property(e => e.Ip).HasColumnName("ip").HasColumnType("char(50)");
+            entity.Property(e => e.Goruldu).HasColumnName("goruldu").HasColumnType("tinyint(1)");
         });
 
         modelBuilder.Entity<Kitaplar>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity
-                .ToTable("kitaplar")
-                .HasCharSet("latin1")
-                .UseCollation("latin1_swedish_ci");
-
+            entity.HasKey(e => e.Id);
             entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.Adi)
-                .HasMaxLength(200)
-                .IsFixedLength()
-                .HasColumnName("adi")
-                .UseCollation("latin5_turkish_ci")
-                .HasCharSet("latin5");
-            entity.Property(e => e.DilId)
-                .HasDefaultValueSql("'1'")
-                .HasColumnName("dilID");
-            entity.Property(e => e.Ozet)
-                .HasMaxLength(5000)
-                .HasColumnName("ozet")
-                .UseCollation("latin5_turkish_ci")
-                .HasCharSet("latin5");
-            entity.Property(e => e.Resim)
-                .HasMaxLength(50)
-                .HasColumnName("resim");
-            entity.Property(e => e.SayfaSayisi)
-                .HasDefaultValueSql("'1'")
-                .HasColumnName("sayfaSayisi");
+            entity.Property(e => e.Adi).HasColumnName("adi").HasColumnType("char(200)");
+            entity.Property(e => e.YazarId).HasColumnName("yazarID");
+            entity.Property(e => e.DilId).HasColumnName("DilID");
+            entity.Property(e => e.SayfaSayisi).HasColumnName("sayfaSayisi");
+            entity.Property(e => e.YayineviId).HasColumnName("yayineviID");
+            entity.Property(e => e.Ozet).HasColumnName("ozet").HasMaxLength(5000);
             entity.Property(e => e.YayinTarihi).HasColumnName("yayinTarihi");
-            entity.Property(e => e.YayineviId)
-                .HasDefaultValueSql("'1'")
-                .HasColumnName("yayineviID");
-            entity.Property(e => e.YazarId)
-                .HasDefaultValueSql("'1'")
-                .HasColumnName("yazarID");
+            entity.Property(e => e.Resim).HasColumnName("resim").HasMaxLength(50);
         });
 
         modelBuilder.Entity<Turler>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity
-                .ToTable("turler")
-                .HasCharSet("latin1")
-                .UseCollation("latin1_swedish_ci");
-
+            entity.HasKey(e => e.Id);
             entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.Sira).HasDefaultValueSql("'1'");
-            entity.Property(e => e.TurAdi)
-                .HasMaxLength(50)
-                .IsFixedLength()
-                .HasColumnName("turAdi");
+            entity.Property(e => e.TurAdi).HasColumnName("turAdi").HasColumnType("char(50)");
+            entity.Property(e => e.Sira).HasColumnName("Sira");
         });
 
         modelBuilder.Entity<Turlertokitaplar>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity
-                .ToTable("turlertokitaplar")
-                .HasCharSet("latin1")
-                .UseCollation("latin1_swedish_ci");
-
+            entity.HasKey(e => e.Id);
             entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.KitapId)
-                .HasDefaultValueSql("'1'")
-                .HasColumnName("kitapID");
-            entity.Property(e => e.TurId)
-                .HasDefaultValueSql("'1'")
-                .HasColumnName("turID");
+            entity.Property(e => e.KitapId).HasColumnName("kitapID");
+            entity.Property(e => e.TurId).HasColumnName("turID");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("users");
-
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
-            entity.Property(e => e.Password)
-                .HasMaxLength(50)
-                .HasColumnName("password");
-            entity.Property(e => e.Username)
-                .HasMaxLength(50)
-                .HasColumnName("username");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Username).HasColumnName("username").HasMaxLength(50);
+            entity.Property(e => e.Password).HasColumnName("password").HasMaxLength(50);
         });
 
         modelBuilder.Entity<Yayinevleri>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("yayinevleri");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.yayineviAdi)
-                .HasMaxLength(100)
-                .HasColumnName("adi");
-            entity.Property(e => e.adres)
-                .HasMaxLength(250)
-                .HasColumnName("adres");
-            entity.Property(e => e.tel)
-                .HasMaxLength(20)
-                .HasColumnName("telefon");
-            entity.Property(e => e.sira)
-                .HasColumnName("sira");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.yayineviAdi).HasColumnName("yayineviAdi").HasColumnType("char(200)");
+            entity.Property(e => e.adres).HasColumnName("adres").HasMaxLength(150);
+            entity.Property(e => e.tel).HasColumnName("tel").HasColumnType("char(11)");
+            entity.Property(e => e.sira).HasColumnName("sira");
         });
 
         modelBuilder.Entity<Yazarlar>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("yazarlar");
-
+            entity.HasKey(e => e.Id);
             entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.Adi)
-                .HasMaxLength(100)
-                .IsFixedLength()
-                .HasColumnName("adi");
-            entity.Property(e => e.Cinsiyeti).HasColumnName("cinsiyeti");
+            entity.Property(e => e.Adi).HasColumnName("adi").HasColumnType("char(100)");
+            entity.Property(e => e.Soyadi).HasColumnName("soyadi").HasColumnType("char(100)");
             entity.Property(e => e.DogumTarihi).HasColumnName("dogumTarihi");
-            entity.Property(e => e.DogumYeri)
-                .HasMaxLength(100)
-                .IsFixedLength()
-                .HasColumnName("dogumYeri");
-            entity.Property(e => e.Soyadi)
-                .HasMaxLength(100)
-                .IsFixedLength()
-                .HasColumnName("soyadi");
+            entity.Property(e => e.DogumYeri).HasColumnName("dogumYeri").HasColumnType("char(100)");
+            entity.Property(e => e.Cinsiyeti).HasColumnName("cinsiyeti").HasColumnType("tinyint(1)");
         });
 
         OnModelCreatingPartial(modelBuilder);

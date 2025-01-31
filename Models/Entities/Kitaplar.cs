@@ -22,4 +22,6 @@ public partial class Kitaplar
     public DateTime YayinTarihi { get; set; }
 
     public string? Resim { get; set; }
+
+    public int Sira { get; set; } = 0;
 }

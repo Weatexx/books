@@ -1,4 +1,4 @@
-@model List<books.Models.AdminViewModels.UserVM>
+@model List<User>
 
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -8,31 +8,32 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Kullanıcılar</h1>
-            </div><!-- /.col -->
+                <h1 class="m-0">Yöneticiler</h1>
+            </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
-                    <li class="breadcrumb-item active">Kullanıcılar</li>
+                    <li class="breadcrumb-item active">Yöneticiler</li>
                 </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.content-header -->
 
-<!-- Main content -->
-<div class="content">
+<section class="content">
     <div class="container-fluid">
         <div class="row">
-
-            <!-- /.col-md-6 -->
-            <div class="col-lg-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/Admin/UserEkle" class="btn btn-primary">Yeni Kullanıcı Ekle</a>
+                        <h3 class="card-title">Yönetici Listesi</h3>
+                        <div class="card-tools">
+                            <a href="/Admin/UserCreate" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i> Yeni Yönetici Ekle
+                            </a>
+                        </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body table-responsive p-0">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -45,11 +46,11 @@
                                 @foreach (var user in Model)
                                 {
                                     <tr>
-                                        <td>@user.id</td>
-                                        <td>@user.username</td>
+                                        <td>@user.Id</td>
+                                        <td>@user.Username</td>
                                         <td>
-                                            <a href="/Admin/UserDuzenle/@user.id" class="btn btn-warning btn-sm">Düzenle</a>
-                                            <a href="/Admin/UserSil/@user.id" class="btn btn-danger btn-sm">Sil</a>
+                                            <a href="/Admin/UserEdit/@user.Id" class="btn btn-warning btn-sm">Düzenle</a>
+                                            <a href="/Admin/UserDelete/@user.Id" class="btn btn-danger btn-sm">Sil</a>
                                         </td>
                                     </tr>
                                 }
@@ -57,11 +58,7 @@
                         </table>
                     </div>
                 </div>
-
-
             </div>
-            <!-- /.col-md-6 -->
         </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
-</div>
+    </div>
+</section>

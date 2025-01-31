@@ -34,49 +34,45 @@
   <div class="container-fluid">
     <div class="row">
       <!-- /.col-md-6 -->
-      <div class="col-lg-12">
+      <div class="col-lg-6">
         <div class="card card-danger">
           <div class="card-header">
-            <h3 class="card-title">Bu kitabı silmek istediğinize emin misiniz?</h3>
+            <h3 class="card-title">Kitap Silme Onayı</h3>
           </div>
-          <div class="card-body">
-            <dl class="row">
-              <dt class="col-sm-2">Kitap Adı:</dt>
-              <dd class="col-sm-10">@Model.Adi</dd>
-
-              <dt class="col-sm-2">Yazar:</dt>
-              <dd class="col-sm-10">
-                @{
-                  var yazar = yazarlar?.FirstOrDefault(y => y.Id == Model.YazarId);
-                  @(yazar != null ? $"{yazar.Adi} {yazar.Soyadi}" : "")
-                }
-              </dd>
-
-              <dt class="col-sm-2">Dil:</dt>
-              <dd class="col-sm-10">
-                @{
-                  var dil = diller?.FirstOrDefault(d => d.Id == Model.DilId);
-                  @(dil != null ? dil.Adi : "")
-                }
-              </dd>
-
-              <dt class="col-sm-2">Yayınevi:</dt>
-              <dd class="col-sm-10">
-                @{
-                  var yayinevi = yayinevleri?.FirstOrDefault(y => y.ID == Model.YayineviId);
-                  @(yayinevi != null ? yayinevi.yayineviAdi : "")
-                }
-              </dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <form asp-action="KitapSilmeOnay" method="post">
-              @Html.AntiForgeryToken()
-              <input type="hidden" name="id" value="@Model.Id" />
+          <form method="post" action="/Admin/KitapSilOnay/@Model.Id">
+            @Html.AntiForgeryToken()
+            <div class="card-body">
+              <div class="alert alert-warning">
+                <h5><i class="icon fas fa-exclamation-triangle"></i> Uyarı!</h5>
+                <strong>@Model.Adi</strong> isimli kitabı silmek istediğinize emin misiniz?
+                Bu işlem geri alınamaz.
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tr>
+                    <th style="width: 150px">Kitap Adı</th>
+                    <td>@Model.Adi</td>
+                  </tr>
+                  <tr>
+                    <th>Yazar</th>
+                    <td>@Model.YazarAdi @Model.YazarSoyadi</td>
+                  </tr>
+                  <tr>
+                    <th>Yayınevi</th>
+                    <td>@Model.YayineviAdi</td>
+                  </tr>
+                  <tr>
+                    <th>Sayfa Sayısı</th>
+                    <td>@Model.SayfaSayisi</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer">
               <a href="/Admin/Kitaplar" class="btn btn-default">Vazgeç</a>
               <button type="submit" class="btn btn-danger float-right">Sil</button>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>

@@ -1,0 +1,106 @@
+@model books.Models.Entities.Kullanicilar
+@{
+    ViewData["Title"] = "Profilim";
+}
+
+@if (Model == null)
+{
+    <div class="alert alert-danger">
+        Kullanıcı bilgileri bulunamadı. Lütfen tekrar giriş yapın.
+    </div>
+    return;
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="text-center mb-0">Profilim</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <div class="position-relative" style="width: 150px; height: 150px; margin: 0 auto;">
+                        <img src="~/images/users/@Model.resim" 
+                             class="rounded-circle w-100 h-100 border border-3 border-primary" 
+                             style="object-fit: cover;"
+                             alt="Profil">
+                        <label for="resimInput" class="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle p-2" 
+                               style="cursor: pointer;">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                    </div>
+                    <form method="post" action="/Account/Profil" enctype="multipart/form-data" id="resimForm">
+                        <input type="file" id="resimInput" name="resim" class="d-none" accept="image/*">
+                    </form>
+                </div>
+
+                <form method="post" action="/Account/ProfilGuncelle">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="isim" name="isim" value="@Model.isim" required>
+                                <label for="isim">İsim</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="soyisim" name="soyisim" value="@Model.soyisim" required>
+                                <label for="soyisim">Soyisim</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="username" name="username" value="@Model.usernames" required>
+                                <label for="username">Kullanıcı Adı</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="telno" name="telno" 
+                                       value="@Model.telno" required pattern="[0-9]{11}"
+                                       title="Lütfen 11 haneli telefon numaranızı giriniz">
+                                <label for="telno">Telefon Numarası</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Şifre">
+                                <label for="password">Yeni Şifre (Boş bırakılabilir)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Şifre Tekrar">
+                                <label for="passwordConfirm">Yeni Şifre Tekrar</label>
+                            </div>
+                        </div>
+                    </div>
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert @(ViewBag.Success ? "alert-success" : "alert-danger")">
+                            @ViewBag.Message
+                        </div>
+                    }
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary px-5">
+                            <i class="fas fa-save me-2"></i>Kaydet
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Resim seçildiğinde otomatik submit
+        document.getElementById('resimInput').onchange = function() {
+            document.getElementById('resimForm').submit();
+        };
+    </script>
+} 
