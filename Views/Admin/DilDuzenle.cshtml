@@ -26,12 +26,12 @@
             <div class="col-lg-6">
                 <div class="card card-warning">
                     <form class="form-horizontal" method="post">
-                        <input type="hidden" asp-for="Id" value="@ViewBag.DilInfo.Id" />
+                        <input type="hidden" asp-for="Id" />
                         @Html.AntiForgeryToken()
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Dil Adı</label>
-                                <input type="text" asp-for="Adi" class="form-control" value="@ViewBag.DilInfo.Adi">
+                                <input type="text" class="form-control" asp-for="Adi" required>
                                 <span asp-validation-for="Adi" class="text-danger"></span>
                             </div>
                         </div>

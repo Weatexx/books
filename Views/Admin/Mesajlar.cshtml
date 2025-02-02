@@ -1,1 +1,141 @@
- 
+@model List<books.Models.ViewModels.IletisimVM>
+@{
+    Layout = "_AdminLayout";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Mesajlar</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tüm Mesajlar</h3>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Ad Soyad</th>
+                                    <th>E-posta</th>
+                                    <th>Konu</th>
+                                    <th>Mesaj</th>
+                                    <th>Tarih</th>
+                                    <th>IP</th>
+                                    <th>Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var mesaj in Model.OrderByDescending(x => x.TarihSaat))
+                                {
+                                    <tr class="@(mesaj.Goruldu ? "" : "bg-light")" id="mesaj-@mesaj.Id">
+                                        <td>@mesaj.AdSoyad</td>
+                                        <td>@mesaj.Email</td>
+                                        <td>@mesaj.Konu</td>
+                                        <td>@mesaj.Mesaj</td>
+                                        <td>@mesaj.TarihSaat.ToString("dd.MM.yyyy HH:mm")</td>
+                                        <td>@mesaj.Ip</td>
+                                        <td>
+                                            @if (!mesaj.Goruldu)
+                                            {
+                                                <button class="btn btn-sm btn-warning" onclick="mesajOkundu(@mesaj.Id, this)">
+                                                    <i class="fas fa-check"></i> Okundu İşaretle
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <div>
+                                                    <span class="badge badge-success">Okundu</span>
+                                                    <button class="btn btn-sm btn-danger ml-2" onclick="mesajSil(@mesaj.Id, this)">
+                                                        <i class="fas fa-trash"></i> Sil
+                                                    </button>
+                                                </div>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Silme Onay Modal -->
+<div class="modal fade" id="silModal" tabindex="-1" role="dialog" aria-labelledby="silModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="silModalLabel">Mesaj Silme Onayı</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="silForm" method="post">
+                <div class="modal-body">
+                    <input type="hidden" id="silinecekMesajId" name="id" />
+                    <p>Bu mesajı silmek istediğinize emin misiniz?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Sil
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function mesajOkundu(id, button) {
+            $.post('/Admin/MesajOkunduOlarakIsaretle', { id: id }, function(data) {
+                if (data.success) {
+                    $(button).closest('tr').removeClass('bg-light');
+                    $(button).replaceWith(`
+                        <div>
+                            <span class="badge badge-success">Okundu</span>
+                            <button class="btn btn-sm btn-danger ml-2" onclick="mesajSil(${id}, this)">
+                                <i class="fas fa-trash"></i> Sil
+                            </button>
+                        </div>
+                    `);
+                    okunmamisMesajSayisiniGuncelle();
+                }
+            });
+        }
+
+        function mesajSil(id, button) {
+            $('#silinecekMesajId').val(id);
+            $('#silModal').modal('show');
+        }
+        
+        $('#silForm').on('submit', function(e) {
+            e.preventDefault();
+            var id = $('#silinecekMesajId').val();
+            
+            $.post('/Admin/MesajSil', { id: id }, function(data) {
+                if (data.success) {
+                    $('#silModal').modal('hide');
+                    $(`#mesaj-${id}`).fadeOut(300, function() { $(this).remove(); });
+                } else {
+                    alert(data.message || 'Mesaj silinemedi!');
+                }
+            });
+        });
+    </script>
+} 

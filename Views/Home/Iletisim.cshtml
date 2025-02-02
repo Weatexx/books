@@ -18,11 +18,25 @@
                         </div>
                     }
 
+                    @if (TempData["MesajGonderildi"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["MesajGonderildi"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
                     <form method="post" asp-action="Iletisim">
                         <div class="mb-3">
+                            <label class="form-label">Ad Soyad</label>
+                            <input type="text" class="form-control" asp-for="AdSoyad">
+                            <span asp-validation-for="AdSoyad" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label">E-posta Adresiniz</label>
-                            <input type="email" class="form-control" asp-for="Eposta">
-                            <span asp-validation-for="Eposta" class="text-danger"></span>
+                            <input type="email" class="form-control" asp-for="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
@@ -33,7 +47,9 @@
 
                         <div class="mb-3">
                             <label class="form-label">Mesajınız</label>
-                            <textarea class="form-control" asp-for="Mesaj" rows="5"></textarea>
+                            <textarea class="form-control" asp-for="Mesaj" rows="5" maxlength="500" 
+                                oninput="document.getElementById('karakterSayaci').textContent = 500 - this.value.length;"></textarea>
+                            <small class="text-muted">Kalan karakter: <span id="karakterSayaci">500</span></small>
                             <span asp-validation-for="Mesaj" class="text-danger"></span>
                         </div>
 

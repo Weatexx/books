@@ -1,7 +1,9 @@
+@using books.Models.AdminViewModels
 @model books.Models.AdminViewModels.KitaplarVM
 
 @{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Kitap Sil";
+    Layout = "_AdminLayout";
     
     var yazarlar = (ViewBag.Yazarlar as List<books.Models.AdminViewModels.YazarlarVM>) ?? new List<books.Models.AdminViewModels.YazarlarVM>();
     var diller = (ViewBag.Diller as List<books.Models.AdminViewModels.DillerVM>) ?? new List<books.Models.AdminViewModels.DillerVM>();
@@ -39,7 +41,7 @@
           <div class="card-header">
             <h3 class="card-title">Kitap Silme Onayı</h3>
           </div>
-          <form method="post" action="/Admin/KitapSilOnay/@Model.Id">
+          <form asp-action="KitapSilOnay" asp-controller="Admin" method="post">
             @Html.AntiForgeryToken()
             <div class="card-body">
               <div class="alert alert-warning">
@@ -69,7 +71,8 @@
               </div>
             </div>
             <div class="card-footer">
-              <a href="/Admin/Kitaplar" class="btn btn-default">Vazgeç</a>
+              <input type="hidden" name="id" value="@Model.Id" />
+              <a asp-action="Kitaplar" class="btn btn-secondary">İptal</a>
               <button type="submit" class="btn btn-danger float-right">Sil</button>
             </div>
           </form>

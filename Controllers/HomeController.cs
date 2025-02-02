@@ -160,18 +160,19 @@ public class HomeController : Controller
         {
             var yeniMesaj = new Iletisim
             {
-                Eposta = model.Eposta,
+                AdSoyad = model.AdSoyad,
+                Email = model.Email,
                 Konu = model.Konu,
                 Mesaj = model.Mesaj,
                 TarihSaat = DateTime.Now,
-                Ip = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "0.0.0.0",
+                Ip = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "",
                 Goruldu = false
             };
 
             db.Iletisims.Add(yeniMesaj);
             db.SaveChanges();
 
-            TempData["Mesaj"] = "Mesajınız başarıyla gönderildi.";
+            TempData["MesajGonderildi"] = "Mesajınız başarıyla gönderildi. En kısa sürede mail adresiniz üzerinden size dönüş yapılacaktır.";
             return RedirectToAction("Iletisim");
         }
 

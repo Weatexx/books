@@ -112,20 +112,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <a class="nav-link" data-toggle="dropdown" href="#" id="mesajlarDropdown">
                         <i class="far fa-bell"></i>
-                        @{
-                            var okunmamisMesajSayisi = ViewBag.OkunmamisMesajSayisi ?? 0;
-                        }
-                        @if (okunmamisMesajSayisi > 0)
-                        {
-                            <span class="badge badge-warning navbar-badge">@okunmamisMesajSayisi</span>
-                        }
+                        <span class="badge badge-warning navbar-badge" id="okunmamisMesajSayisi">0</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header">@okunmamisMesajSayisi Okunmamış Mesaj</span>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" id="mesajlarContainer">
+                        <span class="dropdown-header">Mesajlar</span>
                         <div class="dropdown-divider"></div>
-                        <a href="/Admin/Mesajlar" class="dropdown-item dropdown-footer">Tüm Mesajları Gör</a>
+                        <!-- Mesajlar buraya yüklenecek -->
                     </div>
                 </li>
                 <li class="nav-item">
@@ -227,6 +221,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/Admin/Mesajlar" class="nav-link">
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p>
+                                    Mesajlar
+                                    <span class="badge badge-warning right" id="okunmamisMesajSayisi">0</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/Admin/Logout" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>Çıkış Yap</p>
@@ -287,7 +290,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
         }
 
-        // Sayfa yüklendiğinde ve tema değiştiğinde ikonu güncelle
         document.addEventListener('DOMContentLoaded', updateThemeIcon);
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
@@ -299,7 +301,52 @@ scratch. This page gets rid of all links and provides the needed markup only.
         observer.observe(document.documentElement, { attributes: true });
     </script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        function mesajlariYukle() {
+            $.get('/Admin/MesajlariGoruntule', function(data) {
+                $('#mesajlarContainer').html(data);
+                if (data.trim() === '') {
+                    $('#mesajlarContainer').html('<span class="dropdown-item">Mesaj bulunmamaktadır.</span>');
+                }
+            });
+        }
+
+        function okunmamisMesajSayisiniGuncelle() {
+            $.get('/Admin/OkunmamisMesajSayisi', function(data) {
+                var sayi = data.count;
+                $('#okunmamisMesajSayisi').text(sayi);
+                $('.nav-sidebar #okunmamisMesajSayisi').text(sayi);
+                if (sayi === 0) {
+                    $('#okunmamisMesajSayisi').hide();
+                    $('.nav-sidebar #okunmamisMesajSayisi').hide();
+                } else {
+                    $('#okunmamisMesajSayisi').show();
+                    $('.nav-sidebar #okunmamisMesajSayisi').show();
+                }
+            });
+        }
+
+        function mesajOkundu(id, element) {
+            $.post('/Admin/MesajOkunduOlarakIsaretle', { id: id }, function(data) {
+                if (data.success) {
+                    $(element).removeClass('bg-light');
+                    $(element).find('.text-warning').remove();
+                    okunmamisMesajSayisiniGuncelle();
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            okunmamisMesajSayisiniGuncelle();
+            
+            $('#mesajlarDropdown').click(function(e) {
+                e.preventDefault();
+                mesajlariYukle();
+            });
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>

@@ -19,7 +19,15 @@ builder.Services.AddDbContext<KitapDbContext>(options =>
 // Auth için eklendi
 builder.Services.AddSession();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(option => option.LoginPath = "/Admin/Login");
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Admin/Login";
+        options.AccessDeniedPath = "/Admin/Login";
+        options.Cookie.Name = "KitapBlog";
+        options.Cookie.HttpOnly = true;
+        options.ExpireTimeSpan = TimeSpan.FromDays(7);
+        options.SlidingExpiration = true;
+    });
 //
 
 var app = builder.Build();

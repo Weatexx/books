@@ -19,48 +19,6 @@ public class AccountController : Controller
     }
 
     [HttpGet]
-    public IActionResult Login()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Login(string username, string password)
-    {
-        var user = db.Kullanicilars
-            .Select(x => new Kullanicilar
-            {
-                id = x.id,
-                usernames = x.usernames ?? "",
-                passwords = x.passwords ?? "",
-                isim = x.isim ?? "",
-                soyisim = x.soyisim ?? "",
-                telno = x.telno,
-                resim = string.IsNullOrEmpty(x.resim) ? "default.jpg" : x.resim
-            })
-            .FirstOrDefault(x => x.usernames == username && x.passwords == password);
-        
-        if (user != null)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, username)
-            };
-
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var authProperties = new AuthenticationProperties();
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity), authProperties);
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        ViewBag.Error = "Kullanıcı adı veya şifre hatalı!";
-        return View();
-    }
-
-    [HttpGet]
     public IActionResult Register()
     {
         return View();
@@ -229,5 +187,74 @@ public class AccountController : Controller
         }
 
         return RedirectToAction("Profil");
+    }
+
+    [HttpGet]
+    public IActionResult Giris()
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Giris(string username, string password)
+    {
+        var user = db.Kullanicilars.FirstOrDefault(x => x.usernames == username && x.passwords == password);
+        if (user != null)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, username)
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties();
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity), authProperties);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        ViewBag.Error = "Kullanıcı adı veya şifre hatalı!";
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult KayitOl()
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> KayitOl(string username, string password, string isim, string soyisim, string telno)
+    {
+        if (db.Kullanicilars.Any(x => x.usernames == username))
+        {
+            ViewBag.Error = "Bu kullanıcı adı zaten kullanılıyor!";
+            return View();
+        }
+
+        var yeniKullanici = new Kullanicilar
+        {
+            usernames = username,
+            passwords = password,
+            isim = isim,
+            soyisim = soyisim,
+            telno = telno,
+            resim = "default.jpg"
+        };
+
+        db.Kullanicilars.Add(yeniKullanici);
+        await db.SaveChangesAsync();
+
+        return RedirectToAction("Giris");
     }
 } 

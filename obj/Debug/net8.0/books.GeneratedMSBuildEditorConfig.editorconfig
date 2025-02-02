@@ -28,6 +28,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxLYXlpdE9sLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Koray/OneDrive/Desktop/books/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Koray/OneDrive/Desktop/books/Views/Account/Profil.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -178,6 +182,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Koray/OneDrive/Desktop/books/Views/Admin/_KullanicilarPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX0t1bGxhbmljaWxhclBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Koray/OneDrive/Desktop/books/Views/Admin/_MesajlarPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX01lc2FqbGFyUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Koray/OneDrive/Desktop/books/Views/Home/Iletisim.cshtml]

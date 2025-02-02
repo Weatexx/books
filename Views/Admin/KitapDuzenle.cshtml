@@ -1,7 +1,9 @@
+@using books.Models.AdminViewModels
 @model books.Models.AdminViewModels.KitaplarVM
 
 @{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Kitap Düzenle";
+    Layout = "_AdminLayout";
 }
 <div class="content-header">
     <div class="container-fluid">

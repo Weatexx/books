@@ -50,13 +50,41 @@ public partial class KitapDbContext : DbContext
         {
             entity.HasKey(e => e.Id);
             entity.ToTable("iletisim");
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Eposta).HasColumnName("eposta").HasMaxLength(100);
-            entity.Property(e => e.Konu).HasColumnName("konu").HasMaxLength(150);
-            entity.Property(e => e.Mesaj).HasColumnName("mesaj").HasMaxLength(600);
-            entity.Property(e => e.TarihSaat).HasColumnName("tarihSaat");
-            entity.Property(e => e.Ip).HasColumnName("ip").HasColumnType("char(50)");
-            entity.Property(e => e.Goruldu).HasColumnName("goruldu").HasColumnType("tinyint(1)");
+            
+            entity.Property(e => e.Id)
+                .HasColumnName("id");
+            
+            entity.Property(e => e.AdSoyad)
+                .HasColumnName("adsoyad")
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+            
+            entity.Property(e => e.Email)
+                .HasColumnName("email")
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+            
+            entity.Property(e => e.Konu)
+                .HasColumnName("konu")
+                .HasColumnType("varchar(150)")
+                .IsRequired();
+            
+            entity.Property(e => e.Mesaj)
+                .HasColumnName("mesaj")
+                .HasColumnType("varchar(500)")
+                .IsRequired();
+            
+            entity.Property(e => e.TarihSaat)
+                .HasColumnName("tarihSaat")
+                .HasColumnType("datetime");
+            
+            entity.Property(e => e.Ip)
+                .HasColumnName("ip")
+                .HasColumnType("char(50)");
+            
+            entity.Property(e => e.Goruldu)
+                .HasColumnName("goruldu")
+                .HasColumnType("tinyint(1)");
         });
 
         modelBuilder.Entity<Kitaplar>(entity =>

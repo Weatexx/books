@@ -1,0 +1,36 @@
+@model List<books.Models.ViewModels.IletisimVM>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var mesaj in Model)
+    {
+        <div class="dropdown-item @(mesaj.Goruldu ? "" : "bg-light")" onclick="mesajOkundu(@mesaj.Id, this)">
+            <div class="media">
+                <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                        @mesaj.AdSoyad
+                        @if (!mesaj.Goruldu)
+                        {
+                            <span class="float-right text-warning"><i class="fas fa-star"></i></span>
+                        }
+                    </h3>
+                    <p class="text-sm">@mesaj.Konu</p>
+                    <p class="text-sm text-muted">
+                        <i class="far fa-envelope mr-1"></i> @mesaj.Email
+                    </p>
+                    <p class="text-sm text-muted">
+                        <i class="far fa-clock mr-1"></i> @mesaj.TarihSaat.ToString("dd.MM.yyyy HH:mm")
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown-divider"></div>
+    }
+    <a href="/Admin/Mesajlar" class="dropdown-item dropdown-footer">
+        <i class="fas fa-envelope mr-2"></i> Tüm Mesajları Gör
+    </a>
+}
+else
+{
+    <span class="dropdown-item">Mesaj bulunmamaktadır.</span>
+} 

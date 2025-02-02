@@ -25,27 +25,18 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="card card-danger">
-                    <div class="alert alert-warning fw-bolder text-center" role="alert">
-                        Bu dili silmek istediğinize emin misiniz?
+                    <div class="card-header">
+                        <h3 class="card-title">Silme Onayı</h3>
                     </div>
-                    <form class="form-horizontal" method="post" asp-controller="Admin" asp-action="DilSilmeOnay" asp-route-id="@ViewBag.DilInfo.Id">
-                        <input type="hidden" asp-for="Id" value="@ViewBag.DilInfo.Id" />
-                        @Html.AntiForgeryToken()
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Dil Adı</label>
-                                <input type="text" class="form-control" disabled value="@ViewBag.DilInfo.Adi">
-                            </div>
-                            <div class="form-group">
-                                <label>Dil Kodu</label>
-                                <input type="text" class="form-control" disabled value="@ViewBag.DilInfo.Kod">
-                            </div>
-                        </div>
-                        <div class="card-footer">
+                    <div class="card-body">
+                        <p><strong>@Model.Adi</strong> adlı dili silmek istediğinize emin misiniz?</p>
+                    </div>
+                    <div class="card-footer">
+                        <form method="post" asp-action="DilSilmeOnay" asp-route-id="@Model.Id">
+                            <button type="submit" class="btn btn-danger">Evet, Sil</button>
                             <a href="/Admin/Diller" class="btn btn-default">Vazgeç</a>
-                            <button type="submit" class="btn btn-danger float-right">Sil</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,27 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace books.Models.Entities;
 
 public partial class Kitaplar
 {
-    public int Id { get; set; }
+    [Key]
+    [Column("ID")]
+    public int Id { get; set; }  // Property adı Id olarak kalacak ama veritabanında ID olarak eşlenecek
 
-    public string Adi { get; set; } = null!;
+    [Column("adi")]
+    [StringLength(200)]
+    [Required]
+    public string Adi { get; set; } = "";
 
+    [Column("yazarID")]
+    [Required]
     public int YazarId { get; set; }
 
+    [Column("dilID")]
+    [Required]
     public int DilId { get; set; }
 
+    [Column("sayfaSayisi")]
+    [Required]
     public int SayfaSayisi { get; set; }
 
+    [Column("yayineviID")]
+    [Required]
     public int YayineviId { get; set; }
 
-    public string Ozet { get; set; } = null!;
+    [Column("ozet")]
+    [StringLength(5000)]
+    [Required]
+    public string Ozet { get; set; } = "";
 
+    [Column("yayinTarihi")]
+    [Required]
     public DateTime YayinTarihi { get; set; }
 
+    [Column("resim")]
+    [StringLength(50)]
     public string? Resim { get; set; }
-
-    public int Sira { get; set; } = 0;
 }

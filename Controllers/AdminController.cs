@@ -9,10 +9,14 @@ using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using IletisimVM = books.Models.ViewModels.IletisimVM;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
 
 namespace books.Controllers.Admin
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly books.Models.KitapDbContext db;
@@ -20,6 +24,24 @@ namespace books.Controllers.Admin
         public AdminController(books.Models.KitapDbContext _db)
         {
             db = _db;
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            // Login action'ı için kontrol yapmayı atla
+            if (context.ActionDescriptor.DisplayName?.Contains("Login") == true)
+            {
+                base.OnActionExecuting(context);
+                return;
+            }
+            
+            // Diğer tüm action'lar için yetki kontrolü yap
+            if (!User.Identity.IsAuthenticated || !User.IsInRole("Admin"))
+            {
+                context.Result = RedirectToAction("Login", "Admin");
+                return;
+            }
+            base.OnActionExecuting(context);
         }
 
         public IActionResult Index()
@@ -307,19 +329,26 @@ namespace books.Controllers.Admin
         [Route("/Admin/Kitaplar")]
         public IActionResult Kitaplar()
         {
-            var kitaplar = (from x in db.Kitaplars
-                            select new KitaplarVM
-                            {
-                                Id = x.Id,
-                                Adi = x.Adi,
-                                YazarId = x.YazarId,
-                                DilId = x.DilId,
-                                SayfaSayisi = x.SayfaSayisi,
-                                YayineviId = x.YayineviId,
-                                Ozet = x.Ozet,
-                                YayinTarihi = x.YayinTarihi,
-                                Resim = x.Resim ?? "default.jpg"
-                            }).ToList();
+            var kitaplar = (from k in db.Kitaplars
+                           join y in db.Yazarlars on k.YazarId equals y.Id
+                           join d in db.Dillers on k.DilId equals d.Id
+                           join yy in db.Yayinevleris on k.YayineviId equals yy.Id
+                           select new books.Models.AdminViewModels.KitaplarVM
+                           {
+                               Id = k.Id,
+                               Adi = k.Adi,
+                               YazarId = k.YazarId,
+                               YazarAdi = y.Adi,
+                               YazarSoyadi = y.Soyadi,
+                               DilId = k.DilId,
+                               DilAdi = d.DilAdi,
+                               SayfaSayisi = k.SayfaSayisi,
+                               YayineviId = k.YayineviId,
+                               YayineviAdi = yy.yayineviAdi,
+                               Ozet = k.Ozet,
+                               YayinTarihi = k.YayinTarihi,
+                               Resim = k.Resim ?? "default.jpg"
+                           }).ToList();
 
             return View(kitaplar);
         }
@@ -383,67 +412,38 @@ namespace books.Controllers.Admin
         }
 
         [HttpGet]
-        public IActionResult KitapDuzenle(int id)
+        public async Task<IActionResult> KitapDuzenle(int id)
         {
-            var kitap = db.Kitaplars.Find(id);
-            if (kitap == null)
-            {
-                return RedirectToAction("Kitaplar");
-            }
-
-            var model = new KitaplarVM
-            {
-                Id = kitap.Id,
-                Adi = kitap.Adi ?? "",
-                YazarId = kitap.YazarId,
-                DilId = kitap.DilId,
-                YayineviId = kitap.YayineviId,
-                YayinTarihi = kitap.YayinTarihi,
-                SayfaSayisi = kitap.SayfaSayisi,
-                Ozet = kitap.Ozet ?? "",
-                Resim = kitap.Resim ?? "default.jpg"
-            };
-
-            // Yazarlar listesini çekelim
-            ViewBag.Yazarlar = (from y in db.Yazarlars
-                                select new books.Models.AdminViewModels.YazarlarVM
-                                {
-                                    Id = y.Id,
-                                    Adi = y.Adi ?? "",
-                                    Soyadi = y.Soyadi ?? "",
-                                    DogumTarihi = y.DogumTarihi,
-                                    DogumYeri = y.DogumYeri ?? "",
-                                    Cinsiyeti = y.Cinsiyeti
-                                }).ToList();
-
-            // Diller listesini çekelim
-            ViewBag.Diller = (from d in db.Dillers
-                              select new DillerVM
+            var kitap = await (from k in db.Kitaplars
+                              join y in db.Yazarlars on k.YazarId equals y.Id
+                              join d in db.Dillers on k.DilId equals d.Id
+                              join yy in db.Yayinevleris on k.YayineviId equals yy.Id
+                              where k.Id == id
+                              select new books.Models.AdminViewModels.KitaplarVM
                               {
-                                  Id = d.Id,
-                                  Adi = d.DilAdi ?? ""
-                              }).ToList();
+                                  Id = k.Id,
+                                  Adi = k.Adi,
+                                  YazarId = k.YazarId,
+                                  YazarAdi = y.Adi,
+                                  YazarSoyadi = y.Soyadi,
+                                  DilId = k.DilId,
+                                  DilAdi = d.DilAdi,
+                                  SayfaSayisi = k.SayfaSayisi,
+                                  YayineviId = k.YayineviId,
+                                  YayineviAdi = yy.yayineviAdi,
+                                  Ozet = k.Ozet,
+                                  YayinTarihi = k.YayinTarihi,
+                                  Resim = k.Resim ?? "default.jpg"
+                              }).FirstOrDefaultAsync();
 
-            // Yayınevleri listesini çekelim
-            ViewBag.Yayinevleri = (from y in db.Yayinevleris
-                                   select new YayinevleriVM
-                                   {
-                                       Id = y.Id,
-                                       YayineviAdi = y.yayineviAdi ?? "",
-                                       Adres = y.adres ?? "",
-                                       Tel = y.tel ?? "",
-                                       Sira = y.sira
-                                   }).ToList();
+            if (kitap == null)
+                return NotFound();
 
-            ViewBag.Turler = db.Turlers.ToList();
+            ViewBag.Diller = new SelectList(db.Dillers, "Id", "DilAdi");
+            ViewBag.Yazarlar = new SelectList(db.Yazarlars, "Id", "Adi");
+            ViewBag.Yayinevleri = new SelectList(db.Yayinevleris, "Id", "yayineviAdi");
 
-            var secilenTurler = (from x in db.Turlertokitaplars
-                                 where x.KitapId == id
-                                 select x.TurId).ToList();
-
-            ViewBag.SecilenTurler = secilenTurler;
-
-            return View(model);
+            return View(kitap);
         }
 
         [HttpPost]
@@ -456,6 +456,7 @@ namespace books.Controllers.Admin
                 {
                     if (model.ResimFile != null && model.ResimFile.Length > 0)
                     {
+                        // Eski resmi sil
                         if (kitap.Resim != "default.jpg" && !string.IsNullOrEmpty(kitap.Resim))
                         {
                             string eskiResimYol = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "book", kitap.Resim);
@@ -465,6 +466,7 @@ namespace books.Controllers.Admin
                             }
                         }
 
+                        // Yeni resmi kaydet
                         string uzanti = Path.GetExtension(model.ResimFile.FileName);
                         string yeniResimAdi = Guid.NewGuid().ToString() + uzanti;
                         string klasorYolu = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "book");
@@ -483,99 +485,83 @@ namespace books.Controllers.Admin
                     }
 
                     kitap.Adi = model.Adi;
-                    kitap.YazarId = model.YazarId;
-                    kitap.DilId = model.DilId;
-                    kitap.SayfaSayisi = model.SayfaSayisi;
-                    kitap.YayineviId = model.YayineviId;
                     kitap.Ozet = model.Ozet;
+                    kitap.SayfaSayisi = model.SayfaSayisi;
                     kitap.YayinTarihi = model.YayinTarihi;
+                    kitap.DilId = model.DilId;
+                    kitap.YazarId = model.YazarId;
+                    kitap.YayineviId = model.YayineviId;
 
+                    db.Entry(kitap).State = EntityState.Modified;
                     await db.SaveChangesAsync();
                     return RedirectToAction("Kitaplar");
                 }
             }
-
-            ViewBag.Yazarlar = (from x in db.Yazarlars
-                                select new books.Models.AdminViewModels.YazarlarVM
-                                {
-                                    Id = x.Id,
-                                    Adi = x.Adi ?? "",
-                                    Soyadi = x.Soyadi ?? "",
-                                    DogumTarihi = x.DogumTarihi,
-                                    DogumYeri = x.DogumYeri ?? "",
-                                    Cinsiyeti = x.Cinsiyeti
-                                }).ToList();
-
-            ViewBag.Diller = (from d in db.Dillers
-                              select new DillerVM
-                              {
-                                  Id = d.Id,
-                                  Adi = d.DilAdi ?? ""
-                              }).ToList();
-
-            ViewBag.Yayinevleri = (from y in db.Yayinevleris
-                                   select new YayinevleriVM
-                                   {
-                                       Id = y.Id,
-                                       YayineviAdi = y.yayineviAdi ?? "",
-                                       Adres = y.adres ?? "",
-                                       Tel = y.tel ?? "",
-                                       Sira = y.sira
-                                   }).ToList();
-
-            ViewBag.Turler = db.Turlers.ToList();
+            
+            // Hata durumunda dropdown listelerini tekrar doldur
+            ViewBag.Diller = new SelectList(db.Dillers, "Id", "DilAdi");
+            ViewBag.Yazarlar = new SelectList(db.Yazarlars, "Id", "YazarAdi");
+            ViewBag.Yayinevleri = new SelectList(db.Yayinevleris, "Id", "yayineviAdi");
             return View(model);
         }
 
         [HttpGet]
-        public IActionResult KitapSil(int id)
+        public async Task<IActionResult> KitapSil(int id)
         {
-            var kitap = (from k in db.Kitaplars
-                         join y in db.Yazarlars on k.YazarId equals y.Id
-                         join yy in db.Yayinevleris on k.YayineviId equals yy.Id
-                         join d in db.Dillers on k.DilId equals d.Id
-                         where k.Id == id
-                         select new KitaplarVM
-                         {
-                             Id = k.Id,
-                             Adi = k.Adi ?? "",
-                             YazarId = k.YazarId,
-                             YazarAdi = y.Adi ?? "",
-                             YazarSoyadi = y.Soyadi ?? "",
-                             YayineviId = k.YayineviId,
-                             YayineviAdi = yy.yayineviAdi ?? "",
-                             DilId = k.DilId,
-                             DilAdi = d.DilAdi ?? "",
-                             SayfaSayisi = k.SayfaSayisi,
-                             Resim = k.Resim,
-                             Sira = k.Sira
-                         }).FirstOrDefault();
+            var kitap = await (from k in db.Kitaplars
+                              join y in db.Yazarlars on k.YazarId equals y.Id
+                              join d in db.Dillers on k.DilId equals d.Id
+                              join yy in db.Yayinevleris on k.YayineviId equals yy.Id
+                              where k.Id == id
+                              select new books.Models.AdminViewModels.KitaplarVM
+                              {
+                                  Id = k.Id,
+                                  Adi = k.Adi,
+                                  YazarId = k.YazarId,
+                                  YazarAdi = y.Adi,
+                                  YazarSoyadi = y.Soyadi,
+                                  DilId = k.DilId,
+                                  DilAdi = d.DilAdi,
+                                  SayfaSayisi = k.SayfaSayisi,
+                                  YayineviId = k.YayineviId,
+                                  YayineviAdi = yy.yayineviAdi,
+                                  Ozet = k.Ozet,
+                                  YayinTarihi = k.YayinTarihi,
+                                  Resim = k.Resim ?? "default.jpg"
+                              }).FirstOrDefaultAsync();
 
             if (kitap == null)
-                return RedirectToAction("Kitaplar");
+                return NotFound();
 
             return View(kitap);
         }
 
         [HttpPost]
-        public async Task<IActionResult> KitapSilmeOnay(int id)
+        public async Task<IActionResult> KitapSilOnay(int id)
         {
             var kitap = await db.Kitaplars.FindAsync(id);
             if (kitap != null)
             {
-                if (kitap.Resim != "default.jpg" && !string.IsNullOrEmpty(kitap.Resim))
+                // Önce kitabın tür ilişkilerini sil
+                var turIliskileri = db.Turlertokitaplars.Where(t => t.KitapId == id);
+                db.Turlertokitaplars.RemoveRange(turIliskileri);
+                
+                // Eğer varsayılan resim değilse, resmi sil
+                if (kitap.Resim != null && kitap.Resim != "default.jpg")
                 {
-                    string resimYol = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "book", kitap.Resim);
-                    if (System.IO.File.Exists(resimYol))
+                    var resimYolu = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "book", kitap.Resim);
+                    if (System.IO.File.Exists(resimYolu))
                     {
-                        System.IO.File.Delete(resimYol);
+                        System.IO.File.Delete(resimYolu);
                     }
                 }
 
+                // Kitabı sil
                 db.Kitaplars.Remove(kitap);
                 await db.SaveChangesAsync();
+                return RedirectToAction("Kitaplar");
             }
-            return RedirectToAction("Kitaplar");
+            return NotFound();
         }
 
         // Yazarlar metodları
@@ -740,26 +726,30 @@ namespace books.Controllers.Admin
         [HttpGet]
         public IActionResult DilDuzenle(int id)
         {
-            var dil = db.Dillers.Find(id);
-            if (dil == null)
-            {
-                return RedirectToAction("Diller");
-            }
+            var dil = (from x in db.Dillers
+                      where x.Id == id
+                      select new DillerVM
+                      {
+                          Id = x.Id,
+                          Adi = x.DilAdi ?? ""
+                      }).FirstOrDefault();
 
-            ViewBag.DilInfo = dil;
-            return View();
+            if (dil == null)
+                return RedirectToAction("Diller");
+
+            return View(dil);
         }
 
         [HttpPost]
-        public async Task<IActionResult> DilDuzenle(DillerVM model)
+        public IActionResult DilDuzenle(DillerVM model)
         {
             if (ModelState.IsValid)
             {
-                var dil = await db.Dillers.FindAsync(model.Id);
+                var dil = db.Dillers.Find(model.Id);
                 if (dil != null)
                 {
                     dil.DilAdi = model.Adi;
-                    await db.SaveChangesAsync();
+                    db.SaveChanges();
                     return RedirectToAction("Diller");
                 }
             }
@@ -769,14 +759,18 @@ namespace books.Controllers.Admin
         [HttpGet]
         public IActionResult DilSil(int id)
         {
-            var dil = db.Dillers.Find(id);
-            if (dil == null)
-            {
-                return RedirectToAction("Diller");
-            }
+            var dil = (from x in db.Dillers
+                      where x.Id == id
+                      select new DillerVM
+                      {
+                          Id = x.Id,
+                          Adi = x.DilAdi ?? ""
+                      }).FirstOrDefault();
 
-            ViewBag.DilInfo = dil;
-            return View();
+            if (dil == null)
+                return RedirectToAction("Diller");
+
+            return View(dil);
         }
 
         [HttpPost]
@@ -920,18 +914,19 @@ namespace books.Controllers.Admin
         [Route("/Admin/Mesajlar")]
         public IActionResult Mesajlar()
         {
-            var mesajlar = (from x in db.Iletisims
-                            orderby x.TarihSaat descending
-                            select new IletisimVM
-                            {
-                                Id = x.Id,
-                                Eposta = x.Eposta,
-                                Konu = x.Konu,
-                                Mesaj = x.Mesaj,
-                                TarihSaat = x.TarihSaat,
-                                Ip = x.Ip,
-                                Goruldu = x.Goruldu
-                            }).ToList();
+            var mesajlar = (from m in db.Iletisims
+                           orderby m.TarihSaat descending
+                           select new IletisimVM
+                           {
+                               Id = m.Id,
+                               AdSoyad = m.AdSoyad,
+                               Email = m.Email,
+                               Konu = m.Konu,
+                               Mesaj = m.Mesaj,
+                               TarihSaat = m.TarihSaat,
+                               Ip = m.Ip,
+                               Goruldu = m.Goruldu
+                           }).ToList();
 
             return View(mesajlar);
         }
@@ -946,6 +941,110 @@ namespace books.Controllers.Admin
                 await db.SaveChangesAsync();
             }
             return RedirectToAction("Mesajlar");
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("/Admin/Login")]
+        public IActionResult Login()
+        {
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("/Admin/Login")]
+        public async Task<IActionResult> Login(string username, string password)
+        {
+            var admin = db.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
+            if (admin != null)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, "Admin")
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties();
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                return RedirectToAction("Index", "Admin");
+            }
+
+            TempData["NotFound"] = "Kullanıcı adı veya şifre hatalı!";
+            return View();
+        }
+
+        public IActionResult MesajlariGoruntule()
+        {
+            try 
+            {
+                var mesajlar = (from m in db.Iletisims
+                               orderby m.TarihSaat descending
+                               select new IletisimVM
+                               {
+                                   Id = m.Id,
+                                   AdSoyad = m.AdSoyad,
+                                   Email = m.Email,
+                                   Konu = m.Konu,
+                                   Mesaj = m.Mesaj,
+                                   TarihSaat = m.TarihSaat,
+                                   Goruldu = m.Goruldu
+                               }).Take(5).ToList();  // Son 5 mesajı göster
+
+                return PartialView("_MesajlarPartial", mesajlar);
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda boş liste döndür
+                return PartialView("_MesajlarPartial", new List<IletisimVM>());
+            }
+        }
+
+        [HttpPost]
+        public IActionResult MesajOkunduOlarakIsaretle(int id)
+        {
+            var mesaj = db.Iletisims.Find(id);
+            if (mesaj != null)
+            {
+                mesaj.Goruldu = true;
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+
+        public IActionResult OkunmamisMesajSayisi()
+        {
+            var sayi = db.Iletisims.Count(x => !x.Goruldu);
+            return Json(new { count = sayi });
+        }
+
+        [HttpPost]
+        public IActionResult MesajSil(int id)
+        {
+            try
+            {
+                var mesaj = db.Iletisims.Find(id);
+                if (mesaj != null && mesaj.Goruldu)
+                {
+                    db.Iletisims.Remove(mesaj);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                return Json(new { success = false, message = "Mesaj okunmadan silinemez!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Mesaj silinirken bir hata oluştu!" });
+            }
         }
     }
 }

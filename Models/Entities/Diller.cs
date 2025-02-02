@@ -7,5 +7,5 @@ public partial class Diller
 {
     public int Id { get; set; }
 
-    public string? DilAdi { get; set; }
+    public string DilAdi { get; set; } = "";
 }
