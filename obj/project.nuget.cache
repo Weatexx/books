@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "hiS1SA6bZH8=",
+  "dgSpecHash": "O/d2HLmMUh0=",
   "success": true,
   "projectFilePath": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\books.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Koray\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Koray\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Koray\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.4\\microsoft.entityframeworkcore.7.0.4.nupkg.sha512",
     "C:\\Users\\Koray\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.4\\microsoft.entityframeworkcore.abstractions.7.0.4.nupkg.sha512",

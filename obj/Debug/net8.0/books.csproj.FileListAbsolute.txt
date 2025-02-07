@@ -44,3 +44,4 @@ C:\Users\Koray\OneDrive\Desktop\books\obj\Debug\net8.0\refint\books.dll
 C:\Users\Koray\OneDrive\Desktop\books\obj\Debug\net8.0\books.pdb
 C:\Users\Koray\OneDrive\Desktop\books\obj\Debug\net8.0\books.genruntimeconfig.cache
 C:\Users\Koray\OneDrive\Desktop\books\obj\Debug\net8.0\ref\books.dll
+C:\Users\Koray\OneDrive\Desktop\books\bin\Debug\net8.0\BCrypt.Net-Next.dll

@@ -70,6 +70,239 @@
     </div>
 </article>
 
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <div class="mt-3">
+                <button class="btn btn-primary w-100 mb-2" onclick="kitaplikEkle()">
+                    <i class="fas fa-book"></i> Kitaplığıma Ekle
+                </button>
+                <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#alintiEkleModal">
+                    <i class="fas fa-quote-right"></i> Alıntı Ekle
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kitaplık Ekleme Modalı -->
+    <div class="modal fade" id="kitaplikEkleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Kitaplığa Ekle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <select id="kitapDurum" class="form-select">
+                        <option value="Okudum">Okudum</option>
+                        <option value="Okuyorum">Okuyorum</option>
+                        <option value="Okuyacağım">Okuyacağım</option>
+                        <option value="Favori">Favorilerime Ekle</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary" onclick="kitaplikEklemeOnayla()">Ekle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alıntı Ekleme Modalı -->
+    <div class="modal fade" id="alintiEkleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Alıntı Ekle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="alintiMetni" class="form-control" rows="4" placeholder="Alıntıyı buraya yazın..."></textarea>
+                    <input type="number" id="sayfaNo" class="form-control mt-2" placeholder="Sayfa No">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary" onclick="alintiEkle()">Ekle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0">Değerlendirme Yap</h5>
+        </div>
+        <div class="card-body">
+            <form id="degerlendirmeForm">
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label>Puanınız</label>
+                    <div class="rating">
+                        <input type="radio" id="star5" name="puan" value="5" />
+                        <label for="star5" title="5 yıldız"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star4" name="puan" value="4" />
+                        <label for="star4" title="4 yıldız"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star3" name="puan" value="3" />
+                        <label for="star3" title="3 yıldız"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star2" name="puan" value="2" />
+                        <label for="star2" title="2 yıldız"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star1" name="puan" value="1" />
+                        <label for="star1" title="1 yıldız"><i class="fas fa-star"></i></label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label>Yorum</label>
+                    <textarea class="form-control" id="yorum" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-star"></i> Değerlendir
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0">Değerlendirmeler</h5>
+        </div>
+        <div class="card-body">
+            <div id="degerlendirmeler">
+                <!-- Değerlendirmeler AJAX ile yüklenecek -->
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function kitaplikEkle() {
+            $('#kitaplikEkleModal').modal('show');
+        }
+
+        function kitaplikEklemeOnayla() {
+            var durum = $('#kitapDurum').val();
+            var kitapId = @Model.KitapId;
+            console.log('Kitaplık ekleme isteği:', { kitapId, durum });
+            
+            $.ajax({
+                url: '/Home/KitaplikEkle',
+                type: 'POST',
+                data: JSON.stringify({
+                    kitapId: kitapId,
+                    durum: durum
+                }),
+                contentType: 'application/json',
+                success: function(response) {
+                    console.log('Kitaplık ekleme yanıtı:', response);
+                    if (response.success) {
+                        $('#kitaplikEkleModal').modal('hide');
+                        toastr.success('Kitap kitaplığınıza eklendi');
+                    } else {
+                        toastr.error(response.message || 'Bir hata oluştu');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Kitaplık ekleme hatası:', { xhr, status, error });
+                    toastr.error('Bir hata oluştu');
+                }
+            });
+        }
+
+        function alintiEkle() {
+            var alinti = {
+                kitap_id: @Model.KitapId,
+                alinti_metni: $('#alintiMetni').val(),
+                sayfa_no: parseInt($('#sayfaNo').val())
+            };
+            console.log('Alıntı ekleme isteği:', alinti);
+            
+            $.ajax({
+                url: '/Home/AlintiEkle',
+                type: 'POST',
+                data: JSON.stringify(alinti),
+                contentType: 'application/json',
+                success: function(response) {
+                    console.log('Alıntı ekleme yanıtı:', response);
+                    if (response.success) {
+                        $('#alintiEkleModal').modal('hide');
+                        toastr.success('Alıntı başarıyla eklendi');
+                    } else {
+                        toastr.error(response.message || 'Bir hata oluştu');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Alıntı ekleme hatası:', { xhr, status, error });
+                    toastr.error('Bir hata oluştu');
+                }
+            });
+        }
+
+        $('#degerlendirmeForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            var puan = $('input[name="puan"]:checked').val();
+            var yorum = $('#yorum').val();
+            
+            console.log('Seçilen puan:', puan);
+            
+            if (!puan) {
+                toastr.error('Lütfen bir puan verin');
+                return;
+            }
+            
+            if (!yorum) {
+                toastr.error('Lütfen bir yorum yazın');
+                return;
+            }
+            
+            var data = {
+                kitapId: @Model.KitapId,
+                puan: parseInt(puan),
+                yorum: yorum
+            };
+
+            console.log('Değerlendirme gönderiliyor:', data);
+
+            $.ajax({
+                url: '/Home/DegerlendirmeEkle',
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                headers: {
+                    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function(response) {
+                    console.log('Değerlendirme yanıtı:', response);
+                    if (response.success) {
+                        $('#degerlendirmeForm')[0].reset();
+                        getDegerlendirmeler();
+                        toastr.success('Değerlendirmeniz kaydedildi');
+                    } else {
+                        toastr.error(response.message || 'Bir hata oluştu');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Değerlendirme hatası:', { xhr, status, error });
+                    toastr.error('Bir hata oluştu');
+                }
+            });
+        });
+
+        function getDegerlendirmeler() {
+            console.log('Değerlendirmeler getiriliyor...');
+            $.get('/Home/Degerlendirmeler/@Model.KitapId', function(data) {
+                console.log('Gelen değerlendirmeler:', data);
+                $('#degerlendirmeler').html(data);
+            }).fail(function(xhr, status, error) {
+                console.error('Değerlendirmeleri getirme hatası:', { xhr, status, error });
+            });
+        }
+
+        // Sayfa yüklendiğinde değerlendirmeleri getir
+        getDegerlendirmeler();
+    </script>
+}
 
 @* <section class="mb-5">
     <div class="card bg-light">
@@ -116,6 +349,7 @@
     <div class="fw-bold">Commenter Name</div>
     When I look at the universe and all the ways the universe wants to kill us, I find it hard to
     reconcile that with statements of beneficence.
+    </div>
     </div>
     </div>
     </div>

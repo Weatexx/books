@@ -568,15 +568,17 @@ namespace books.Controllers.Admin
         [Route("/Admin/Yazarlar")]
         public IActionResult Yazarlar()
         {
-            var yazarlar = (from x in db.Yazarlars
-                           select new books.Models.AdminViewModels.YazarlarVM
+            var yazarlar = (from y in db.Yazarlars
+                           join k in db.Kitaplars on y.Id equals k.YazarId into yazarKitaplari
+                           select new YazarlarVM
                            {
-                               Id = x.Id,
-                               Adi = x.Adi ?? string.Empty,
-                               Soyadi = x.Soyadi ?? string.Empty, 
-                               DogumTarihi = x.DogumTarihi,
-                               DogumYeri = x.DogumYeri ?? string.Empty,
-                               Cinsiyeti = x.Cinsiyeti
+                               Id = y.Id,
+                               Adi = y.Adi,
+                               Soyadi = y.Soyadi,
+                               DogumTarihi = y.DogumTarihi,
+                               DogumYeri = y.DogumYeri,
+                               Cinsiyet = y.Cinsiyeti,
+                               KitapSayisi = yazarKitaplari.Count()
                            }).ToList();
 
             return View(yazarlar);
@@ -599,7 +601,7 @@ namespace books.Controllers.Admin
                     Soyadi = model.Soyadi,
                     DogumTarihi = model.DogumTarihi,
                     DogumYeri = model.DogumYeri,
-                    Cinsiyeti = model.Cinsiyeti
+                    Cinsiyeti = model.Cinsiyet
                 };
 
                 db.Yazarlars.Add(yeniYazar);
@@ -625,7 +627,7 @@ namespace books.Controllers.Admin
                 Soyadi = yazar.Soyadi ?? "",
                 DogumTarihi = yazar.DogumTarihi,
                 DogumYeri = yazar.DogumYeri ?? "",
-                Cinsiyeti = yazar.Cinsiyeti
+                Cinsiyet = yazar.Cinsiyeti
             };
 
             return View(model);
@@ -643,7 +645,7 @@ namespace books.Controllers.Admin
                     yazar.Soyadi = model.Soyadi;
                     yazar.DogumTarihi = model.DogumTarihi;
                     yazar.DogumYeri = model.DogumYeri;
-                    yazar.Cinsiyeti = model.Cinsiyeti;
+                    yazar.Cinsiyeti = model.Cinsiyet;
 
                     await db.SaveChangesAsync();
                     return RedirectToAction("Yazarlar");
@@ -668,7 +670,7 @@ namespace books.Controllers.Admin
                 Soyadi = yazar.Soyadi ?? "",
                 DogumTarihi = yazar.DogumTarihi,
                 DogumYeri = yazar.DogumYeri ?? "",
-                Cinsiyeti = yazar.Cinsiyeti
+                Cinsiyet = yazar.Cinsiyeti
             };
 
             return View(model);

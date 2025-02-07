@@ -1,0 +1,63 @@
+@using books.Models.ViewModels
+@model List<MesajViewModel>
+@{
+    ViewData["Title"] = "Mesajlarım";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Mesajlar</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    @foreach (var mesaj in Model)
+                    {
+                        <a href="#" class="list-group-item list-group-item-action @(!mesaj.Okundu ? "bg-light" : "")" 
+                           onclick="mesajGoster(@mesaj.Id)">
+                            <div class="d-flex">
+                                <img src="/images/users/@mesaj.GonderenResim" class="rounded-circle" width="40" height="40">
+                                <div class="ms-3">
+                                    <h6 class="mb-0">@mesaj.GonderenAdi</h6>
+                                    <small class="text-muted">@mesaj.Tarih.ToShortDateString()</small>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0" id="mesajBaslik">Mesaj Seçin</h5>
+                </div>
+                <div class="card-body" id="mesajIcerik">
+                    <p class="text-center text-muted">Okumak istediğiniz mesajı seçin</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function mesajGoster(id) {
+            $.get('/Mesajlar/MesajDetay/' + id, function(data) {
+                $('#mesajBaslik').text(data.gonderenAdi);
+                $('#mesajIcerik').html(`
+                    <div class="d-flex mb-3">
+                        <img src="/images/users/${data.gonderenResim}" class="rounded-circle" width="40" height="40">
+                        <div class="ms-3">
+                            <div class="bg-light rounded p-3">
+                                ${data.mesaj}
+                            </div>
+                            <small class="text-muted">${data.tarih}</small>
+                        </div>
+                    </div>
+                `);
+            });
+        }
+    </script>
+} 

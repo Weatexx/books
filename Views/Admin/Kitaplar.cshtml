@@ -33,38 +33,60 @@
                         <a href="/Admin/KitapEkle" class="btn btn-primary">Yeni Kitap Ekle</a>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Resim</th>
-                                    <th>Kitap Adı</th>
-                                    <th>Yazar</th>
-                                    <th>Yayınevi</th>
-                                    <th>Sayfa Sayısı</th>
-                                    <th>İşlemler</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var kitap in Model)
-                                {
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
                                     <tr>
-                                        <td>@kitap.Id</td>
-                                        <td>
-                                            <img src="/images/books/@kitap.Resim" alt="@kitap.Adi" style="max-width: 50px;" />
-                                        </td>
-                                        <td>@kitap.Adi</td>
-                                        <td>@kitap.YazarId</td>
-                                        <td>@kitap.YayineviId</td>
-                                        <td>@kitap.SayfaSayisi</td>
-                                        <td>
-                                            <a href="/Admin/KitapDuzenle/@kitap.Id" class="btn btn-warning btn-sm">Düzenle</a>
-                                            <a href="/Admin/KitapSil/@kitap.Id" class="btn btn-danger btn-sm">Sil</a>
-                                        </td>
+                                        <th>ID</th>
+                                        <th>Resim</th>
+                                        <th>Kitap Adı</th>
+                                        <th>Yazar</th>
+                                        <th>Yayınevi</th>
+                                        <th>Dil</th>
+                                        <th>Sayfa Sayısı</th>
+                                        <th>Yayın Tarihi</th>
+                                        <th>Özet</th>
+                                        <th>İşlemler</th>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach (var kitap in Model)
+                                    {
+                                        <tr>
+                                            <td>@kitap.Id</td>
+                                            <td>
+                                                <img src="/images/book/@kitap.Resim" alt="@kitap.Adi" 
+                                                     style="max-width: 50px; max-height: 75px;">
+                                            </td>
+                                            <td>@kitap.Adi</td>
+                                            <td>@kitap.YazarAdi @kitap.YazarSoyadi</td>
+                                            <td>@kitap.YayineviAdi</td>
+                                            <td>@kitap.DilAdi</td>
+                                            <td>@kitap.SayfaSayisi</td>
+                                            <td>@kitap.YayinTarihi.ToShortDateString()</td>
+                                            <td>
+                                                @if (kitap.Ozet?.Length > 100)
+                                                {
+                                                    @(kitap.Ozet.Substring(0, 100) + "...")
+                                                }
+                                                else
+                                                {
+                                                    @kitap.Ozet
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="/Admin/KitapDuzenle/@kitap.Id" class="btn btn-warning btn-sm me-1" style="width: 90px;">
+                                                    <i class="fas fa-edit"></i> Düzenle
+                                                </a>
+                                                <a href="/Admin/KitapSil/@kitap.Id" class="btn btn-danger btn-sm" style="width: 90px;">
+                                                    <i class="fas fa-trash"></i> Sil
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

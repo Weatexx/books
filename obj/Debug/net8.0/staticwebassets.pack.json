@@ -9613,10 +9613,6 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\book\\1.jpg",
-      "PackagePath": "staticwebassets\\images\\book\\1.jpg"
-    },
-    {
       "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\book\\2.jpg",
       "PackagePath": "staticwebassets\\images\\book\\2.jpg"
     },
@@ -9653,6 +9649,10 @@
       "PackagePath": "staticwebassets\\images\\users\\72791f7d-ac57-44e4-b590-f81f7ffc2725.png"
     },
     {
+      "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\users\\738a752c-5eb9-4d28-a90d-536122b4ebe3.png",
+      "PackagePath": "staticwebassets\\images\\users\\738a752c-5eb9-4d28-a90d-536122b4ebe3.png"
+    },
+    {
       "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\users\\8b0329ff-1f75-4793-a31e-8caf23bc489a.png",
       "PackagePath": "staticwebassets\\images\\users\\8b0329ff-1f75-4793-a31e-8caf23bc489a.png"
     },
@@ -9665,8 +9665,20 @@
       "PackagePath": "staticwebassets\\images\\users\\a0fa8ea0-20a5-4a9d-9ecd-8260fb1753bd.png"
     },
     {
+      "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\users\\b9466b76-c2ac-42e8-ba23-d52c056f1211.png",
+      "PackagePath": "staticwebassets\\images\\users\\b9466b76-c2ac-42e8-ba23-d52c056f1211.png"
+    },
+    {
       "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\users\\cac5a5dd-e087-48b6-8f4d-ae633b554947.png",
       "PackagePath": "staticwebassets\\images\\users\\cac5a5dd-e087-48b6-8f4d-ae633b554947.png"
+    },
+    {
+      "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\users\\default.jpg",
+      "PackagePath": "staticwebassets\\images\\users\\default.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\images\\users\\f562d850-2406-44fe-8752-9dc7a3152440.png",
+      "PackagePath": "staticwebassets\\images\\users\\f562d850-2406-44fe-8752-9dc7a3152440.png"
     },
     {
       "Id": "C:\\Users\\Koray\\OneDrive\\Desktop\\books\\wwwroot\\js\\scripts.js",

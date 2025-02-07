@@ -20,7 +20,9 @@ public class YazarlarVM
     public string DogumYeri { get; set; } = "";
 
     [Required(ErrorMessage = "Cinsiyet alanı zorunludur")]
-    public bool Cinsiyeti { get; set; }
+    public bool Cinsiyet { get; set; }
+
+    public int KitapSayisi { get; set; }
 
     public string Resim { get; set; } = "default.jpg";
 

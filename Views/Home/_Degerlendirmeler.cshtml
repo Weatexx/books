@@ -1,0 +1,29 @@
+@model List<DegerlendirmeViewModel>
+
+@foreach (var degerlendirme in Model)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="d-flex">
+                <img src="@(string.IsNullOrEmpty(degerlendirme.KullaniciResim) ? "/images/default-avatar.png" : $"/images/users/{degerlendirme.KullaniciResim}")" 
+                     class="rounded-circle" width="40" height="40" 
+                     onerror="this.src='/images/default-avatar.png'">
+                <div class="ms-3">
+                    <h6 class="mb-0">@degerlendirme.KullaniciAdi</h6>
+                    @{
+                        Console.WriteLine($"Gösterilen değerlendirme - Kullanıcı: {degerlendirme.KullaniciAdi}, Puan: {degerlendirme.Puan}");
+                    }
+                    <div class="stars-container mb-2">
+                        @for (var i = 1; i <= 5; i++)
+                        {
+                            <i class="@(i <= degerlendirme.Puan ? "fas" : "far") fa-star"></i>
+                        }
+                        <span class="ms-1 text-muted">(@degerlendirme.Puan/5)</span>
+                    </div>
+                    <p class="mb-1">@degerlendirme.Yorum</p>
+                    <small class="text-muted">@degerlendirme.Tarih.ToShortDateString()</small>
+                </div>
+            </div>
+        </div>
+    </div>
+} 

@@ -1,10 +1,10 @@
 @model List<books.Models.ViewModels.TurListVM>
 
-<div class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Türler
-    </a>
-    <ul class="dropdown-menu">
+<div class="dropdown w-100 mb-3">
+    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-book-open me-2"></i>Türler
+    </button>
+    <ul class="dropdown-menu w-100">
         @foreach (var tur in Model)
         {
             <li><a class="dropdown-item" href="/Kitaplar/Tur/@tur.Id">@tur.TurAdi</a></li>

@@ -20,6 +20,13 @@ public class KitapDbContext : DbContext
     public DbSet<Turlertokitaplar> Turlertokitaplars { get; set; }
     public DbSet<Kullanicilar> Kullanicilars { get; set; }
     public DbSet<Iletisim> Iletisims { get; set; } = null!;
+    public DbSet<KullaniciKitaplik> KullaniciKitaplik { get; set; }
+    public DbSet<Alintilar> Alintilar { get; set; }
+    public DbSet<KitapDegerlendirme> KitapDegerlendirme { get; set; }
+    public DbSet<Takiplesme> Takiplesme { get; set; }
+    public DbSet<Bildirimler> Bildirimler { get; set; }
+    public DbSet<Mesajlar> Mesajlar { get; set; }
+    public DbSet<Yorumlar> Yorumlar { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -27,7 +34,7 @@ public class KitapDbContext : DbContext
 
         modelBuilder.Entity<Yazarlar>(entity =>
         {
-            entity.ToTable("Yazarlar");
+            entity.ToTable("yazarlar");
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Adi).IsRequired();
             entity.Property(e => e.Soyadi).IsRequired();
@@ -38,7 +45,7 @@ public class KitapDbContext : DbContext
 
         modelBuilder.Entity<Kitaplar>(entity =>
         {
-            entity.ToTable("Kitaplar");
+            entity.ToTable("kitaplar");
             entity.HasKey(e => e.Id);
         });
 
@@ -137,6 +144,40 @@ public class KitapDbContext : DbContext
             entity.Property(e => e.Goruldu)
                 .HasColumnName("goruldu")
                 .HasColumnType("tinyint(1)");
+        });
+
+        modelBuilder.Entity<KullaniciKitaplik>(entity =>
+        {
+            entity.ToTable("kullanici_kitaplik");
+        });
+
+        modelBuilder.Entity<Alintilar>(entity =>
+        {
+            entity.ToTable("alintilar");
+        });
+
+        modelBuilder.Entity<KitapDegerlendirme>(entity =>
+        {
+            entity.ToTable("kitap_degerlendirme");
+            entity.HasKey(e => e.id);
+        });
+
+        modelBuilder.Entity<Takiplesme>(entity =>
+        {
+            entity.ToTable("takiplesme");
+            entity.HasKey(e => e.id);
+        });
+
+        modelBuilder.Entity<Bildirimler>(entity =>
+        {
+            entity.ToTable("bildirimler");
+            entity.HasKey(e => e.id);
+        });
+
+        modelBuilder.Entity<Mesajlar>(entity =>
+        {
+            entity.ToTable("mesajlar");
+            entity.HasKey(e => e.id);
         });
     }
 } 

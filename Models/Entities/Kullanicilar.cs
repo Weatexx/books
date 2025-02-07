@@ -10,23 +10,33 @@ public class Kullanicilar
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int id { get; set; }
 
-    [Required]
     [StringLength(50)]
-    public string usernames { get; set; } = "";
-
-    [Required]
-    [StringLength(50)]
-    public string passwords { get; set; } = "";
+    public string? usernames { get; set; }
 
     [StringLength(50)]
-    public string isim { get; set; } = "";
+    public string? passwords { get; set; }
 
     [StringLength(50)]
-    public string soyisim { get; set; } = "";
+    public string? isim { get; set; }
+
+    [StringLength(50)]
+    public string? soyisim { get; set; }
 
     [StringLength(11)]
-    public string telno { get; set; } = "";
+    public string? telno { get; set; }
 
     [StringLength(50)]
-    public string resim { get; set; } = "default.jpg";
+    public string? resim { get; set; } = "default.jpg";
+
+    [StringLength(50)]
+    public string? bio { get; set; }
+
+    [StringLength(50)]
+    public string? web_sitesi { get; set; }
+
+    public int okudugu_kitap_sayisi { get; set; }
+
+    public int takipci_sayisi { get; set; }
+
+    public int takip_edilen_sayisi { get; set; }
 } 

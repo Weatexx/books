@@ -1,0 +1,89 @@
+@using System.Security.Claims
+@model ProfilViewModel
+@{
+    ViewData["Title"] = Model.KullaniciAdi + " Profili";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <img src="/img/users/@Model.Resim" class="card-img-top" alt="@Model.KullaniciAdi">
+            <div class="card-body">
+                <h5 class="card-title">@Model.KullaniciAdi</h5>
+                <p class="card-text">@Model.Bio</p>
+                @if (!string.IsNullOrEmpty(Model.WebSitesi))
+                {
+                    <p><a href="@Model.WebSitesi" target="_blank">@Model.WebSitesi</a></p>
+                }
+                <div class="row text-center mt-3">
+                    <div class="col">
+                        <h6>Kitap</h6>
+                        <p>@Model.OkuduguKitapSayisi</p>
+                    </div>
+                    <div class="col">
+                        <h6>Takipçi</h6>
+                        <p>@Model.TakipciSayisi</p>
+                    </div>
+                    <div class="col">
+                        <h6>Takip</h6>
+                        <p>@Model.TakipEdilenSayisi</p>
+                    </div>
+                </div>
+                @if (User.Identity.IsAuthenticated && int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) != Model.Id)
+                {
+                    <button class="btn @(Model.KullaniciTakipEdiliyormu ? "btn-secondary" : "btn-primary") w-100 mt-3" 
+                            onclick="takipEt(@Model.Id)">
+                        @(Model.KullaniciTakipEdiliyormu ? "Takibi Bırak" : "Takip Et")
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#kitaplik">Kitaplık</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#alintilar">Alıntılar</a>
+            </li>
+        </ul>
+        <div class="tab-content mt-3">
+            <div id="kitaplik" class="tab-pane active">
+                <div class="row">
+                    @foreach (var kitap in Model.Kitaplik)
+                    {
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="/img/books/@kitap.KitapResim" class="card-img-top" alt="@kitap.KitapAdi">
+                                <div class="card-body">
+                                    <h5 class="card-title">@kitap.KitapAdi</h5>
+                                    <p class="card-text">
+                                        <span class="badge bg-primary">@kitap.Durum</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div id="alintilar" class="tab-pane fade">
+                @foreach (var alinti in Model.Alintilar)
+                {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">@alinti.KitapAdi</h6>
+                            <p class="card-text">@alinti.AlintiMetni</p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    Sayfa: @alinti.SayfaNo | 
+                                    @alinti.PaylasimTarihi.ToShortDateString()
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div> 

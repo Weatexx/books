@@ -59,27 +59,54 @@ public class AccountController : Controller
     public IActionResult Profil()
     {
         if (!User.Identity.IsAuthenticated)
-            return RedirectToAction("Login");
+            return RedirectToAction("Giris");
 
-        var user = db.Kullanicilars
-            .Select(x => new Kullanicilar
-            {
-                id = x.id,
-                usernames = x.usernames ?? "",
-                passwords = x.passwords ?? "",
-                isim = x.isim ?? "",
-                soyisim = x.soyisim ?? "",
-                telno = x.telno,
-                resim = string.IsNullOrEmpty(x.resim) ? "default.jpg" : x.resim
-            })
-            .FirstOrDefault(x => x.usernames == User.Identity.Name);
-
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        
+        var user = db.Kullanicilars.FirstOrDefault(x => x.id == userId);
         if (user == null)
-        {
-            return RedirectToAction("Login");
-        }
+            return RedirectToAction("Giris");
 
-        return View("Profil", user);
+        // Kitaplık verilerini getir
+        ViewBag.Okuduklarim = (from kk in db.KullaniciKitaplik
+                              join k in db.Kitaplars on kk.kitap_id equals k.Id
+                              where kk.kullanici_id == userId && kk.durum == "Okudum"
+                              select new
+                              {
+                                  KitapAdi = k.Adi,
+                                  Resim = k.Resim,
+                                  BitirmeTarihi = kk.bitirme_tarihi
+                              }).ToList();
+
+        ViewBag.Okuyorum = (from kk in db.KullaniciKitaplik
+                           join k in db.Kitaplars on kk.kitap_id equals k.Id
+                           where kk.kullanici_id == userId && kk.durum == "Okuyorum"
+                           select new
+                           {
+                               KitapAdi = k.Adi,
+                               Resim = k.Resim,
+                               BaslamaTarihi = kk.baslama_tarihi
+                           }).ToList();
+
+        ViewBag.Okuyacaklarim = (from kk in db.KullaniciKitaplik
+                                join k in db.Kitaplars on kk.kitap_id equals k.Id
+                                where kk.kullanici_id == userId && kk.durum == "Okuyacağım"
+                                select new
+                                {
+                                    KitapAdi = k.Adi,
+                                    Resim = k.Resim
+                                }).ToList();
+
+        ViewBag.Favoriler = (from kk in db.KullaniciKitaplik
+                            join k in db.Kitaplars on kk.kitap_id equals k.Id
+                            where kk.kullanici_id == userId && kk.durum == "Favori"
+                            select new
+                            {
+                                KitapAdi = k.Adi,
+                                Resim = k.Resim
+                            }).ToList();
+
+        return View(user);
     }
 
     [HttpPost]
@@ -207,7 +234,8 @@ public class AccountController : Controller
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, username)
+                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.NameIdentifier, user.id.ToString())
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
