@@ -5,31 +5,39 @@ namespace books.Models.AdminViewModels;
 
 public class YazarlarVM
 {
-    public int Id { get; set; }
+    public int ID { get; set; }
 
-    [Required(ErrorMessage = "Ad alanı zorunludur")]
-    public string Adi { get; set; } = "";
+    [Required]
+    public string adi { get; set; } = "";
 
-    [Required(ErrorMessage = "Soyad alanı zorunludur")]
-    public string Soyadi { get; set; } = "";
+    [Required]
+    public string soyadi { get; set; } = "";
 
-    [Required(ErrorMessage = "Doğum tarihi alanı zorunludur")]
-    public DateTime DogumTarihi { get; set; }
+    [Required]
+    public DateTime dogumTarihi { get; set; }
 
-    [Required(ErrorMessage = "Doğum yeri alanı zorunludur")]
-    public string DogumYeri { get; set; } = "";
+    [Required]
+    public string dogumYeri { get; set; } = "";
 
-    [Required(ErrorMessage = "Cinsiyet alanı zorunludur")]
-    public bool Cinsiyet { get; set; }
+    [Required]
+    public string cinsiyeti { get; set; } = "E";
+
+    public DateTime? OlumTarihi { get; set; }
+
+    public string? Resim { get; set; } = "default.jpg";
+
+    public int? sira { get; set; } = 0;
+
+    public bool? aktif { get; set; } = true;
+
+    public string? biyografi { get; set; }
 
     public int KitapSayisi { get; set; }
-
-    public string Resim { get; set; } = "default.jpg";
 
     public IFormFile? ResimFile { get; set; }
 
     public YazarlarVM()
     {
-        DogumTarihi = DateTime.Now;
+        dogumTarihi = DateTime.Now;
     }
 } 

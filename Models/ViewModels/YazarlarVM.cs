@@ -4,18 +4,17 @@ namespace books.Models.ViewModels
 {
     public class YazarlarVM
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         [Required]
-        public string Adi { get; set; }
+        public string adi { get; set; } = "";
         [Required]
-        public string Soyadi { get; set; }
+        public string   soyadi { get; set; } = "";
         [Required]
-        public DateTime DogumTarihi { get; set; }
+        public DateTime dogumTarihi { get; set; }
         [Required]
-        public string DogumYeri { get; set; }
+        public string dogumYeri { get; set; } = "";
         [Required]
-        public bool Cinsiyeti { get; set; }
-        
-
+        public string cinsiyeti { get; set; } = "E";
+        public int KitapSayisi { get; set; }
     }
 }

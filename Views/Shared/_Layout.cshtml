@@ -113,8 +113,8 @@
         await Html.RenderPartialAsync("_Navbar");
     }
     <!-- Page header with logo and tagline-->
-    <header class="py-5 bg-light border-bottom mb-4">
-        <div class="container">
+    <header class="header-bg border-bottom mb-4">
+        <div class="container px-4 px-lg-5">
             <div class="text-center">
                 <h1 class="fw-bolder">Kitapların dünyasına açılan pencere</h1>
                 <p class="lead mb-4">Kitaplar hakkında her şey...</p>
@@ -138,33 +138,68 @@
     <!-- Page content-->
     <div class="container">
         <div class="row">
-            <!-- Blog entries-->
-            <div class="col-lg-8">
+            <!-- Ana içerik -->
+            <div class="col-lg-8 mt-4">
                 @RenderBody()
             </div>
-            <div class="col-lg-4">
-
-                @* <div class="card mb-4">
-                    <div class="card-header">Search</div>
-                    <div class="card-body">
-                    <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Enter search term..."
-                    aria-label="Enter search term..." aria-describedby="button-search" />
-                    <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                    </div>
-                    </div>
-                    </div> *@
-
+            <div class="col-lg-4 mt-4">
                 @await Component.InvokeAsync("Turler")
                 @await Component.InvokeAsync("Yazarlar")
             </div>
         </div>
     </div>
     <!-- Footer-->
-    <footer>
+    <footer class="footer bg-dark text-light py-5 mt-5">
         <div class="container">
-            <p>&copy; 2023 Kitap Dünyası. Tüm hakları saklıdır.</p>
-            <p><a href="/Hakkimizda">Hakkımızda</a> | <a href="/Iletisim">İletişim</a></p>
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Kitap Dünyası</h5>
+                    <p class="mb-4">Kitapseverlerin buluşma noktası. Binlerce kitap, yazar ve kullanıcı ile büyüyen topluluğumuzun parçası olun.</p>
+                    <div class="social-links">
+                        <a href="#" class="me-3 text-light"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3 text-light"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3 text-light"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6 class="text-uppercase mb-4">Hızlı Erişim</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" class="text-light text-decoration-none">Anasayfa</a></li>
+                        <li class="mb-2"><a href="/Kitaplar" class="text-light text-decoration-none">Kitaplar</a></li>
+                        <li class="mb-2"><a href="/Yazarlar" class="text-light text-decoration-none">Yazarlar</a></li>
+                        <li class="mb-2"><a href="/Yayinevleri" class="text-light text-decoration-none">Yayınevleri</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6 class="text-uppercase mb-4">Kurumsal</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/Hakkimizda" class="text-light text-decoration-none">Hakkımızda</a></li>
+                        <li class="mb-2"><a href="/Iletisim" class="text-light text-decoration-none">İletişim</a></li>
+                        <li class="mb-2"><a href="/Gizlilik" class="text-light text-decoration-none">Gizlilik Politikası</a></li>
+                        <li class="mb-2"><a href="/Kullanim-Kosullari" class="text-light text-decoration-none">Kullanım Koşulları</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="text-uppercase mb-4">Bültenimize Abone Olun</h6>
+                    <p class="mb-3">Yeni kitaplar ve etkinliklerden haberdar olmak için bültenimize abone olun.</p>
+                    <form class="mb-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="E-posta adresiniz" required>
+                            <button class="btn btn-primary" type="submit">Abone Ol</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; @DateTime.Now.Year Kitap Dünyası. Tüm hakları saklıdır.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <img src="/images/payment-methods.png" alt="Ödeme Yöntemleri" height="30">
+                </div>
+            </div>
         </div>
     </footer>
     <!-- Bootstrap core JS-->

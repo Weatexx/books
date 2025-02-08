@@ -13,17 +13,53 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 
 namespace books.Controllers.Admin
 {
     [Authorize(Roles = "Admin")]
+    [AutoValidateAntiforgeryToken]
     public class AdminController : Controller
     {
         private readonly books.Models.KitapDbContext db;
+        private readonly IWebHostEnvironment _env;
 
-        public AdminController(books.Models.KitapDbContext _db)
+        public AdminController(books.Models.KitapDbContext _db, IWebHostEnvironment env)
         {
             db = _db;
+            _env = env;
+        }
+
+        private void ResetAutoIncrement(string tableName)
+        {
+            try 
+            {
+                // Güvenli tablo adı doğrulaması
+                var allowedTables = new[] { "kitaplar", "yazarlar", "turler", "diller", "yayinevleri", "users" };
+                if (!allowedTables.Contains(tableName.ToLower()))
+                {
+                    throw new ArgumentException("Geçersiz tablo adı");
+                }
+
+                db.Database.ExecuteSqlRaw(
+                    "ALTER TABLE {0} AUTO_INCREMENT = 1",
+                    tableName);
+
+                db.Database.ExecuteSqlRaw(
+                    "SET @count = 0; UPDATE {0} SET id = @count:= @count + 1 ORDER BY id",
+                    tableName);
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda loglama yapılabilir
+                Console.WriteLine($"ID sıfırlama hatası: {ex.Message}");
+            }
+        }
+
+        // XSS koruması için HTML encode helper metodu
+        private string HtmlEncode(string input)
+        {
+            return string.IsNullOrEmpty(input) ? "" : System.Web.HttpUtility.HtmlEncode(input);
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
@@ -216,6 +252,8 @@ namespace books.Controllers.Admin
             }
             await db.SaveChangesAsync();
 
+            ResetAutoIncrement("turler");
+
             return RedirectToAction("Turler");
         }
 
@@ -321,25 +359,29 @@ namespace books.Controllers.Admin
                 db.Users.Remove(yonetici);
                 db.SaveChanges();
             }
+            ResetAutoIncrement("users");
             return RedirectToAction("Yoneticiler");
         }
 
         // Kitap methods start here:
 
         [Route("/Admin/Kitaplar")]
-        public IActionResult Kitaplar()
+        public IActionResult Kitaplar(string search)
         {
+            ViewBag.Search = search;
             var kitaplar = (from k in db.Kitaplars
-                           join y in db.Yazarlars on k.YazarId equals y.Id
+                           join y in db.Yazarlars on k.YazarId equals y.ID
                            join d in db.Dillers on k.DilId equals d.Id
                            join yy in db.Yayinevleris on k.YayineviId equals yy.Id
+                           where string.IsNullOrEmpty(search) || 
+                                 k.Adi.Contains(search)
                            select new books.Models.AdminViewModels.KitaplarVM
                            {
                                Id = k.Id,
                                Adi = k.Adi,
                                YazarId = k.YazarId,
-                               YazarAdi = y.Adi,
-                               YazarSoyadi = y.Soyadi,
+                               YazarAdi = y.adi,
+                               YazarSoyadi = y.soyadi,
                                DilId = k.DilId,
                                DilAdi = d.DilAdi,
                                SayfaSayisi = k.SayfaSayisi,
@@ -363,59 +405,64 @@ namespace books.Controllers.Admin
             return View();
         }
 
+        // Dosya yükleme için güvenli metod
+        private async Task<string> SaveFileAsync(IFormFile file, string folder)
+        {
+            if (file == null || file.Length == 0)
+                return "default.jpg";
+
+            var fileName = Path.GetRandomFileName() + Path.GetExtension(file.FileName);
+            var filePath = Path.Combine(_env.WebRootPath, folder, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return fileName;
+        }
+
         [HttpPost]
         public async Task<IActionResult> KitapEkle(KitaplarVM model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                string resimAdi = "default.jpg";
-                if (model.ResimFile != null && model.ResimFile.Length > 0)
+                if (!ModelState.IsValid)
+                    return View(model);
+
+                // Resim yükleme
+                model.Resim = await SaveFileAsync(model.ResimFile, "images/book");
+
+                var kitap = new Kitaplar
                 {
-                    string uzanti = Path.GetExtension(model.ResimFile.FileName);
-                    resimAdi = Guid.NewGuid().ToString() + uzanti;
-                    string klasorYolu = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "book");
-                    string dosyaYolu = Path.Combine(klasorYolu, resimAdi);
-
-                    if (!Directory.Exists(klasorYolu))
-                    {
-                        Directory.CreateDirectory(klasorYolu);
-                    }
-
-                    using (var stream = new FileStream(dosyaYolu, FileMode.Create))
-                    {
-                        await model.ResimFile.CopyToAsync(stream);
-                    }
-                }
-
-                var yeniKitap = new Kitaplar
-                {
-                    Adi = model.Adi,
+                    Adi = model.KitapAdi,
                     YazarId = model.YazarId,
                     DilId = model.DilId,
                     SayfaSayisi = model.SayfaSayisi,
                     YayineviId = model.YayineviId,
                     Ozet = model.Ozet,
                     YayinTarihi = model.YayinTarihi,
-                    Resim = resimAdi
+                    Resim = model.Resim
                 };
 
-                db.Kitaplars.Add(yeniKitap);
+                await db.Kitaplars.AddAsync(kitap);
                 await db.SaveChangesAsync();
+                
+                TempData["Success"] = "Kitap başarıyla eklendi.";
                 return RedirectToAction("Kitaplar");
             }
-
-            ViewBag.Yazarlar = db.Yazarlars.ToList();
-            ViewBag.Diller = db.Dillers.ToList();
-            ViewBag.Yayinevleri = db.Yayinevleris.ToList();
-            ViewBag.Turler = db.Turlers.ToList();
-            return View(model);
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Bir hata oluştu: " + ex.Message);
+                return View(model);
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> KitapDuzenle(int id)
         {
             var kitap = await (from k in db.Kitaplars
-                              join y in db.Yazarlars on k.YazarId equals y.Id
+                              join y in db.Yazarlars on k.YazarId equals y.ID
                               join d in db.Dillers on k.DilId equals d.Id
                               join yy in db.Yayinevleris on k.YayineviId equals yy.Id
                               where k.Id == id
@@ -424,8 +471,8 @@ namespace books.Controllers.Admin
                                   Id = k.Id,
                                   Adi = k.Adi,
                                   YazarId = k.YazarId,
-                                  YazarAdi = y.Adi,
-                                  YazarSoyadi = y.Soyadi,
+                                  YazarAdi = y.adi,
+                                  YazarSoyadi = y.soyadi,
                                   DilId = k.DilId,
                                   DilAdi = d.DilAdi,
                                   SayfaSayisi = k.SayfaSayisi,
@@ -484,7 +531,7 @@ namespace books.Controllers.Admin
                         kitap.Resim = yeniResimAdi;
                     }
 
-                    kitap.Adi = model.Adi;
+                    kitap.Adi = model.KitapAdi;
                     kitap.Ozet = model.Ozet;
                     kitap.SayfaSayisi = model.SayfaSayisi;
                     kitap.YayinTarihi = model.YayinTarihi;
@@ -509,7 +556,7 @@ namespace books.Controllers.Admin
         public async Task<IActionResult> KitapSil(int id)
         {
             var kitap = await (from k in db.Kitaplars
-                              join y in db.Yazarlars on k.YazarId equals y.Id
+                              join y in db.Yazarlars on k.YazarId equals y.ID
                               join d in db.Dillers on k.DilId equals d.Id
                               join yy in db.Yayinevleris on k.YayineviId equals yy.Id
                               where k.Id == id
@@ -518,8 +565,8 @@ namespace books.Controllers.Admin
                                   Id = k.Id,
                                   Adi = k.Adi,
                                   YazarId = k.YazarId,
-                                  YazarAdi = y.Adi,
-                                  YazarSoyadi = y.Soyadi,
+                                  YazarAdi = y.adi,
+                                  YazarSoyadi = y.soyadi,
                                   DilId = k.DilId,
                                   DilAdi = d.DilAdi,
                                   SayfaSayisi = k.SayfaSayisi,
@@ -559,6 +606,9 @@ namespace books.Controllers.Admin
                 // Kitabı sil
                 db.Kitaplars.Remove(kitap);
                 await db.SaveChangesAsync();
+
+                ResetAutoIncrement("kitaplar");
+
                 return RedirectToAction("Kitaplar");
             }
             return NotFound();
@@ -566,19 +616,26 @@ namespace books.Controllers.Admin
 
         // Yazarlar metodları
         [Route("/Admin/Yazarlar")]
-        public IActionResult Yazarlar()
+        public IActionResult Yazarlar(string search)
         {
+            ViewBag.Search = search;
             var yazarlar = (from y in db.Yazarlars
-                           join k in db.Kitaplars on y.Id equals k.YazarId into yazarKitaplari
+                           where y.aktif == true
+                           orderby y.sira, y.adi
                            select new YazarlarVM
                            {
-                               Id = y.Id,
-                               Adi = y.Adi,
-                               Soyadi = y.Soyadi,
-                               DogumTarihi = y.DogumTarihi,
-                               DogumYeri = y.DogumYeri,
-                               Cinsiyet = y.Cinsiyeti,
-                               KitapSayisi = yazarKitaplari.Count()
+                               ID = y.ID,
+                               adi = y.adi,
+                               soyadi = y.soyadi,
+                               dogumTarihi = y.dogumTarihi,
+                               dogumYeri = y.dogumYeri,
+                               cinsiyeti = y.cinsiyeti,
+                               OlumTarihi = y.OlumTarihi,
+                               Resim = y.Resim,
+                               sira = y.sira,
+                               aktif = y.aktif,
+                               biyografi = y.biyografi,
+                               KitapSayisi = db.Kitaplars.Count(k => k.YazarId == y.ID)
                            }).ToList();
 
             return View(yazarlar);
@@ -595,16 +652,17 @@ namespace books.Controllers.Admin
         {
             if (ModelState.IsValid)
             {
-                var yeniYazar = new Yazarlar
+                var yazar = new Yazarlar
                 {
-                    Adi = model.Adi,
-                    Soyadi = model.Soyadi,
-                    DogumTarihi = model.DogumTarihi,
-                    DogumYeri = model.DogumYeri,
-                    Cinsiyeti = model.Cinsiyet
+                    adi = model.adi,
+                    soyadi = model.soyadi,
+                    dogumTarihi = model.dogumTarihi,
+                    dogumYeri = model.dogumYeri,
+                    cinsiyeti = model.cinsiyeti,
+                    aktif = true
                 };
 
-                db.Yazarlars.Add(yeniYazar);
+                db.Yazarlars.Add(yazar);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Yazarlar");
             }
@@ -620,14 +678,14 @@ namespace books.Controllers.Admin
                 return RedirectToAction("Yazarlar");
             }
 
-            var model = new books.Models.AdminViewModels.YazarlarVM
+            var model = new YazarlarVM
             {
-                Id = yazar.Id,
-                Adi = yazar.Adi ?? "",
-                Soyadi = yazar.Soyadi ?? "",
-                DogumTarihi = yazar.DogumTarihi,
-                DogumYeri = yazar.DogumYeri ?? "",
-                Cinsiyet = yazar.Cinsiyeti
+                ID = yazar.ID,
+                adi = yazar.adi,
+                soyadi = yazar.soyadi,
+                dogumTarihi = yazar.dogumTarihi,
+                dogumYeri = yazar.dogumYeri,
+                cinsiyeti = yazar.cinsiyeti
             };
 
             return View(model);
@@ -638,14 +696,14 @@ namespace books.Controllers.Admin
         {
             if (ModelState.IsValid)
             {
-                var yazar = await db.Yazarlars.FindAsync(model.Id);
+                var yazar = await db.Yazarlars.FindAsync(model.ID);
                 if (yazar != null)
                 {
-                    yazar.Adi = model.Adi;
-                    yazar.Soyadi = model.Soyadi;
-                    yazar.DogumTarihi = model.DogumTarihi;
-                    yazar.DogumYeri = model.DogumYeri;
-                    yazar.Cinsiyeti = model.Cinsiyet;
+                    yazar.adi = model.adi;
+                    yazar.soyadi = model.soyadi;
+                    yazar.dogumTarihi = model.dogumTarihi;
+                    yazar.dogumYeri = model.dogumYeri;
+                    yazar.cinsiyeti = model.cinsiyeti;
 
                     await db.SaveChangesAsync();
                     return RedirectToAction("Yazarlar");
@@ -663,14 +721,14 @@ namespace books.Controllers.Admin
                 return RedirectToAction("Yazarlar");
             }
 
-            var model = new books.Models.AdminViewModels.YazarlarVM
+            var model = new YazarlarVM
             {
-                Id = yazar!.Id,
-                Adi = yazar.Adi ?? "",
-                Soyadi = yazar.Soyadi ?? "",
-                DogumTarihi = yazar.DogumTarihi,
-                DogumYeri = yazar.DogumYeri ?? "",
-                Cinsiyet = yazar.Cinsiyeti
+                ID = yazar.ID,
+                adi = yazar.adi,
+                soyadi = yazar.soyadi,
+                dogumTarihi = yazar.dogumTarihi,
+                dogumYeri = yazar.dogumYeri,
+                cinsiyeti = yazar.cinsiyeti
             };
 
             return View(model);
@@ -685,6 +743,7 @@ namespace books.Controllers.Admin
                 db.Yazarlars.Remove(yazar);
                 await db.SaveChangesAsync();
             }
+            ResetAutoIncrement("yazarlar");
             return RedirectToAction("Yazarlar");
         }
 
@@ -784,6 +843,7 @@ namespace books.Controllers.Admin
                 db.Dillers.Remove(dil);
                 await db.SaveChangesAsync();
             }
+            ResetAutoIncrement("diller");
             return RedirectToAction("Diller");
         }
 
@@ -894,6 +954,7 @@ namespace books.Controllers.Admin
                 db.Yayinevleris.Remove(yayinevi);
                 await db.SaveChangesAsync();
             }
+            ResetAutoIncrement("yayinevleri");
             return RedirectToAction("Yayinevleri");
         }
 
@@ -962,6 +1023,12 @@ namespace books.Controllers.Admin
         [Route("/Admin/Login")]
         public async Task<IActionResult> Login(string username, string password)
         {
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                ModelState.AddModelError("", "Kullanıcı adı ve şifre gereklidir.");
+                return View();
+            }
+
             var admin = db.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
             if (admin != null)
             {
@@ -972,15 +1039,20 @@ namespace books.Controllers.Admin
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var authProperties = new AuthenticationProperties();
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddDays(7)
+                };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity), authProperties);
 
+                TempData["Success"] = "Başarıyla giriş yapıldı.";
                 return RedirectToAction("Index", "Admin");
             }
 
-            TempData["NotFound"] = "Kullanıcı adı veya şifre hatalı!";
+            TempData["Error"] = "Kullanıcı adı veya şifre hatalı!";
             return View();
         }
 
@@ -1003,7 +1075,7 @@ namespace books.Controllers.Admin
 
                 return PartialView("_MesajlarPartial", mesajlar);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Hata durumunda boş liste döndür
                 return PartialView("_MesajlarPartial", new List<IletisimVM>());

@@ -1,0 +1,56 @@
+@model List<YazarListVM>
+@{
+    ViewData["Title"] = "Yazarlar";
+}
+
+<div class="container py-5">
+    <h1 class="text-center mb-5">Yazarlarımız</h1>
+    
+    <div class="row g-4">
+        @foreach (var yazar in Model)
+        {
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="position-relative">
+                        <img src="/images/yazarlar/@yazar.Resim" class="card-img-top" 
+                             alt="@yazar.adi @yazar.soyadi"
+                             style="height: 300px; object-fit: cover;">
+                        @if (yazar.OlumTarihi.HasValue)
+                        {
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <span class="badge bg-dark">Vefat: @yazar.OlumTarihi.Value.ToString("dd.MM.yyyy")</span>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@yazar.adi @yazar.soyadi</h5>
+                        <p class="card-text">
+
+                            <small class="text-muted">
+                                <i class="fas fa-map-marker-alt"></i> @yazar.dogumYeri
+                                <br>
+                                <i class="fas fa-birthday-cake"></i> @yazar.dogumTarihi.ToString("dd.MM.yyyy")
+
+                            </small>
+                        </p>
+                        <p class="card-text">
+                            @(yazar.biyografi.Length > 150 
+                                ? yazar.biyografi.Substring(0, 150) + "..." 
+                                : yazar.biyografi)
+                        </p>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-primary">
+                                <i class="fas fa-book"></i> @yazar.KitapSayisi Kitap
+                            </span>
+                            <a href="/Yazar/@yazar.ID" class="btn btn-outline-primary">
+                                Detay
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div> 

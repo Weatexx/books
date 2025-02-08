@@ -26,6 +26,17 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Kullanıcı Listesi</h3>
+                        <div class="card-tools">
+                            <form action="/Admin/Kullanicilar" method="get" class="input-group input-group-sm" style="width: 250px;">
+                                <input type="text" name="search" class="form-control float-right" 
+                                       placeholder="Kullanıcı ara..." value="@ViewBag.Search">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">

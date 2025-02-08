@@ -1,29 +1,63 @@
 @model books.Models.ViewModels.YazarListVM
 
-<div class="row">
-    <div class="col-md-12">
-        <h2>@Model.adi @Model.soyadi</h2>
-        <p>Doğum Tarihi: @Model.dogumTarihi.ToShortDateString()</p>
-        <p>Doğum Yeri: @Model.dogumYeri</p>
-        <p>Cinsiyet: @(Model.cinsiyeti ? "Erkek" : "Kadın")</p>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="/images/yazarlar/@(string.IsNullOrEmpty(Model.Resim) ? "default.jpg" : Model.Resim)" 
+                 class="rounded-circle img-fluid" 
+                 style="width: 250px; height: 250px; object-fit: cover; display: inline-block;"
+                 alt="@Model.adi @Model.soyadi">
+        </div>
+        <div class="col-md-8">
+            <h2>@Model.adi @Model.soyadi</h2>
+            <div class="author-info mt-3">
+                <p><strong>Doğum Tarihi:</strong> @Model.dogumTarihi.ToShortDateString()</p>
+                <p><strong>Doğum Yeri:</strong> @Model.dogumYeri</p>
+                @if (Model.OlumTarihi.HasValue)
+                {
+                    <p><strong>Ölüm Tarihi:</strong> @Model.OlumTarihi.Value.ToShortDateString()</p>
+                }
+                <p><strong>Cinsiyet:</strong> @(Model.cinsiyeti == "E" ? "Erkek" : "Kadın")</p>
+                <p><strong>Sıra:</strong> @Model.sira</p>
+                <p><strong>Durum:</strong> @(Model.aktif == true ? "Aktif" : "Pasif")</p>
+            </div>
+            
+            @if (!string.IsNullOrEmpty(Model.biyografi))
+            {
+                <div class="biography mt-4">
+                    <h4 class="mb-3">Biyografi</h4>
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="text-justify mb-0">@Model.biyografi</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-</div>
 
-<div class="row mt-4">
-    <div class="col-md-12">
-        <h3>Yazarın Kitapları</h3>
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3>Yazarın Kitapları (@Model.KitapSayisi)</h3>
+        </div>
     </div>
-    @foreach (var kitap in ViewBag.YazarinKitaplari)
-    {
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="~/images/book/@kitap.Resim" class="card-img-top" alt="@kitap.KitapAdi">
-                <div class="card-body">
-                    <h5 class="card-title">@kitap.KitapAdi</h5>
-                    <a href="/Kitap/@kitap.Id" class="btn btn-primary">Detay</a>
+
+    <div class="row mt-4">
+        @foreach (var kitap in ViewBag.YazarinKitaplari)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="/images/book/@kitap.Resim" class="card-img-top" alt="@kitap.KitapAdi">
+                    <div class="card-body">
+                        <h5 class="card-title">@kitap.KitapAdi</h5>
+                        <p class="card-text">
+                            <small class="text-muted">Yayın Tarihi: @kitap.YayinTarihi.ToShortDateString()</small>
+                        </p>
+                        <a href="/Kitap/@kitap.Id" class="btn btn-primary">Detay</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
 

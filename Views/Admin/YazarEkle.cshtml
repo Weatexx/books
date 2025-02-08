@@ -27,36 +27,57 @@
                 <div class="card card-primary">
                     <form class="form-horizontal" method="post" enctype="multipart/form-data">
                         @Html.AntiForgeryToken()
-                        <div class="card-body">
+                        <div class="card-body px-2 px-sm-3">
                             <div class="form-group">
-                                <label>Adı</label>
-                                <input type="text" asp-for="Adi" class="form-control" placeholder="Yazar Adı">
-                                <span asp-validation-for="Adi" class="text-danger"></span>
+                                <label asp-for="adi">Ad</label>
+                                <input asp-for="adi" class="form-control" placeholder="Yazar adı">
+                                <span asp-validation-for="adi" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label>Soyadı</label>
-                                <input type="text" asp-for="Soyadi" class="form-control" placeholder="Yazar Soyadı">
-                                <span asp-validation-for="Soyadi" class="text-danger"></span>
+                                <label asp-for="soyadi">Soyad</label>
+                                <input asp-for="soyadi" class="form-control" placeholder="Yazar soyadı">
+                                <span asp-validation-for="soyadi" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label>Doğum Tarihi</label>
-                                <input type="date" asp-for="DogumTarihi" class="form-control">
-                                <span asp-validation-for="DogumTarihi" class="text-danger"></span>
+                                <label asp-for="dogumTarihi">Doğum Tarihi</label>
+                                <input asp-for="dogumTarihi" type="date" class="form-control">
+                                <span asp-validation-for="dogumTarihi" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label>Doğum Yeri</label>
-                                <input type="text" asp-for="DogumYeri" class="form-control" placeholder="Doğum Yeri">
-                                <span asp-validation-for="DogumYeri" class="text-danger"></span>
+                                <label asp-for="dogumYeri">Doğum Yeri</label>
+                                <input asp-for="dogumYeri" class="form-control" placeholder="Doğum yeri">
+                                <span asp-validation-for="dogumYeri" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label>Cinsiyet</label>
-                                <select class="form-control" 
-                                       asp-for="Cinsiyet" required>
-                                    <option value="">Seçiniz</option>
-                                    <option value="true">Erkek</option>
-                                    <option value="false">Kadın</option>
+                                <label asp-for="cinsiyeti">Cinsiyet</label>
+                                <div>
+                                    <input type="radio" asp-for="cinsiyeti" value="E" checked> Erkek
+                                    <input type="radio" asp-for="cinsiyeti" value="K"> Kadın
+                                </div>
+                                <span asp-validation-for="cinsiyeti" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="OlumTarihi">Ölüm Tarihi</label>
+                                <input asp-for="OlumTarihi" type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="sira">Sıra</label>
+                                <input asp-for="sira" class="form-control" type="number">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="aktif">Durum</label>
+                                <select asp-for="aktif" class="form-control">
+                                    <option value="true">Aktif</option>
+                                    <option value="false">Pasif</option>
                                 </select>
-                                <span asp-validation-for="Cinsiyet" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="biyografi">Biyografi</label>
+                                <textarea asp-for="biyografi" class="form-control" rows="5" placeholder="Yazar biyografisi"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ResimFile">Resim</label>
+                                <input asp-for="ResimFile" type="file" class="form-control">
                             </div>
                         </div>
                         <div class="card-footer">

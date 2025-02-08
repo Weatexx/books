@@ -137,13 +137,13 @@ public partial class KitapDbContext : DbContext
 
         modelBuilder.Entity<Yazarlar>(entity =>
         {
-            entity.HasKey(e => e.Id);
-            entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.Adi).HasColumnName("adi").HasColumnType("char(100)");
-            entity.Property(e => e.Soyadi).HasColumnName("soyadi").HasColumnType("char(100)");
-            entity.Property(e => e.DogumTarihi).HasColumnName("dogumTarihi");
-            entity.Property(e => e.DogumYeri).HasColumnName("dogumYeri").HasColumnType("char(100)");
-            entity.Property(e => e.Cinsiyeti).HasColumnName("cinsiyeti").HasColumnType("tinyint(1)");
+            entity.HasKey(e => e.ID);
+            entity.Property(e => e.ID).HasColumnName("ID");
+            entity.Property(e => e.adi).HasColumnName("adi").HasColumnType("char(100)");
+            entity.Property(e => e.soyadi).HasColumnName("soyadi").HasColumnType("char(100)");
+            entity.Property(e => e.dogumTarihi).HasColumnName("dogumTarihi");
+            entity.Property(e => e.dogumYeri).HasColumnName("dogumYeri").HasColumnType("char(100)");
+            entity.Property(e => e.cinsiyeti).HasColumnName("cinsiyeti").HasColumnType("tinyint(1)");
         });
 
         OnModelCreatingPartial(modelBuilder);

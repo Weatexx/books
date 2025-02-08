@@ -35,12 +35,12 @@ public class KitapDbContext : DbContext
         modelBuilder.Entity<Yazarlar>(entity =>
         {
             entity.ToTable("yazarlar");
-            entity.HasKey(e => e.Id);
-            entity.Property(e => e.Adi).IsRequired();
-            entity.Property(e => e.Soyadi).IsRequired();
-            entity.Property(e => e.DogumTarihi);
-            entity.Property(e => e.DogumYeri);
-            entity.Property(e => e.Cinsiyeti);
+            entity.HasKey(e => e.ID);
+            entity.Property(e => e.adi).IsRequired();
+            entity.Property(e => e.soyadi).IsRequired();
+            entity.Property(e => e.dogumTarihi);
+            entity.Property(e => e.dogumYeri);
+            entity.Property(e => e.cinsiyeti);
         });
 
         modelBuilder.Entity<Kitaplar>(entity =>

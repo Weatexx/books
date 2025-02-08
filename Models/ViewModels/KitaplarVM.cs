@@ -6,7 +6,7 @@ public class KitaplarVM
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Kitap adı zorunludur")]
-    public string Adi { get; set; } = "";
+    public string KitapAdi { get; set; } = "";
 
     [Required(ErrorMessage = "Özet zorunludur")]
     public string Ozet { get; set; } = "";
@@ -30,6 +30,6 @@ public class KitaplarVM
     public int YayineviId { get; set; }
     public string? YayineviAdi { get; set; }
 
-    public string? Resim { get; set; }
+    public string Resim { get; set; } = "";
     public IFormFile? ResimFile { get; set; }
 } 

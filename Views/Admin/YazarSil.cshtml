@@ -23,9 +23,10 @@
 <div class="content">
     <div class="container-fluid">
         <div class="alert alert-danger">
-            <h5>@Model.Adi @Model.Soyadi isimli yazarı silmek istediğinizden emin misiniz?</h5>
-            <form method="post" asp-action="YazarSilmeOnay" asp-route-id="@Model.Id">
+            <h5>@Model.adi @Model.soyadi isimli yazarı silmek istediğinizden emin misiniz?</h5>
+            <form method="post" asp-action="YazarSilmeOnay" asp-route-id="@Model.ID">
                 <button type="submit" class="btn btn-danger">Evet, Sil</button>
+
                 <a href="/Admin/Yazarlar" class="btn btn-secondary">İptal</a>
             </form>
         </div>

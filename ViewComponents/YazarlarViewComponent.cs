@@ -19,12 +19,12 @@ namespace books.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var yazarlar = (from x in db.Yazarlars
-                           orderby x.Adi
+                           orderby x.   adi
                            select new YazarlarVM
                            {
-                               Id = x.Id,
-                               Adi = x.Adi ?? "",
-                               Soyadi = x.Soyadi ?? ""
+                               ID = x.ID,
+                               adi = x.adi ?? "",
+                               soyadi = x.soyadi ?? ""
                            }).ToList();
 
             return View(yazarlar);

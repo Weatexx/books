@@ -87,13 +87,13 @@ public class HomeController : Controller
                                select d.DilAdi).FirstOrDefault() ?? "",
                          Yazar = new YazarListVM 
                          {
-                             id = k.YazarId,
+                             ID = k.YazarId,
                              adi = (from y in db.Yazarlars
-                                   where y.Id == k.YazarId
-                                   select y.Adi).FirstOrDefault() ?? "",
+                                   where y.ID == k.YazarId
+                                   select y.adi).FirstOrDefault() ?? "",
                              soyadi = (from y in db.Yazarlars
-                                      where y.Id == k.YazarId
-                                      select y.Soyadi).FirstOrDefault() ?? ""
+                                      where y.ID == k.YazarId
+                                      select y.soyadi).FirstOrDefault() ?? ""
                          },
                          Yayinevi = (from y in db.Yayinevleris
                                    where y.Id == k.YayineviId
@@ -119,34 +119,36 @@ public class HomeController : Controller
     [Route("/Yazar/{id}")]
     public IActionResult YazarDetay(int id)
     {
-        var yazar = (from x in db.Yazarlars
-                     where x.Id == id
+        var yazar = (from y in db.Yazarlars
+                     where y.ID == id && y.aktif == true
                      select new YazarListVM
                      {
-                         id = x.Id,
-                         adi = x.Adi ?? "",
-                         soyadi = x.Soyadi ?? "",
-                         dogumTarihi = x.DogumTarihi,
-                         dogumYeri = x.DogumYeri ?? "",
-                         cinsiyeti = x.Cinsiyeti
+                         ID = y.ID,
+                         adi = y.adi.Trim(),
+                         soyadi = y.soyadi.Trim(),
+                         dogumYeri = y.dogumYeri.Trim(),
+                         dogumTarihi = y.dogumTarihi,
+                         OlumTarihi = y.OlumTarihi,
+                         biyografi = y.biyografi ?? "",
+                         Resim = y.Resim ?? "default.jpg",
+                         cinsiyeti = y.cinsiyeti
                      }).FirstOrDefault();
 
         if (yazar == null)
-        {
-            return RedirectToAction("Index");
-        }
+            return RedirectToAction("Yazarlar");
 
-        // Yazarın kitaplarını getir
-        ViewBag.YazarinKitaplari = (from x in db.Kitaplars
-                                   where x.YazarId == id
-                                   select new IndexVM
-                                   {
-                                       Id = x.Id,
-                                       KitapAdi = x.Adi,
-                                       Resim = x.Resim,
-                                       YayinTarihi = x.YayinTarihi.ToShortDateString()
-                                   }).ToList();
+        // Yazarın kitaplarını al
+        var yazarinKitaplari = (from k in db.Kitaplars
+                                where k.YazarId == id
+                                select new KitaplarVM
+                                {
+                                    Id = k.Id,
+                                    KitapAdi = k.Adi,
+                                    Resim = k.Resim ?? "default.jpg",
+                                    YayinTarihi = k.YayinTarihi
+                                }).ToList();
 
+        ViewBag.YazarinKitaplari = yazarinKitaplari;
         return View(yazar);
     }
 
@@ -194,9 +196,9 @@ public class HomeController : Controller
             return RedirectToAction("Index");
 
         var sonuclar = (from k in db.Kitaplars
-                       join y in db.Yazarlars on k.YazarId equals y.Id
+                       join y in db.Yazarlars on k.YazarId equals y.ID
                        where k.Adi.Contains(q) || 
-                             (y.Adi + " " + y.Soyadi).Contains(q)
+                             (y.adi + " " + y.soyadi).Contains(q)
                        select new IndexVM
                        {
                            Id = k.Id,
@@ -215,7 +217,7 @@ public class HomeController : Controller
         var kullanici = db.Kullanicilars.Find(id);
         if (kullanici == null)
             return NotFound();
-
+            
         var viewModel = new ProfilViewModel
         {
             Id = kullanici.id,
@@ -413,5 +415,27 @@ public class HomeController : Controller
         {
             return PartialView("~/Views/Home/_Degerlendirmeler.cshtml", new List<DegerlendirmeViewModel>());
         }
+    }
+
+    public IActionResult Yazarlar()
+    {
+        var yazarlar = (from y in db.Yazarlars
+                        where y.aktif == true
+                        orderby y.sira, y.adi
+                        select new YazarListVM
+                        {
+                            ID = y.ID,
+                            adi = y.adi.Trim(),
+                            soyadi = y.soyadi.Trim(),
+                            dogumYeri = y.dogumYeri.Trim(),
+                            dogumTarihi = y.dogumTarihi,
+                            OlumTarihi = y.OlumTarihi,
+                            biyografi = y.biyografi ?? "",
+                            Resim = y.Resim ?? "default.jpg",
+                            cinsiyeti = y.cinsiyeti,
+                            KitapSayisi = db.Kitaplars.Count(k => k.YazarId == y.ID)
+                        }).ToList();
+
+        return View(yazarlar);
     }
 }

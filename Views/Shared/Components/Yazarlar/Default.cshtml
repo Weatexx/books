@@ -1,4 +1,4 @@
-@model List<books.Models.AdminViewModels.YazarlarVM>
+    @model List<books.Models.AdminViewModels.YazarlarVM>
 
 <div class="dropdown w-100 mb-3">
     <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -7,7 +7,7 @@
     <ul class="dropdown-menu w-100">
         @foreach (var yazar in Model)
         {
-            <li><a class="dropdown-item" href="/Yazar/@yazar.Id">@yazar.Adi @yazar.Soyadi</a></li>
+            <li><a class="dropdown-item" href="/Yazar/@yazar.ID">@yazar.adi @yazar.soyadi</a></li>
         }
     </ul>
 </div>

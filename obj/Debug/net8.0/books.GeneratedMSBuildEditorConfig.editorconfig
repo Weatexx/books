@@ -144,6 +144,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cWWF5aW5ldmxlcmkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Koray/OneDrive/Desktop/books/Views/Admin/YazarDetay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cWWF6YXJEZXRheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Koray/OneDrive/Desktop/books/Views/Admin/YazarDuzenle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cWWF6YXJEdXplbmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -214,6 +218,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Koray/OneDrive/Desktop/books/Views/Home/YazarDetay.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxZYXphckRldGF5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Koray/OneDrive/Desktop/books/Views/Home/Yazarlar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxZYXphcmxhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Koray/OneDrive/Desktop/books/Views/Home/_Degerlendirmeler.cshtml]
