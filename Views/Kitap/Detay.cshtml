@@ -1,0 +1,117 @@
+@model books.Models.Entities.Kitaplar
+@using books.Models.ViewModels
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/images/book/@(string.IsNullOrEmpty(Model.Resim) ? "default.jpg" : Model.Resim)" 
+                 class="img-fluid rounded shadow" alt="@Model.Adi">
+        </div>
+        <div class="col-md-8">
+            <h2 class="mb-3">@Model.Adi</h2>
+            <div class="mb-3">
+                <div class="rating-display">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <i class="fas fa-star @(i <= (Model.OrtalamaPuan ?? 0) ? "text-warning" : "text-secondary")"></i>
+                    }
+                    <span class="ms-2">(@(Model.YorumSayisi ?? 0) değerlendirme)</span>
+                </div>
+            </div>
+            <table class="table">
+                <tr>
+                    <th style="width: 150px;">Yazar:</th>
+                    <td>@ViewBag.YazarAdi</td>
+                </tr>
+                <tr>
+                    <th>Yayınevi:</th>
+                    <td>@ViewBag.YayineviAdi</td>
+                </tr>
+                <tr>
+                    <th>Sayfa Sayısı:</th>
+                    <td>@Model.SayfaSayisi</td>
+                </tr>
+                <tr>
+                    <th>Yayın Tarihi:</th>
+                    <td>@Model.YayinTarihi.ToShortDateString()</td>
+                </tr>
+                <tr>
+                    <th>Dil:</th>
+                    <td>@ViewBag.DilAdi</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Kitap Özeti</h5>
+                    <p class="card-text">@Model.Ozet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Değerlendirme formu *@
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Değerlendirmenizi Yazın</h5>
+            <form method="post" action="@Url.Action("YorumEkle", "Kitap")">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="kitapId" value="@Model.Id" />
+                
+                <div class="rating mb-3">
+                    <input type="radio" id="star5" name="puan" value="5" required />
+                    <label for="star5" title="5 puan"></label>
+                    <input type="radio" id="star4" name="puan" value="4" />
+                    <label for="star4" title="4 puan"></label>
+                    <input type="radio" id="star3" name="puan" value="3" />
+                    <label for="star3" title="3 puan"></label>
+                    <input type="radio" id="star2" name="puan" value="2" />
+                    <label for="star2" title="2 puan"></label>
+                    <input type="radio" id="star1" name="puan" value="1" />
+                    <label for="star1" title="1 puan"></label>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" name="yorum" rows="3" 
+                              placeholder="Kitap hakkında düşüncelerinizi yazın..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary mt-3">
+                    Değerlendir
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="degerlendirmelerContainer">
+        @await Html.PartialAsync("_Degerlendirmeler", (List<YorumVM>)ViewBag.Yorumlar)
+    </div>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <script>
+        Swal.fire({
+            title: "Başarılı!",
+            text: "@TempData["Success"]",
+            icon: "success",
+            confirmButtonText: "Tamam"
+        });
+    </script>
+}
+
+@if (TempData["Error"] != null)
+{
+    <script>
+        Swal.fire({
+            title: "Hata!",
+            text: "@TempData["Error"]",
+            icon: "error",
+            confirmButtonText: "Tamam"
+        });
+    </script>
+} 

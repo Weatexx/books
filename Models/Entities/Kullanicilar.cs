@@ -35,8 +35,4 @@ public class Kullanicilar
     public string? web_sitesi { get; set; }
 
     public int okudugu_kitap_sayisi { get; set; }
-
-    public int takipci_sayisi { get; set; }
-
-    public int takip_edilen_sayisi { get; set; }
 } 

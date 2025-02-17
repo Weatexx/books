@@ -1,14 +1,17 @@
-public class KitaplikEkleViewModel
+namespace books.Models.ViewModels
 {
-    public int kitapId { get; set; }
-    public string durum { get; set; } = "";
+    public class KitaplikEkleVM
+    {
+        public int? kitapId { get; set; }
+        public string? durum { get; set; }
+    }
 }
 
 public class DegerlendirmeEkleViewModel
 {
     public int kitapId { get; set; }
     public int puan { get; set; }
-    public string yorum { get; set; } = string.Empty;
+    public string? yorum { get; set; }
 }
 
 public class DegerlendirmeViewModel

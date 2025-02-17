@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div class="text-center mb-4">
                     <div class="position-relative" style="width: 150px; height: 150px; margin: 0 auto;">
-                        <img src="~/images/users/@Model.resim" 
+                        <img src="~/images/users/@(string.IsNullOrEmpty(Model.resim) ? "default.jpg" : Model.resim)" 
                              class="rounded-circle w-100 h-100 border border-3 border-primary" 
                              style="object-fit: cover;"
                              alt="Profil">
@@ -29,12 +29,14 @@
                             <i class="fas fa-camera"></i>
                         </label>
                     </div>
-                    <form method="post" action="/Account/Profil" enctype="multipart/form-data" id="resimForm">
+                    <form method="post" action="@Url.Action("Profil", "Account")" enctype="multipart/form-data" id="resimForm">
                         <input type="file" id="resimInput" name="resim" class="d-none" accept="image/*">
+                        @Html.AntiForgeryToken()
                     </form>
                 </div>
 
-                <form method="post" action="/Account/ProfilGuncelle">
+                <form method="post" action="@Url.Action("ProfilGuncelle", "Account")">
+                    @Html.AntiForgeryToken()
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-floating">
@@ -68,13 +70,13 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Şifre">
+                                <input type="password" class="form-control" id="password" name="password">
                                 <label for="password">Yeni Şifre (Boş bırakılabilir)</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Şifre Tekrar">
+                                <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
                                 <label for="passwordConfirm">Yeni Şifre Tekrar</label>
                             </div>
                         </div>

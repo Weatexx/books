@@ -18,16 +18,11 @@ public class BildirimlerController : Controller
 
     public IActionResult Index()
     {
-        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-        if (userIdClaim == null)
-        {
-            return RedirectToAction("Giris", "Account");
-        }
-        var userId = int.Parse(userIdClaim.Value);
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
         var bildirimler = (from b in db.Bildirimler
                           where b.kullanici_id == userId
                           orderby b.tarih descending
-                          select new BildirimViewModel
+                          select new BildirimVM
                           {
                               Id = b.id,
                               Mesaj = b.bildirim_metni,

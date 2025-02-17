@@ -1,47 +1,79 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">Kitap</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-book me-2"></i>Kitap Blog
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Menüyü aç/kapat">
             <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Anasayfa</a>
+                    <a class="nav-link" href="/" aria-current="page">
+                        <i class="fas fa-home me-1"></i>Anasayfa
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/Kitaplar">Kitaplar</a>
+                    <a class="nav-link" href="/Kitaplar">
+                        <i class="fas fa-book-open me-1"></i>Kitaplar
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/Home/Iletisim">İletişim</a>
+                    <a class="nav-link" href="/Home/Iletisim">
+                        <i class="fas fa-envelope me-1"></i>İletişim
+                    </a>
                 </li>
             </ul>
+            
             <div class="d-flex align-items-center">
-                <button class="theme-toggle me-3" onclick="toggleTheme()">
+                <!-- Tema değiştirme butonu -->
+                <button class="theme-toggle btn btn-link text-light me-3" onclick="toggleTheme()" 
+                        aria-label="Tema değiştir">
                     <i class="fas fa-moon" id="theme-icon"></i>
                 </button>
+                
                 @if (User.Identity.IsAuthenticated)
                 {
                     var user = Context.RequestServices.GetService<books.Models.KitapDbContext>()
                         .Kullanicilars.FirstOrDefault(x => x.usernames == User.Identity.Name);
-                    <div class="dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-                            <img src="~/images/users/@(user?.resim ?? "default.jpg")" class="rounded-circle me-2" 
+                        
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" 
+                           id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
+                           aria-expanded="false">
+                            <img src="~/images/users/@(user?.resim ?? "default.jpg")" 
+                                 class="rounded-circle me-2" 
                                  style="width: 32px; height: 32px; object-fit: cover;" 
-                                 alt="Profil">
-                            <span>@user?.isim @user?.soyisim</span>
+                                 alt="@user?.isim">
+                            <span class="d-none d-sm-inline">@user?.isim @user?.soyisim</span>
                         </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/Account/Profil">Profilim</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/Account/Logout">Çıkış Yap</a>
-                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="/Account/Profil">
+                                    <i class="fas fa-user me-2"></i>Profilim
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="/Account/Logout">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Çıkış Yap
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 }
                 else
                 {
-                    <a href="/Account/Giris" class="btn btn-outline-primary me-2">Giriş Yap</a>
-                    <a href="/Account/KayitOl" class="btn btn-outline-success">Kaydol</a>
+                    <a href="/Account/Giris" class="btn btn-outline-light btn-sm me-2">
+                        <i class="fas fa-sign-in-alt me-1"></i>
+                        <span class="d-none d-sm-inline">Giriş Yap</span>
+                    </a>
+                    <a href="/Account/KayitOl" class="btn btn-light btn-sm">
+                        <i class="fas fa-user-plus me-1"></i>
+                        <span class="d-none d-sm-inline">Kaydol</span>
+                    </a>
                 }
             </div>
         </div>

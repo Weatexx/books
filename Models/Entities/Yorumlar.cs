@@ -7,12 +7,13 @@ namespace books.Models.Entities;
 public class Yorumlar
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int id { get; set; }
-    public int kitap_id { get; set; }
-    public int kullanici_id { get; set; }
-    public string yorum { get; set; } = "";
-    public int puan { get; set; }
-    public DateTime tarih { get; set; }
-    public int begeni_sayisi { get; set; }
+    public int? kitap_id { get; set; }
+    public int? kullanici_id { get; set; }
+    [Column(TypeName = "text")]
+    public string? yorum { get; set; }
+    [Column(TypeName = "tinyint")]
+    public int? puan { get; set; }
+    [Column(TypeName = "datetime")]
+    public DateTime? tarih { get; set; } = DateTime.Now;
 } 

@@ -44,4 +44,7 @@ public partial class Kitaplar
     [Column("resim")]
     [StringLength(50)]
     public string? Resim { get; set; }
+
+    public decimal? OrtalamaPuan { get; set; }
+    public int? YorumSayisi { get; set; }
 }

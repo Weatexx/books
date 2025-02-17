@@ -1,4 +1,4 @@
-public class KitaplikViewModel
+public class KitaplikVM
 {
     public int Id { get; set; }
     public int KitapId { get; set; }

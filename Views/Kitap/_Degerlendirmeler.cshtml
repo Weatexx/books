@@ -1,0 +1,36 @@
+@model List<books.Models.ViewModels.YorumVM>
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h5 class="card-title">Değerlendirmeler</h5>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var yorum in Model)
+            {
+                <div class="review-item border-bottom py-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="/images/users/@yorum.KullaniciResim" 
+                             class="rounded-circle me-2" 
+                             style="width: 40px; height: 40px; object-fit: cover;" 
+                             alt="@yorum.KullaniciAdi" />
+                        <div>
+                            <h6 class="mb-0">@yorum.KullaniciAdi</h6>
+                            <div class="rating-display">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <i class="fas fa-star @(i <= yorum.Puan ? "text-warning" : "text-secondary")"></i>
+                                }
+                            </div>
+                        </div>
+                        <small class="text-muted ms-auto">@yorum.Tarih.ToShortDateString()</small>
+                    </div>
+                    <p class="mb-0">@yorum.Yorum</p>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-muted text-center mb-0">Henüz değerlendirme yapılmamış.</p>
+        }
+    </div>
+</div> 

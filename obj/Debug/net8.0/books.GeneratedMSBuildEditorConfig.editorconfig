@@ -228,6 +228,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfRGVnZXJsZW5kaXJtZWxlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Koray/OneDrive/Desktop/books/Views/Kitap/Detay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2l0YXBcRGV0YXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Koray/OneDrive/Desktop/books/Views/Kitap/_Degerlendirmeler.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2l0YXBcX0RlZ2VybGVuZGlybWVsZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Koray/OneDrive/Desktop/books/Views/Mesajlar/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzYWpsYXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

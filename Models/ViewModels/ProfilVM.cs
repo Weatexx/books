@@ -1,4 +1,4 @@
-public class ProfilViewModel
+public class ProfilVM
 {
     public int Id { get; set; }
     public string KullaniciAdi { get; set; } = "";
@@ -6,9 +6,7 @@ public class ProfilViewModel
     public string Bio { get; set; } = "";
     public string WebSitesi { get; set; } = "";
     public int OkuduguKitapSayisi { get; set; }
-    public int TakipciSayisi { get; set; }
-    public int TakipEdilenSayisi { get; set; }
     public bool KullaniciTakipEdiliyormu { get; set; }
-    public List<KitaplikViewModel> Kitaplik { get; set; } = new();
-    public List<AlintiViewModel> Alintilar { get; set; } = new();
+    public List<KitaplikVM> Kitaplik { get; set; } = new();
+    public List<AlintiVM> Alintilar { get; set; } = new();
 } 

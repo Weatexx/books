@@ -56,16 +56,17 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.Use(async (context, next) =>
 {
-    context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
-    context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-    context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
-    context.Response.Headers.Add("Referrer-Policy", "strict-origin-when-cross-origin");
-    context.Response.Headers.Add("Content-Security-Policy", 
+    context.Response.Headers.Append("X-Frame-Options", "DENY");
+    context.Response.Headers.Append("X-Content-Type-Options", "nosniff");
+    context.Response.Headers.Append("X-XSS-Protection", "1; mode=block");
+    context.Response.Headers.Append("Referrer-Policy", "no-referrer-when-downgrade");
+    context.Response.Headers.Append("Content-Security-Policy", 
         "default-src 'self'; " +
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; " +
-        "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; " +
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; " +
+        "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; " +
         "img-src 'self' data: https:; " +
-        "font-src 'self' https://cdnjs.cloudflare.com;");
+        "font-src 'self' https://cdnjs.cloudflare.com; " +
+        "connect-src 'self' ws: wss:;");
     await next();
 });
 

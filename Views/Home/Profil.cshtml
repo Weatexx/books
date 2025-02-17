@@ -1,5 +1,5 @@
 @using System.Security.Claims
-@model ProfilViewModel
+@model ProfilVM
 @{
     ViewData["Title"] = Model.KullaniciAdi + " Profili";
 }
@@ -19,14 +19,6 @@
                     <div class="col">
                         <h6>Kitap</h6>
                         <p>@Model.OkuduguKitapSayisi</p>
-                    </div>
-                    <div class="col">
-                        <h6>Takipçi</h6>
-                        <p>@Model.TakipciSayisi</p>
-                    </div>
-                    <div class="col">
-                        <h6>Takip</h6>
-                        <p>@Model.TakipEdilenSayisi</p>
                     </div>
                 </div>
                 @if (User.Identity.IsAuthenticated && int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) != Model.Id)

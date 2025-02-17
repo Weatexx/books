@@ -72,48 +72,7 @@ public class HomeController : Controller
     [Route("/Kitap/{id}")]
     public IActionResult KitapDetay(int id)
     {
-        var kitap = (from k in db.Kitaplars
-                     where k.Id == id
-                     select new BookDetailVM
-                     {
-                         KitapId = k.Id,
-                         KitapAdi = k.Adi,
-                         Resim = k.Resim ?? "default.jpg",
-                         YayinTarihi = k.YayinTarihi.ToShortDateString(),
-                         SayfaSayisi = k.SayfaSayisi,
-                         Ozet = k.Ozet,
-                         Dil = (from d in db.Dillers
-                               where d.Id == k.DilId
-                               select d.DilAdi).FirstOrDefault() ?? "",
-                         Yazar = new YazarListVM 
-                         {
-                             ID = k.YazarId,
-                             adi = (from y in db.Yazarlars
-                                   where y.ID == k.YazarId
-                                   select y.adi).FirstOrDefault() ?? "",
-                             soyadi = (from y in db.Yazarlars
-                                      where y.ID == k.YazarId
-                                      select y.soyadi).FirstOrDefault() ?? ""
-                         },
-                         Yayinevi = (from y in db.Yayinevleris
-                                   where y.Id == k.YayineviId
-                                   select y.yayineviAdi).FirstOrDefault() ?? "",
-                         KitapTurleri = (from t in db.Turlertokitaplars
-                                        join tur in db.Turlers on t.TurId equals tur.Id
-                                        where t.KitapId == k.Id
-                                        select new TurVM 
-                                        { 
-                                            Id = tur.Id,
-                                            TurAdi = tur.TurAdi 
-                                        }).ToList()
-                     }).FirstOrDefault();
-
-        if (kitap == null)
-        {
-            return NotFound();
-        }
-
-        return View(kitap);
+        return RedirectToAction("Detay", "Kitap", new { id = id });
     }
 
     [Route("/Yazar/{id}")]
@@ -218,23 +177,21 @@ public class HomeController : Controller
         if (kullanici == null)
             return NotFound();
             
-        var viewModel = new ProfilViewModel
+        var viewModel = new ProfilVM
         {
             Id = kullanici.id,
             KullaniciAdi = kullanici.usernames ?? "",
             Resim = kullanici.resim ?? "default.jpg",
             Bio = kullanici.bio ?? "",
             WebSitesi = kullanici.web_sitesi ?? "",
-            OkuduguKitapSayisi = kullanici.okudugu_kitap_sayisi,
-            TakipciSayisi = kullanici.takipci_sayisi,
-            TakipEdilenSayisi = kullanici.takip_edilen_sayisi
+            OkuduguKitapSayisi = kullanici.okudugu_kitap_sayisi
         };
 
         // Kullanıcının kitaplığını getir
         viewModel.Kitaplik = (from k in db.KullaniciKitaplik
                              join kitap in db.Kitaplars on k.kitap_id equals kitap.Id
                              where k.kullanici_id == id
-                             select new KitaplikViewModel
+                             select new KitaplikVM
                              {
                                  Id = k.id,
                                  KitapId = kitap.Id,
@@ -250,7 +207,7 @@ public class HomeController : Controller
                               join kitap in db.Kitaplars on a.kitap_id equals kitap.Id
                               where a.kullanici_id == id
                               orderby a.paylasim_tarihi descending
-                              select new AlintiViewModel
+                              select new AlintiVM
                               {
                                   Id = a.id,
                                   KitapId = kitap.Id,
@@ -266,7 +223,7 @@ public class HomeController : Controller
 
     [Authorize]
     [HttpPost]
-    public IActionResult KitaplikEkle([FromBody] KitaplikEkleViewModel model)
+    public IActionResult KitaplikEkle([FromBody] KitaplikEkleVM model)
     {
         try
         {
@@ -274,9 +231,9 @@ public class HomeController : Controller
             
             var kitaplik = new KullaniciKitaplik
             {
-                kitap_id = model.kitapId,
                 kullanici_id = userId,
-                durum = model.durum,
+                kitap_id = model.kitapId.GetValueOrDefault(),
+                durum = model.durum ?? "",
                 baslama_tarihi = model.durum == "Okuyorum" ? DateTime.Now : null,
                 bitirme_tarihi = model.durum == "Okudum" ? DateTime.Now : null
             };
@@ -286,9 +243,9 @@ public class HomeController : Controller
 
             return Json(new { success = true });
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return Json(new { success = false, message = "Kitap eklenirken bir hata oluştu" });
+            return Json(new { success = false, message = ex.Message });
         }
     }
 
@@ -304,117 +261,6 @@ public class HomeController : Controller
         db.SaveChanges();
 
         return Json(new { success = true });
-    }
-
-    [Authorize]
-    [HttpPost]
-    public IActionResult DegerlendirmeEkle([FromBody] DegerlendirmeEkleViewModel model)
-    {
-        try
-        {
-            Console.WriteLine($"Gelen puan değeri: {model.puan}");
-            if (!User.Identity.IsAuthenticated)
-            {
-                return Json(new { success = false, message = "Lütfen önce giriş yapın" });
-            }
-
-            if (model == null)
-            {
-                return Json(new { success = false, message = "Geçersiz veri" });
-            }
-
-            // ClaimsPrincipal kontrolü
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (userIdClaim == null)
-            {
-                return Json(new { success = false, message = "Kullanıcı kimliği bulunamadı" });
-            }
-            var userId = int.Parse(userIdClaim.Value);
-
-            // Model değerlerinin kontrolü
-            if (model.kitapId <= 0)
-            {
-                return Json(new { success = false, message = "Geçersiz kitap ID" });
-            }
-
-            if (model.puan < 1 || model.puan > 5)
-            {
-                return Json(new { success = false, message = "Geçersiz puan değeri" });
-            }
-
-            if (string.IsNullOrEmpty(model.yorum))
-            {
-                return Json(new { success = false, message = "Yorum alanı boş olamaz" });
-            }
-
-            // Önceki değerlendirmeyi kontrol et
-            var eskiDegerlendirme = db.Yorumlar
-                .FirstOrDefault(d => d.kitap_id == model.kitapId && d.kullanici_id == userId);
-            
-            if (eskiDegerlendirme != null)
-            {
-                // Varolan değerlendirmeyi güncelle
-                eskiDegerlendirme.puan = model.puan;
-                eskiDegerlendirme.yorum = model.yorum;
-                eskiDegerlendirme.tarih = DateTime.Now;
-                Console.WriteLine($"Güncellenen değerlendirme puanı: {eskiDegerlendirme.puan}");
-            }
-            else
-            {
-                // Yeni değerlendirme ekle
-                var degerlendirme = new Yorumlar
-                {
-                    kitap_id = model.kitapId,
-                    kullanici_id = userId,
-                    puan = model.puan,
-                    yorum = model.yorum,
-                    tarih = DateTime.Now,
-                    begeni_sayisi = 0
-                };
-                Console.WriteLine($"Yeni değerlendirme puanı: {degerlendirme.puan}");
-                db.Yorumlar.Add(degerlendirme);
-            }
-
-            db.SaveChanges();
-            return Json(new { success = true });
-        }
-        catch (Exception ex)
-        {
-            return Json(new { success = false, message = $"Hata: {ex.Message}" });
-        }
-    }
-
-    public IActionResult Degerlendirmeler(int id)
-    {
-        try
-        {
-            var degerlendirmeler = (from d in db.Yorumlar
-                                  join k in db.Kullanicilars on d.kullanici_id equals k.id
-                                  where d.kitap_id == id
-                                  orderby d.tarih descending
-                                  select new DegerlendirmeViewModel
-                                  {
-                                      Id = d.id,
-                                      KullaniciAdi = k.usernames,
-                                      KullaniciResim = k.resim,
-                                      Puan = d.puan,
-                                      Yorum = d.yorum,
-                                      Tarih = d.tarih,
-                                      BegeniSayisi = d.begeni_sayisi
-                                  }).ToList();
-
-            // Debug için puanları kontrol edelim
-            foreach (var d in degerlendirmeler)
-            {
-                Console.WriteLine($"Kullanıcı: {d.KullaniciAdi}, Puan: {d.Puan}");
-            }
-
-            return PartialView("~/Views/Home/_Degerlendirmeler.cshtml", degerlendirmeler);
-        }
-        catch (Exception ex)
-        {
-            return PartialView("~/Views/Home/_Degerlendirmeler.cshtml", new List<DegerlendirmeViewModel>());
-        }
     }
 
     public IActionResult Yazarlar()
