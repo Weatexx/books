@@ -1,3 +1,5 @@
+(Site Kapsamlı Kod Güncellemeri Sonrası Tekrar Yüklenecektir.)
+
 Arda Koray Kartal
 
 (TR)
